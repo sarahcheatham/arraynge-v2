@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/UserRoutes");
 const sessionRoutes = require("./routes/SessionRoutes");
 const authenticationRoutes = require("./routes/AuthenticationRoutes");
-// const classdataRoutes = require("./routes/ClassDataRoutes");
+const classdataRoutes = require("./routes/ClassDataRoutes");
 
 
 mongoose.set("debug", true);
@@ -37,7 +37,7 @@ function startWebServer(){
   app.use(sessionRoutes);
   app.use(authenticationRoutes);
   //secure
-//   app.use(classdataRoutes);
+  app.use(classdataRoutes);
   //deployment
   // app.use(express.static(path.join(__dirname + "public" + "build" )))
 
@@ -47,9 +47,18 @@ function startWebServer(){
 
   app.get("/api/users", (req, res) => {
     res.send(req.body)
-  })
+  });
 
+  app.get("api/classdata", (req, res) => {
+    res.send(req.body)
+  });
 
+  const port = process.env.PORT || 3001;
+  
+  app.listen(port, () => {
+    console.log(`Listening on port:${port}`);
+  });
+}
 
 //   app.get("/api/users/:id", function (req, res){
 //     res.send(`${req.user.userId}`)
@@ -86,8 +95,8 @@ function startWebServer(){
   //   res.sendFile(path.join(__dirname + "arraynge" + "build" + "index.html"));
   // })
   //heroku injects the port number into the PORT env value
-  const port = process.env.PORT || 3001;
-  app.listen(port, () => {
-    console.log(`Listening on port:${port}`);
-  });
-}
+//   const port = process.env.PORT || 3001;
+//   app.listen(port, () => {
+//     console.log(`Listening on port:${port}`);
+//   });
+// }
