@@ -19,7 +19,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      signUpSignInError: "",
+      // signUpSignInError: "",
       authenticated: localStorage.getItem("token") || false,
       userId: "",
       subject: "",
@@ -40,27 +40,22 @@ class App extends Component {
 
     if(!username.trim() || !password.trim()){
       this.props.setSignUpSignInError("Must Provide All Fields")
-      // this.setState({
-      //   signUpSignInError: "Must Provide All Fields"
-      // });
     } else {
-      this.props.createUserData(credentials)
-
-    //   fetch("/api/users", {
-    //     method: "POST",
-    //     headers: {"Content-Type": "application/json"},
-    //     body: JSON.stringify(credentials)
-    //   }).then(res => {
-    //     return res.json();
-      // }).then(data => {
-        // const { token } = data;
-        // localStorage.setItem("token", token);
-      //   this.setState({
-      //     signUpSignInError: "",
-      //     authenticated: token
-      //   });
-      //   this.props.loadUserId();
-      // });
+      fetch("/api/users", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(credentials)
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        const { token } = data;
+        localStorage.setItem("token", token);
+        this.setState({
+          authenticated: token
+        });
+        this.props.setSignUpSignInError("")
+        this.props.loadUserId();
+      });
     }
   }
 
@@ -161,24 +156,24 @@ class App extends Component {
     }
   }
 
-const mapStateToProps = state => {
-    return {
-        users: {
-            loading: state.loading,
-            error: state.error,
-            users: state.users
-        }
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         users: {
+//             loading: state.loading,
+//             error: state.error,
+//             users: state.users
+//         }
+//     }
+// }
 
 const mapDispatchToProps = dispatch => {
     return {
-        createUserData: credentials => dispatch(createUserData(credentials)),
-        createSession: credentials => dispatch(createSession(credentials))
+        setCurrentUserId: userId => dispatch(setCurrentUserId(userId)),
+        setSignUpSignInError: error => dispatch(setSignUpSignInError(error))
     }
 }
 
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps) (App);
+export default connect(null, mapDispatchToProps) (App);
