@@ -49,6 +49,10 @@ function startWebServer(){
     res.send(req.body)
   });
 
+  app.get("/api/userId", function (req, res){
+    res.send(`${req.user._id}`)
+  })
+
   app.get("api/classdata", (req, res) => {
     res.send(req.body)
   });
@@ -63,9 +67,9 @@ function startWebServer(){
 //   app.get("/api/users/:id", function (req, res){
 //     res.send(`${req.user.userId}`)
 //   })
-//   app.get("/api/hey", function (req, res){
-//     res.send(`${req.user._id}`)
-//   })
+  // app.get("/api/hey", function (req, res){
+  //   res.send(`${req.user._id}`)
+  // })
 //   app.get("/api/scores", function (req, res) {
 //     res.send(`${req.user.firstName} ${req.user.lastName}'s Class List`)
 //   });

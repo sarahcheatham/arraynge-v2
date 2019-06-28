@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import { Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import Header from './components/Header/Header';
 import SideNav from './components/SideNav/SideNav';
 import SignUpSignInPage from './components/SignUpSignInPage/SignUpSignInPage';
-import WelcomePage from './components/WelcomePage/WelcomePage'
+import WelcomePage from './components/WelcomePage/WelcomePage';
+import { connect } from 'react-redux';
+import { loadUserId, setCurrentUserId, createUserData, createSession, setSignUpSignInError } from './store/actions';
 // import WelcomeContainer from './containers/WelcomeContainer';
 // import ScoresPageContainer from './containers/ScoresPageContainer';
 // import ClassDataPageContainer from './containers/ClassDataPageContainer';
@@ -34,28 +36,31 @@ class App extends Component {
   
   handleSignUp(credentials){
     const { username, password, confirmPassword } = credentials;
+    console.log("credentials:", credentials)
 
     if(!username.trim() || !password.trim()){
-      this.setState({
-        signUpSignInError: "Must Provide All Fields"
-      });
+      this.props.setSignUpSignInError("Must Provide All Fields")
+      // this.setState({
+      //   signUpSignInError: "Must Provide All Fields"
+      // });
     } else {
+      this.props.createUserData(credentials)
 
-      fetch("/api/users", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(credentials)
-      }).then(res => {
-        return res.json();
-      }).then(data => {
-        const { token } = data;
-        localStorage.setItem("token", token);
-        this.setState({
-          signUpSignInError: "",
-          authenticated: token
-        });
-        this.props.loadUserId();
-      });
+    //   fetch("/api/users", {
+    //     method: "POST",
+    //     headers: {"Content-Type": "application/json"},
+    //     body: JSON.stringify(credentials)
+    //   }).then(res => {
+    //     return res.json();
+      // }).then(data => {
+        // const { token } = data;
+        // localStorage.setItem("token", token);
+      //   this.setState({
+      //     signUpSignInError: "",
+      //     authenticated: token
+      //   });
+      //   this.props.loadUserId();
+      // });
     }
   }
 
@@ -96,13 +101,13 @@ class App extends Component {
     this.props.setWelcomeMessage(null);
   }
 
-  // renderError(){
-  //   return(
-  //       <Alert bsStyle="warning">
-  //           <strong className="signupsigninerr">{this.props.err}</strong>
-  //       </Alert>
-  //   )
-  // }
+  renderError(){
+    return(
+        <Alert bsStyle="warning">
+            <strong className="signupsigninerr">{this.props.err}</strong>
+        </Alert>
+    )
+  }
   renderSignUpSignIn() {
     return (
       <Switch>
@@ -156,4 +161,24 @@ class App extends Component {
     }
   }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        users: {
+            loading: state.loading,
+            error: state.error,
+            users: state.users
+        }
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createUserData: credentials => dispatch(createUserData(credentials)),
+        createSession: credentials => dispatch(createSession(credentials))
+    }
+}
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (App);
