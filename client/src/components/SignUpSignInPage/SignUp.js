@@ -73,7 +73,7 @@ class SignUp extends Component{
                             type="email"
                             name="username"
                             onChange={this.handleFormChange}
-                            placeholder="Enter Username"
+                            placeholder="Enter Email Address"
                             value={this.state.username}
                             id="signup-email"
                         />

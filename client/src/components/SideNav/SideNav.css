@@ -1,0 +1,46 @@
+.navbar {
+    overflow: hidden;
+    font-family: quasimoda, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+    max-height: 100%;
+    background-color: var(--navbar-background);
+}
+ul {
+    display: block;
+    list-style: none;
+    list-style-type: disc;
+    margin-block-start: 0%;
+    margin-block-end: 0%;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+.navbar a {
+    display: flex;
+    font-size: 1.25em;
+    color: var(--navbar-text);
+    text-align: left;
+    padding: 20%;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: var(--navbar-hover-background);
+    color: var(--navbar-hover-text);
+}
+
+.signoutButton{
+    display: flex;
+    padding: 20%;
+    margin-top: 20%;
+    color: var(--navbar-text);
+    font-size: 1.25em;
+}
+.signoutButton:hover{
+    background-color: var(--navbar-hover-background);
+    color: var(--navbar-hover-text);
+}
+

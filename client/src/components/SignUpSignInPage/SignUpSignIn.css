@@ -1,16 +1,7 @@
-:root {
- --dark-magneta: rgb(146, 27, 78);
- --text-color: #343148;
- --warm-white: #f2edd7;
- font-size: 12px;
-}
-
 .loginPage{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* grid-template-rows: 1fr 1fr; */
   grid-column-gap: 10%;
-  /* margin: 0 auto; */
   margin: 5%;
 }
 
@@ -81,13 +72,12 @@
 }
 
 .signupLegend{
-    display: flex;
     margin: 2%;
-    /* font-family: ivystyle-tw, sans-serif; */
     font-family: objektiv-mk1, sans-serif;
     font-style: normal;
     font-weight: 200;
     font-size: 2.5em;
+    color: var(--text-color);
 }
 .signup-label{
     display: flex;
@@ -101,8 +91,7 @@
 
 .signupButton{
     color: var(--warm-white);
-    background-color: var(--text-color);
-    /* font-family: ivystyle-tw, sans-serif; */
+    background-color: var(--dark-navy);
     font-family: objektiv-mk1, sans-serif;
     font-style: normal;
     font-weight: 200;
@@ -154,5 +143,49 @@
     .signup{
         grid-column: 1 / 2;
         grid-row: 2 / 3;
+    }
+    .signupLegend{
+        font-size: 2em;
+    }
+    .signup-label{
+        font-size: 1.15em;
+    }
+    .signupButton{
+        font-size: 1.15em;
+        height: 3.5em;
+    }
+    
+    #firstName{
+        height: 3em;
+    }
+    #lastName{
+        height: 3em;
+    }
+    #signup-email{
+        height: 3em;
+    }
+    #signup-password{
+        height: 3em;
+    }
+    #signup-confirm-password{
+        height: 3em;
+    }
+    .loginLegend{
+        font-size: 2em;
+    }
+    .signin-label{
+        font-size: 1.15em;
+    }
+    .signinButton{
+        font-size: 1.15em;
+        height: 3.5em;
+    }
+    
+    #email{
+        height: 3em;
+    }
+    
+    #password{
+        height: 3em;
     }
 }

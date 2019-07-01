@@ -1,0 +1,13 @@
+.header {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: source-sans-pro, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    margin-bottom: 2%;
+    font-size: 3em;
+    color: var(--ultra-violet);
+  }
