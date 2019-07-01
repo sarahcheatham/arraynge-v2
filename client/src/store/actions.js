@@ -4,12 +4,13 @@ export const handleErrors = response => {
     }
     return response;
 }
+
 export const loadUserId = () => {
     return dispatch => {
         fetch("/api/userId")
         .then(res =>{
             return res.text();
-        }).then(userId =>{
+        }).then(userId => {
             dispatch(setCurrentUserId(userId));
         });
     };
@@ -19,110 +20,77 @@ export const setCurrentUserId = userId => {
     return {
         type: "SET_USER_ID",
         value: userId
-    }
+    };
 }
 
 export const setSignUpSignInError = error => {
     return {
         type: "SET_SIGN_UP_SIGN_IN_ERROR",
         value: error
-    }
-}
-
-export const FETCH_USERS_BEGIN = "FETCH_USERS_BEGIN";
-export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
-export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
-
-export const fetchUsersBegin = () =>({
-    type: FETCH_USERS_BEGIN
-});
-
-export const fetchUsersSuccess = users =>({
-    type: FETCH_USERS_SUCCESS,
-    payload: { users }
-});
-
-export const fetchUsersFailure = error =>({
-    type: FETCH_USERS_FAILURE,
-    payload: { error }
-});
-
-export const loadUserData = () => {
-    return dispatch => {
-        dispatch(fetchUsersBegin());
-        return fetch('/api/users')
-            .then(handleErrors)
-            .then(res => res.json())
-            .then(users => {
-                    // const { token } = data;
-                    // localStorage.setItem("token", token);
-                    dispatch(fetchUsersSuccess(users));
-                    return users;
-            })
-            .catch(error => dispatch(fetchUsersFailure(error)))
     };
 }
 
-export const createUserData = credentials => {
+//classdata fetch
+export const FETCH_CLASSDATA_BEGIN = "FETCH_CLASSDATA_BEGIN";
+export const FETCH_CLASSDATA_SUCCESS = "FETCH_CLASSSDATA_SUCCESS";
+export const FETCH_CLASSDATA_FAILURE = "FETCH_CLASSDATA_FAILURE";
+
+export const fetchClassDataBegin = () =>({
+    type: FETCH_CLASSDATA_BEGIN
+});
+
+export const fetchClassDataSuccess = classes =>({
+    type: FETCH_CLASSDATA_SUCCESS,
+    payload: { classes }
+});
+
+export const fetchClassDataFailure = error =>({
+    type: FETCH_CLASSDATA_FAILURE,
+    payload: { error }
+});
+
+export const loadClassData = () => {
     return dispatch => {
-        fetch("/api/users", {
+        dispatch(fetchClassDataBegin());
+        return fetch('/api/classdata')
+            .then(handleErrors)
+            .then(res => res.json())
+            .then(classes => {
+                    dispatch(fetchClassDataSuccess(classes));
+                    return classes;
+            })
+            .catch(error => dispatch(fetchClassDataFailure(error)))
+    };
+}
+
+export const createClassData = classdata => {
+    return dispatch => {
+        fetch("/api/classdata",{
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credentials)
+            body: JSON.stringify(classdata)
+        }).then(()=> dispatch(loadClassData()));
+    }
+}
+
+export const updateClassData = item => {
+    return dispatch => {
+        fetch("/api/classdata/:id", {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(item)
         })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //     const { token } = data;
-    //     localStorage.setItem("token", token);
-    //     this.setState({
-    //       signUpSignInError: "",
-    //       authenticated: token
-    //     });
-    //     this.props.loadUserId();
-    //   });
-        .then(()=> dispatch(loadUserData()))
+        .then(()=> dispatch(loadClassData()))
     }
 }
 
-export const FETCH_SESSION_BEGIN = "FETCH_SESSION_BEGIN";
-export const FETCH_SESSION_SUCCESS = "FETCH_SESSION_SUCCESS";
-export const FETCH_SESSION_FAILURE = "FETCH_SESSION_FAILURE";
-
-export const fetchSessionBegin = () =>({
-    type: FETCH_SESSION_BEGIN
-});
-
-export const fetchSessionSuccess = session =>({
-    type: FETCH_SESSION_SUCCESS,
-    payload: { session }
-});
-
-export const fetchSessionFailure = error =>({
-    type: FETCH_SESSION_FAILURE,
-    payload: { error }
-});
-
-export const loadSession = () => {
+export const deleteClassData = item => {
     return dispatch => {
-        dispatch(fetchSessionBegin());
-        return fetch('/api/session')
-            .then(handleErrors)
-            .then(res => res.json())
-            .then(session => {
-                    dispatch(fetchSessionSuccess(session));
-                    return session;
-            })
-            .catch(error => dispatch(fetchSessionFailure(error)))
-    };
-}
-
-export const createSession = credentials => {
-    return dispatch => {
-        fetch("/api/sessions", {
-            method: "POST",
+        fetch("/api/classdata/:id", {
+            method: "DELETE",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credentials)
-          })
-          .then(()=> dispatch(loadSession()))
+            body: JSON.stringify(item)
+        })
+        .then(()=> dispatch(loadClassData()))
     }
 }

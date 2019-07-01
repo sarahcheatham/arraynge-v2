@@ -19,25 +19,17 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      // signUpSignInError: "",
       authenticated: localStorage.getItem("token") || false,
       userId: "",
       subject: "",
       gradelevel: ""
     };
-    this.handleSignIn = this.handleSignIn.bind(this);
-    this.handleSignOut = this.handleSignOut.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
   };
 
-  componentDidMount(){
-    
-  }
   
-  handleSignUp(credentials){
+  handleSignUp = credentials => {
     const { username, password, confirmPassword } = credentials;
     console.log("credentials:", credentials)
-
     if(!username.trim() || !password.trim()){
       this.props.setSignUpSignInError("Must Provide All Fields")
     } else {
@@ -59,12 +51,10 @@ class App extends Component {
     }
   }
 
-  handleSignIn(credentials) {
+  handleSignIn = credentials => {
     const { username, password } = credentials;
     if (!username.trim() || !password.trim() ) {
-      this.setState({
-        signUpSignInError: "Must Provide All Fields"
-      });
+      this.props.setSignUpSignInError("Must Provide All Fields")
     } else {
       fetch("/api/sessions", {
         method: "POST",
@@ -74,36 +64,28 @@ class App extends Component {
         return res.json();
       }).then(data => {
         const { token } = data;
-        // console.log(token)
         localStorage.setItem("token", token);
-        this.setState({
-          signUpSignInError: "",
-          authenticated: token
-        });
+        this.setState({ authenticated: token });
         this.props.loadUserId();
-        this.props.loadClassData();
-        this.props.loadStudentData();
+        // this.props.loadClassData();
       });
     }  
   }
 
-  handleSignOut(event){
+  handleSignOut = event => {
     localStorage.removeItem("token");
-    this.setState({
-      authenticated: false
-    });
+    this.setState({ authenticated: false });
     this.props.setCurrentUserId(null);
-    this.props.setWelcomeMessage(null);
   }
 
-  renderError(){
+  renderError = () => {
     return(
         <Alert bsStyle="warning">
-            <strong className="signupsigninerr">{this.props.err}</strong>
+            <strong className="signupsigninerr">{this.props.signUpSignInError}</strong>
         </Alert>
     )
   }
-  renderSignUpSignIn() {
+  renderSignUpSignIn = () => {
     return (
       <Switch>
         <Route
@@ -114,7 +96,7 @@ class App extends Component {
     );
   }
 
-  renderApp(){
+  renderApp = () => {
     return(
       <div className="page">
         <Switch>
@@ -133,6 +115,7 @@ class App extends Component {
   }
  
   render() {
+    console.log(this.props)
     let whatToShow = "";
     if(this.state.authenticated){
       whatToShow = this.renderApp();
@@ -156,24 +139,19 @@ class App extends Component {
     }
   }
 
-// const mapStateToProps = state => {
-//     return {
-//         users: {
-//             loading: state.loading,
-//             error: state.error,
-//             users: state.users
-//         }
-//     }
-// }
+const mapStateToProps = state => {
+  return {
+    signUpSignInError: state.signUpSignInError
+  }
+  
+}
 
 const mapDispatchToProps = dispatch => {
     return {
+        loadUserId: () => dispatch(loadUserId()),
         setCurrentUserId: userId => dispatch(setCurrentUserId(userId)),
         setSignUpSignInError: error => dispatch(setSignUpSignInError(error))
     }
 }
-
-
-
 
 export default connect(null, mapDispatchToProps) (App);

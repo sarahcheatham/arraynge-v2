@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import { FormControl, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+// import { FormControl, Button } from 'react-bootstrap';
 import Star from './Star';
 // import NewUserButton from './NewUserButton';
 // import Required from './Required';
@@ -23,9 +24,11 @@ class SignUp extends Component{
     //     }
     //     this.setState({checkPasswordsMatch: true})
     // }
+    handleFormChange = e => {
+        this.setState({[e.target.name]: e.target.value});
+    }
 
-    handleSubmit(event){
-        // console.log('FORM: ', event)
+    handleSubmit = event => {
         event.preventDefault();
         this.props.onSignUp({
             username: this.state.username,
@@ -37,82 +40,71 @@ class SignUp extends Component{
     }
 
     render(){
-        // console.log('PROPS: ', this.props)
         return(
-            <div className="signup">
-                <form className="signupForm" onSubmit={this.handleSubmit.bind(this)}>
+            // <div className="signup">
+            <Container className="signup">
+                <Form className="signupForm" onSubmit={this.handleSubmit}>
                     <legend className="signupLegend">CREATE AN ACCOUNT</legend>
-                    {/* <Required className='required'/> */}
-                    <label className="userFirstName">
-                        First Name<Star/><br/>
-                        <FormControl
+                    <FormGroup className="formGroup">
+                        <Label className="signup-label">First Name<Star/></Label>
+                        <Input
                             type="text"
                             name="firstName"
-                            onChange={e=>{
-                                this.setState({[e.target.name]: e.target.value});
-                            }}
+                            onChange={this.handleFormChange}
                             placeholder="Enter First Name"
                             value={this.state.firstName}
                             id="firstName"
                         />
-                    </label>
-                    <label className="userLastName">
-                        Last Name<Star/><br/>
-                        <FormControl
+                    </FormGroup>
+                    <FormGroup className="formGroup">
+                        <Label className="signup-label">Last Name<Star/></Label>
+                        <Input
                             type="text"
                             name="lastName"
-                            onChange={e=>{
-                                this.setState({[e.target.name]: e.target.value});
-                            }}
+                            onChange={this.handleFormChange}
                             placeholder="Enter Last Name"
                             value={this.state.lastName}
                             id="lastName"
                         />
-                    </label>
-                    <label className="signupemail">
-                        Email Address<Star/><br/>
-                        <FormControl
+                    </FormGroup>
+                    <FormGroup className="formGroup">
+                        <Label className="signup-label">Email Address<Star/></Label>
+                        <Input
                             type="email"
                             name="username"
-                            onChange={e=>{
-                                this.setState({[e.target.name]: e.target.value});
-                            }}
+                            onChange={this.handleFormChange}
                             placeholder="Enter Username"
                             value={this.state.username}
-                            id="email2"
+                            id="signup-email"
                         />
-                    </label>
-                    <label className="signuppwd">
-                        Password<Star/> <br/>
-                        <FormControl
+                    </FormGroup>
+                    <FormGroup className="formGroup">
+                        <Label className="signup-label">Password<Star/></Label>
+                        <Input
                             type="password"
                             name="password"
-                            onChange={e=>{
-                                this.setState({[e.target.name]: e.target.value});
-                            }}
+                            onChange={this.handleFormChange}
                             placeholder="Enter Password"
                             value={this.state.password} 
-                            id="pwd2"  
+                            id="signup-password"  
                         />
-                    </label>
-                    <label className="confirmpwd">
-                        Confirm Password<Star/>
-                        <FormControl
+                    </FormGroup>
+                    <FormGroup className="formGroup">
+                        <Label className="signup-label">Confirm Password<Star/></Label>
+                        <Input
                             type="password"
                             name="confirmPassword"
-                            onChange={e=>{
-                                this.setState({[e.target.name]: e.target.value});
-                            }}
+                            onChange={this.handleFormChange}
                             placeholder="Confirm Password"
                             value={this.state.confirmPassword}
-                            id="pwd3"
+                            id="signup-confirm-password"
                         />
-                    </label>
+                    </FormGroup>
                     <Button type="submit" className="signupButton">
                         CREATE AN ACCOUNT
                     </Button>
-                </form>
-            </div>
+                </Form>
+            </Container>
         );
     }
 }

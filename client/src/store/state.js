@@ -1,13 +1,8 @@
 const storeState =  {
-    users: {
+    classdata: {
         loading: false,
         error: null,
-        users: []
-    },
-    session: {
-        loading: false,
-        error: null,
-        session: []
+        classdata: []
     },
     currentUserId: "",
     signUpSignInError: "",

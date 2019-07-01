@@ -1,67 +1,38 @@
 import storeState from './state';
 import { combineReducers } from 'redux';
 import { 
-    FETCH_USERS_BEGIN,
-    FETCH_USERS_SUCCESS,
-    FETCH_USERS_FAILURE,
-    FETCH_SESSION_BEGIN,
-    FETCH_SESSION_SUCCESS,
-    FETCH_SESSION_FAILURE,
+    FETCH_CLASSDATA_BEGIN,
+    FETCH_CLASSDATA_SUCCESS,
+    FETCH_CLASSDATA_FAILURE,
 } from './actions';
 
-const users = (state = storeState, action) => {
+const classdata = (state = storeState, action) => {
     switch(action.type){
-        case FETCH_USERS_BEGIN:
+        case FETCH_CLASSDATA_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
             };
-        case FETCH_USERS_SUCCESS:
+        case FETCH_CLASSDATA_SUCCESS:
             return {
                 ...state,
                 loading: false, 
-                users: action.payload.users
+                classdata: action.payload.classdata
             };
-        case FETCH_USERS_FAILURE:
+        case FETCH_CLASSDATA_FAILURE:
             return {
                 ...state, 
                 loading: false,
                 error: action.payload.error,
-                users: []
+                classdata: []
             };
         default:
             return state;
     }
 }
 
-const session = (state = storeState, action) => {
-    switch(action.type){
-        case FETCH_SESSION_BEGIN:
-            return {
-                ...state,
-                loading: true,
-                error: null
-            };
-        case FETCH_SESSION_SUCCESS:
-            return {
-                ...state,
-                loading: false, 
-                session: action.payload.session
-            };
-        case FETCH_SESSION_FAILURE:
-            return {
-                ...state, 
-                loading: false,
-                error: action.payload.error,
-                session: []
-            };
-        default:
-            return state;
-    }
-}
-
-const currentUserId = (state = "", action) => {
+const currentUserId = (state = storeState, action) => {
     if(action.type === "SET_USER_ID"){
         return action.value
     }
@@ -76,7 +47,7 @@ const signUpSignInError = (state = storeState, action) => {
 }
 
 const rootReducer = combineReducers({
-    users, session, currentUserId, signUpSignInError
+    currentUserId, signUpSignInError, classdata
 });
 
 export default rootReducer;
