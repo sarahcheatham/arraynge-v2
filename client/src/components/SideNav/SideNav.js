@@ -1,21 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import { Navbar, Nav, NavItem } from "react-bootstrap";
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from "react-router-dom";
 import './SideNav.css';
-
 const SideNav = props => {
   let whatToShow = "";
+
   if(props.showNavItems === false){
     whatToShow = "Sign In"
   } else {
     whatToShow = "Sign Out"
   }
-  return (
+
+  return(
     <Nav vertical className="navbar">
-          <NavItem onClick={props.onSignOut} className="signoutButton">{whatToShow}</NavItem> <NavLink href="#">Home</NavLink> <NavLink href="#">Edit Scores</NavLink> <NavLink href="#">Arraynge</NavLink> <NavLink href="#">View Charts</NavLink>
-      </Nav>
+        <NavItem onClick={props.onSignOut} className="signoutButton">{whatToShow}</NavItem> <NavLink href="#">Home</NavLink> <NavLink href="#">Edit Scores</NavLink> <NavLink href="#">Arraynge</NavLink> <NavLink href="#">View Charts</NavLink>
+    </Nav>
   )
   // return (
   //   <Navbar inverse bClass="navie">
@@ -36,7 +37,8 @@ const SideNav = props => {
   //       </Nav>
   //   </Navbar>
   // );
-};
+}
+
 
 SideNav.propTypes = {
   onSignOut: PropTypes.func.isRequired,

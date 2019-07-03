@@ -2,21 +2,27 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 10% 30% 30% 30%; 
+    grid-template-rows: 5% 30% 30% 30%; 
     grid-column-gap: 5%;
     font-family: quasimoda, sans-serif;
     font-style: normal;
     font-weight: 200;
 }
-.greeting{
+
+.subheader{
+    font-family: nobel, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 2.5em;
     grid-column: 1 / 3;
     grid-row: 1 / 2;
     display: flex;
     justify-content: center;
     align-self: center;
-    color: #19182D;
-    font-size: 28px;
+    color: var(--text-color);
+    margin-top: 2%;
 }
+
 #currClassHeader{
     font-size: 22px;
     color: #353F7C;

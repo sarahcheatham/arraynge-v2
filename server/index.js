@@ -53,6 +53,10 @@ function startWebServer(){
     res.send(`${req.user._id}`)
   })
 
+  app.get("/api/welcome", function(req, res){
+    res.send(`Welcome ${req.user.firstName} ${req.user.lastName}`)
+  });
+
   app.get("api/classdata", (req, res) => {
     res.send(req.body)
   });

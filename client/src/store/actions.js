@@ -30,6 +30,22 @@ export const setSignUpSignInError = error => {
     };
 }
 
+export const loadWelcomeMessage = () => {
+    return dispatch => {
+        fetch("/api/welcome").then(res => {
+            return res.text();
+        }).then(welcomeMessage => {
+            dispatch(setWelcomeMessage(welcomeMessage))
+        });
+    }
+}
+
+export const setWelcomeMessage = welcomeMessage => {
+    return {
+        type: "SET_WELCOME_MESSAGE",
+        value: welcomeMessage
+    }
+}
 //classdata fetch
 export const FETCH_CLASSDATA_BEGIN = "FETCH_CLASSDATA_BEGIN";
 export const FETCH_CLASSDATA_SUCCESS = "FETCH_CLASSSDATA_SUCCESS";

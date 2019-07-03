@@ -6,6 +6,27 @@ import {
     FETCH_CLASSDATA_FAILURE,
 } from './actions';
 
+const currentUserId = (state = storeState, action) => {
+    if(action.type === "SET_USER_ID"){
+        return action.value
+    }
+    return state;
+}
+
+const signUpSignInError = (state = storeState, action) => {
+    if(action.type === "SET_SIGN_UP_SIGN_IN_ERROR"){
+        return action.value
+    }
+    return state;
+}
+
+const welcomeMessage = (state = "", action) => {
+    if(action.type === "SET_WELCOME_MESSAGE"){
+        return action.value
+    }
+    return state;
+}
+
 const classdata = (state = storeState, action) => {
     switch(action.type){
         case FETCH_CLASSDATA_BEGIN:
@@ -32,22 +53,8 @@ const classdata = (state = storeState, action) => {
     }
 }
 
-const currentUserId = (state = storeState, action) => {
-    if(action.type === "SET_USER_ID"){
-        return action.value
-    }
-    return state;
-}
-
-const signUpSignInError = (state = storeState, action) => {
-    if(action.type === "SET_SIGN_UP_SIGN_IN_ERROR"){
-        return action.value
-    }
-    return state;
-}
-
 const rootReducer = combineReducers({
-    currentUserId, signUpSignInError, classdata
+    currentUserId, signUpSignInError, welcomeMessage, classdata
 });
 
 export default rootReducer;

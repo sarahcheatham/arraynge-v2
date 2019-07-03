@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
+import { connect } from 'react-redux';
+import { loadWelcomeMessage } from "../../store/actions";
 // import PropTypes from 'prop-types';
-// import SubHeader from '../SubHeader';
+import SubHeader from './SubHeader';
 // import ClassListItem from './ClassListItem';
 // import SaveButton from './SaveButton';
 import { Grid, Col, Row, Button } from 'react-bootstrap';
@@ -26,7 +28,7 @@ class WelcomePage extends Component{
     }
 
     componentDidMount(){
-        // this.props.loadWelcomeMessage();
+        this.props.loadWelcomeMessage();
         // this.props.loadLastClass();
         // this.props.loadClassData();
         // this.props.loadStudentData();
@@ -96,12 +98,11 @@ class WelcomePage extends Component{
         }
 
         let classDataList = "";
-        
+        console.log(this.props)
         return(
             <div className="welcomepage">
-            WELCOME!
-                {/* <SubHeader className="greeting" text={this.props.welcomeMessage}/>
-                <div className="currentClassContainer">
+                <SubHeader className="subheader" text={this.props.welcomeMessage}/>
+                {/* <div className="currentClassContainer">
                     <div id="currClassHeader">CURRENT CLASS</div>
                     <div className="currClassPropList"><span className="currClassTitle">YEAR:</span>{" "}<span className="currClassText"></span></div>
                     <div className="currClassPropList"><span className="currClassTitle">GRADE LEVEL:</span>{" "}<span className="currClassText">{this.props.currentClass.gradelevel}</span></div>
@@ -160,4 +161,17 @@ class WelcomePage extends Component{
     }
 }
 
-export default WelcomePage;
+const mapStateToProps = state => {
+    return{
+        welcomeMessage: state.welcomeMessage
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadWelcomeMessage: () => dispatch(loadWelcomeMessage())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (WelcomePage);
+// export default WelcomePage;

@@ -44,3 +44,11 @@ ul {
     color: var(--navbar-hover-text);
 }
 
+.navbar-toggler{
+
+}
+
+.hidden-navbar{
+    display: none;
+}
+

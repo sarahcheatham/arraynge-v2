@@ -1,11 +1,12 @@
 const storeState =  {
+    currentUserId: "",
+    signUpSignInError: "",
+    welcomeMessage: "",
     classdata: {
         loading: false,
         error: null,
         classdata: []
-    },
-    currentUserId: "",
-    signUpSignInError: "",
+    }
 }
 
 export default storeState
