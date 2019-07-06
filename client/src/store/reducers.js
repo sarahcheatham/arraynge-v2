@@ -27,6 +27,13 @@ const welcomeMessage = (state = "", action) => {
     return state;
 }
 
+const currentClass = (state = storeState, action) => {
+    if(action.type === "SET_CURRENT_CLASS"){
+        return action.value
+    }
+    return state
+}
+
 const classdata = (state = storeState, action) => {
     switch(action.type){
         case FETCH_CLASSDATA_BEGIN:
@@ -54,7 +61,7 @@ const classdata = (state = storeState, action) => {
 }
 
 const rootReducer = combineReducers({
-    currentUserId, signUpSignInError, welcomeMessage, classdata
+    currentUserId, signUpSignInError, welcomeMessage, currentClass, classdata
 });
 
 export default rootReducer;

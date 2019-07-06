@@ -2,6 +2,7 @@ const storeState =  {
     currentUserId: "",
     signUpSignInError: "",
     welcomeMessage: "",
+    currentClass: {},
     classdata: {
         loading: false,
         error: null,

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
 import { connect } from 'react-redux';
-import { loadWelcomeMessage } from "../../store/actions";
+import { loadWelcomeMessage, loadLastClass, loadClassData } from "../../store/actions";
 // import PropTypes from 'prop-types';
 import SubHeader from './SubHeader';
 // import ClassListItem from './ClassListItem';
@@ -29,8 +28,8 @@ class WelcomePage extends Component{
 
     componentDidMount(){
         this.props.loadWelcomeMessage();
-        // this.props.loadLastClass();
-        // this.props.loadClassData();
+        this.props.loadLastClass();
+        this.props.loadClassData();
         // this.props.loadStudentData();
         // fetch(`/api/classdata`).then((res)=>{
         //     return res.json();
@@ -102,14 +101,14 @@ class WelcomePage extends Component{
         return(
             <div className="welcomepage">
                 <SubHeader className="subheader" text={this.props.welcomeMessage}/>
-                {/* <div className="currentClassContainer">
+                <div className="currentClassContainer">
                     <div id="currClassHeader">CURRENT CLASS</div>
                     <div className="currClassPropList"><span className="currClassTitle">YEAR:</span>{" "}<span className="currClassText"></span></div>
-                    <div className="currClassPropList"><span className="currClassTitle">GRADE LEVEL:</span>{" "}<span className="currClassText">{this.props.currentClass.gradelevel}</span></div>
-                    <div className="currClassPropList"><span className="currClassTitle">SUBJECT:</span>{" "}<span className="currClassText">{this.props.currentClass.subject}</span></div>
+                    <div className="currClassPropList"><span className="currClassTitle">GRADE LEVEL:</span>{" "}<span className="currClassText">{this.props.currentClass.gradelevel || ""}</span></div>
+                    <div className="currClassPropList"><span className="currClassTitle">SUBJECT:</span>{" "}<span className="currClassText">{this.props.currentClass.subject || ""}</span></div>
                     <div className="currClassPropList"><span className="currClassTitle">NUMBER OF STUDENTS:</span>{" "}<span className="currClassText"></span></div>
                 </div>
-                <div className="chooseDiffClassContainer">
+                {/* <div className="chooseDiffClassContainer">
                     <div className="diffClassHeader">CHOOSE A DIFFERENT CLASS:</div> */}
                     {/* {this.state.checked ? <SaveButton style={saveButton} show={this.showButton}/> : <div></div>} */}
                     {/* <ul className="classList">
@@ -163,13 +162,21 @@ class WelcomePage extends Component{
 
 const mapStateToProps = state => {
     return{
-        welcomeMessage: state.welcomeMessage
+        welcomeMessage: state.welcomeMessage,
+        currentClass: state.currentClass,
+        classdata: {
+            loading: state.loading,
+            error: state.error,
+            classes: state.classes
+        }
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadWelcomeMessage: () => dispatch(loadWelcomeMessage())
+        loadWelcomeMessage: () => dispatch(loadWelcomeMessage()),
+        loadLastClass: () => dispatch(loadLastClass()),
+        loadClassData: () => dispatch(loadClassData()),
     }
 }
 

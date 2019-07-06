@@ -7,7 +7,7 @@ import SideNav from './components/SideNav/SideNav';
 import SignUpSignInPage from './components/SignUpSignInPage/SignUpSignInPage';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import { connect } from 'react-redux';
-import { loadUserId, setCurrentUserId, createUserData, createSession, setSignUpSignInError } from './store/actions';
+import { loadUserId, setCurrentUserId, setSignUpSignInError } from './store/actions';
 // import WelcomeContainer from './containers/WelcomeContainer';
 // import ScoresPageContainer from './containers/ScoresPageContainer';
 // import ClassDataPageContainer from './containers/ClassDataPageContainer';
@@ -20,9 +20,7 @@ class App extends Component {
     super();
     this.state = {
       authenticated: localStorage.getItem("token") || false,
-      userId: "",
-      subject: "",
-      gradelevel: ""
+      userId: ""
     };
   };
 
@@ -32,6 +30,8 @@ class App extends Component {
     console.log("credentials:", credentials)
     if(!username.trim() || !password.trim()){
       this.props.setSignUpSignInError("Must Provide All Fields")
+    }else if(password !== confirmPassword){
+      this.props.setSignUpSignInError("Passwords do not match")
     } else {
       fetch("/api/users", {
         method: "POST",
@@ -98,24 +98,22 @@ class App extends Component {
 
   renderApp = () => {
     return(
-      <div className="page">
-        <Switch>
+      <Switch>
         <Route exact path="/" component={WelcomePage}/>
-          {/* <Route exact path="/" component={WelcomeContainer}/> */}
-          {/* <Route path="/studentdata" component={StudentDataPageContainer}/>
-          <Route path="/classdata" component={ClassDataPageContainer}/> */}
-          {/* <Route exact path="/classdata" render={(props)=> <ClassDataPageContainer gradelevel={props.gradelevel} subject={props.subject} userId={props.userId} classdata={props.classdata}/>}/> */}
-          {/* <Route path="/arrayngement" component={ArrayngementPageContainer}/>
-          <Route exact path="/scores" component={ScoresPageContainer}/>
-          <Route path="/charts" component={BarChartContainer}/> */}
-          {/* <Route path="/charts" component={BarChart2}/> */}
-        </Switch>
-      </div>
+        {/* <Route exact path="/" component={WelcomeContainer}/> */}
+        {/* <Route path="/studentdata" component={StudentDataPageContainer}/>
+        <Route path="/classdata" component={ClassDataPageContainer}/> */}
+        {/* <Route exact path="/classdata" render={(props)=> <ClassDataPageContainer gradelevel={props.gradelevel} subject={props.subject} userId={props.userId} classdata={props.classdata}/>}/> */}
+        {/* <Route path="/arrayngement" component={ArrayngementPageContainer}/>
+        <Route exact path="/scores" component={ScoresPageContainer}/>
+        <Route path="/charts" component={BarChartContainer}/> */}
+        {/* <Route path="/charts" component={BarChart2}/> */}
+      </Switch>
     )
   }
  
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     let whatToShow = "";
     if(this.state.authenticated){
       whatToShow = this.renderApp();

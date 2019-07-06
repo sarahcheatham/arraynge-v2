@@ -10,7 +10,9 @@ module.exports.getLastClass = (req, res) => {
     ClassDataModel.find({ userId: req.user._id }).exec()
     .then((lastClass, err) => {
         if(err) return res.status(500).send(err);
-        console.log("lastClass:", lastClass[lastClass.length - 1])
+        if(lastClass[lastClass.length - 1] === undefined){
+            return res.json({})
+        }
         return res.json(lastClass[lastClass.length - 1]);
     });
 }

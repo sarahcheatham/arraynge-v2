@@ -46,6 +46,26 @@ export const setWelcomeMessage = welcomeMessage => {
         value: welcomeMessage
     }
 }
+
+// last class default fetch
+export const loadLastClass = () => {
+    return dispatch => {
+        fetch(`/api/classdata/lastclass/:id`)
+        .then(res => {
+            return res.json();
+        }).then(currentClass => {
+            dispatch(setCurrentClass(currentClass))
+        });
+    }
+}
+
+//sets the current class to the class you select 
+export const setCurrentClass = currentClass => {
+    return {
+        type: "SET_CURRENT_CLASS",
+        value: currentClass
+    }
+}
 //classdata fetch
 export const FETCH_CLASSDATA_BEGIN = "FETCH_CLASSDATA_BEGIN";
 export const FETCH_CLASSDATA_SUCCESS = "FETCH_CLASSSDATA_SUCCESS";
