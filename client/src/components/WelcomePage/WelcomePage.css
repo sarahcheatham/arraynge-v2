@@ -1,9 +1,9 @@
 .welcomepage{
     height: 100vh;
     display: grid;
-    grid-template-columns: 40% 20% 40%;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 10% 35% 25% 25%; 
-    /* grid-column-gap: 10%; */
+    /* grid-column-gap: 20%; */
     font-family: quasimoda, sans-serif;
     font-style: normal;
     font-weight: 200;
@@ -14,7 +14,7 @@
     font-style: normal;
     font-weight: 100;
     font-size: 2.5em;
-    grid-column: 2 / 3;
+    grid-column: 1 / 2;
     grid-row: 1 / 2;
     display: flex;
     justify-content: center;
@@ -35,7 +35,10 @@
     border-radius: 5px;
     font-size: 1.5em;
     text-align: left;
-    margin: 5%;
+    margin: 10%;
+    width: 75%;
+    height: 50%;
+    /* margin-right: 15%; */
     padding: 4%;
     /* box-shadow: inset 1em -1em 1em -1em #FDFBED; */ 
 }
@@ -44,8 +47,6 @@
     font-size: 1.5em;
     color: var(--ultra-violet-shade);
     font-weight: 200;
-    /* padding-top: 3%;
-    padding-bottom: 2%; */
 }
 .currClassPropList{
     padding-top: 3%;
@@ -59,7 +60,8 @@
     color: var(--flamingo);
 }
 .fourButtons{
-    grid-row: 2 / 4;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
     justify-content: space-between;
 }
 .arrayngeClassButtonContainer{

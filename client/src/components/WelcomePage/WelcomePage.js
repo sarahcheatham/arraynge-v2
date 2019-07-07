@@ -109,9 +109,9 @@ class WelcomePage extends Component{
                     <div className="currClassPropList"><span className="currClassTitle">NUMBER OF STUDENTS:</span>{" "}<span className="currClassText"></span></div>
                 </div>
                 {/* <div className="chooseDiffClassContainer">
-                    <div className="diffClassHeader">CHOOSE A DIFFERENT CLASS:</div> */}
-                    {/* {this.state.checked ? <SaveButton style={saveButton} show={this.showButton}/> : <div></div>} */}
-                    {/* <ul className="classList">
+                    <div className="diffClassHeader">CHOOSE A DIFFERENT CLASS:</div>
+                    {this.state.checked ? <SaveButton style={saveButton} show={this.showButton}/> : <div></div>}
+                    <ul className="classList">
                         {this.state.allClasses.map((item, index) => {
                             const year = item.year;
                             const subject = item.subject;
@@ -120,7 +120,7 @@ class WelcomePage extends Component{
                             return <ClassListItem ref={this.checkedClass} key={index} className="classListItem" itemId={itemId} subject={subject} gradelevel={gradelevel} onCheck={this.checkItem} show={this.showButton}/>
                         })}
                     </ul>
-                </div> 
+                </div>  */}
                 <div className="fourButtons">
                     <div className="arrayngeClassButtonContainer">
                         <div className="subsubhead">ARRAYNGE THIS CLASS:</div>
@@ -154,7 +154,7 @@ class WelcomePage extends Component{
                             </Link>
                         </Button>
                     </div>
-                </div> */}
+                </div>
             </div>
         )
     }
