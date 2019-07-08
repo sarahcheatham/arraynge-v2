@@ -6,7 +6,8 @@
     font-weight: 200;
 }
 
-.subheader{
+.ml19 {
+    position: relative;
     font-family: nobel, sans-serif;
     font-style: normal;
     font-weight: 100;
@@ -15,7 +16,25 @@
     justify-content: center;
     align-self: center;
     color: var(--text-color);
+    margin-top: 0%;
+    margin-bottom: 0%;
 }
+
+.ml19 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-right: 0.05em;
+    padding-bottom: 0.1em;
+    overflow: hidden;
+}
+
+.ml19 .letter {
+    transform-origin: 50% 100%;
+    display: inline-block;
+    line-height: 1em;
+}
+
 .welcome-top-row{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -34,10 +53,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 75%;
-    padding: 1% 3% 1% 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 80%;
+    padding: 0% 3% 2% 3%;
     /* box-shadow: inset 1em -1em 1em -1em #FDFBED; */ 
 }
 #currClassHeader{
@@ -56,32 +75,43 @@
     font-weight: 100;
     color: var(--flamingo);
 }
+.button-subhead{
+    font-size: 1.15em;
+}
 .newClassButtonContainer{
     display: flex;
     flex-direction: column;
-    align-self: center;
+    align-self: flex-start;
     margin-bottom: 0%;
     margin-top: 5%;
+    /* margin-left: 10%; */
+    margin-right: 10%;
 }
 .arrayngeClassButtonContainer{
     display: flex;
     flex-direction: column;
-    align-self: center;
-    margin-bottom: 12%;
+    align-self: flex-start;
+    margin-bottom: 5%;
+    /* margin-left: 10%; */
+    margin-right: 10%;
 }
 .editClassButtonContainer{
     display: flex;
     flex-direction: column;
-    align-self: center;
-    margin-bottom: 12%;
-    margin-top: 12%;
+    align-self: flex-start;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    /* margin-left: 10%; */
+    margin-right: 10%;
 }
 .viewChartsButtonContainer{
-    margin-bottom: 12%;
-    margin-top: 12%;
+    margin-bottom: 5%;
+    margin-top: 5%;
     display: flex;
     flex-direction: column;
-    align-self: center;
+    align-self: flex-start;
+    /* margin-left: 10%; */
+    margin-right: 10%;
 }
 .chooseDiffClassContainer{
     display: flex;
@@ -90,42 +120,58 @@
     margin-top: 0%;
 }
 .diffClassHeader{
-    font-size: 18px;
+    margin-top: 2%;
+    font-size: 1.5em;
     color: #19182D;
     font-weight: 200;
 }
 .welcomeButtons{
-    font-size: 1em;
+    font-size: 1.015em;
     height: 5em;
     width: 60%;
     align-self: center; 
     justify-self: center;
     margin-top: 1.25em;
+    text-decoration: 'none';
+    font-family: "quasimoda, sans-serif";
+    font-style: "normal";
+    font-weight: 300;
 }
 #newClassButton{
-    box-shadow: inset 1em -1em 1em -1em #B0585E;
-    border-radius: 5px;
-    color: #B0585E;
-    background-color: #F2DAD7;
+    box-shadow: inset 1em -1em 1em -1em var(--red-shade);
+    text-shadow: 0 0 5px var(--cool-white), 0 0 10px var(--cool-white), 0 0 20px var(--purple-gray-tint), 0 0 30px var(--purple-gray-tint), 0 0 40px var(--purple-gray-tint), 0 0 55px var(--purple-gray-tint), 0 0 75px var(--purple-gray-tint);
+    border-radius: 10px;
+    color: var(--mermaid-green);
+    /* color: var(--red-shade); */
+    background-color: var(--blue-gray-tint);
+}
+#newClassLink{
+    text-decoration: 'none';
+    font-family: "quasimoda, sans-serif";
+    font-style: "normal";
+    font-weight: 300;
+    color: "#B0585E";
 }
 #arrayngeClassButton{
-    background-color: #EBE6ED;
-    /* text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #5F4B8B, 0 0 30px #5F4B8B, 0 0 40px #5F4B8B, 0 0 55px #5F4B8B, 0 0 75px #5F4B8B; */
-    box-shadow: inset 1em -1em 1em -1em #5F4B8B;
-    border-radius: 5px;
-    color: #5F4B8B;
+    background-color: var(--blue-gray-tint);
+    text-shadow: 0 0 5px var(--cool-white), 0 0 10px var(--cool-white), 0 0 20px var(--purple-gray-tint), 0 0 30px var(--purple-gray-tint), 0 0 40px var(--purple-gray-tint), 0 0 55px var(--purple-gray-tint), 0 0 75px var(--purple-gray-tint);
+    box-shadow: inset 1em -1em 1em -1em var(--mermaid-green-shade);
+    border-radius: 10px;
+    color: var(--muted-ultra-violet);
 }
 #editClassButton{
-    background-color:#E7F2F0;
-    box-shadow: inset 1em -1em 1em -1em #357E85;
-    border-radius: 5px;
-    color: #357E85;
+    background-color: var(--blue-gray-tint);
+    box-shadow: inset 1em -1em 1em -1em var(--muted-ultra-violet);
+    text-shadow: 0 0 5px var(--cool-white), 0 0 10px var(--cool-white), 0 0 20px var(--purple-gray-tint), 0 0 30px var(--purple-gray-tint), 0 0 40px var(--purple-gray-tint), 0 0 55px var(--purple-gray-tint), 0 0 75px var(--purple-gray-tint);
+    border-radius: 10px;
+    color: var(--mermaid-green);
 }
 #viewChartsButton{
-    background-color: #F9E4F5;
-    box-shadow: inset 1em -1em 1em -1em #892E5D;
-    border-radius: 5px;
-    color: #892E5D;
+    background-color: var(--blue-gray-tint);
+    box-shadow: inset 1em -1em 1em -1em var(--muted-dark-navy);
+    text-shadow: 0 0 5px var(--cool-white), 0 0 10px var(--cool-white), 0 0 20px var(--purple-gray-tint), 0 0 30px var(--purple-gray-tint), 0 0 40px var(--purple-gray-tint), 0 0 55px var(--purple-gray-tint), 0 0 75px var(--purple-gray-tint);
+    border-radius: 10px;
+    color: var(--burgendy);
 }
 .classList{
     padding-inline-start: 10%;

@@ -1,20 +1,33 @@
 :root {
+  --text-color: #343148;
   --background-color: #F9F9F9;
+  --warm-white: #fffefa;
+  --cool-white: #F7F7FB;
   --blue-white: #F5F6F8;
-  --warm-white: #f2edd7;
-  --purple-gray-tint: #D6D5DA;
   --white-yellow: #FCF8E5;
-  --navbar-text: #B0585E;
+  --pink-white: #F2DAD7;
+  --purple-white: #EBE6ED;
+  --purple-gray-tint: #D6D5DA;
+  --blue-gray-tint: rgb(246, 247, 248);
+  --mermaid-tint: #E7F2F0;
+  --burgendy-tint: #F9E4F5;
   --navbar-background: #EFCEC5;
   --navbar-hover-background: #E0ACA0;
+  --desert-blush: #AA7874;
   --navbar-hover-text: #F4E8D9;
   --guac: rgb(134, 129, 66);
+  --mermaid-green: #357E85;
+  --mermaid-green-shade: rgb(77, 111, 114);
   --flamingo: #F9586B;
+  --red-shade: #B0585E;
   --dark-magneta: rgb(146, 27, 78);
+  --burgendy: #892E5D;
+  --muted-ultra-violet: #656588;
   --ultra-violet: #432fc5;
   --ultra-violet-shade: #353F7C;
+  --muted-ultra-violet-shade: #343148;
+  --muted-dark-navy: #3e4a64;
   --dark-navy: #19194c;
-  --text-color: #343148;
  
   font-size: 12px;
 }
@@ -28,7 +41,7 @@ body > #root > div {
   text-align: center;
   display: grid;
   grid-template-columns: 10em 1fr;
-  grid-template-rows: 7em 1fr;
+  grid-template-rows: 5em 1fr;
   background-color: var(--background-color);
   margin: 0;
 }
@@ -38,16 +51,6 @@ body > #root > div {
   background-color: var(--background-color);
   height: 100%;
 }
-
-/* start SubHeader Component */
-/* .subheader{
-  padding-top: 2%;
-  font-family: nobel, sans-serif;
-  font-style: normal;
-  font-weight: 100;
-  font-size: 2em;
-} */
-/* end SubHeader Component */
 
 /* start SignUpSignInPage component */
 .signupsigninerr{

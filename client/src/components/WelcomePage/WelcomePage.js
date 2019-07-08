@@ -57,33 +57,21 @@ class WelcomePage extends Component{
     // }
 
     render(){
-        const purple = {
-            color: "#5F4B8B",
+        const createButton = { 
+            color: "var(--text-color)",
+            backgroundColor: "var(--blue-gray-tint)",
             textDecoration: 'none',
             fontFamily: "quasimoda, sans-serif",
             fontStyle: "normal",
-            fontWeight: 300
+            fontWeight: 300,
         }
-        const green = { 
-            color: "#357E85",
+        const threeButtons = { 
+            color: "var(--text-color)",
+            backgroundColor: "var(--blue-gray-tint)",
             textDecoration: 'none',
             fontFamily: "quasimoda, sans-serif",
             fontStyle: "normal",
-            fontWeight: 300
-        }
-        const maroon = {
-            color: "#892E5D",
-            textDecoration: 'none',
-            fontFamily: "quasimoda, sans-serif",
-            fontStyle: "normal",
-            fontWeight: 300
-        }
-        const red = {
-            color: "#B0585E",
-            textDecoration: 'none',
-            fontFamily: "quasimoda, sans-serif",
-            fontStyle: "normal",
-            fontWeight: 300
+            fontWeight: 300,
         }
         const buttonStyle = {
             float: 'right',
@@ -98,9 +86,12 @@ class WelcomePage extends Component{
 
         let classDataList = "";
         console.log(this.props)
+
         return(
             <Container className="welcomepage">
-                <SubHeader className="subheader" text={this.props.welcomeMessage}/>
+                <Row className="ml19">
+                    <SubHeader text={this.props.welcomeMessage}/>
+                </Row>
                 <Row className="welcome-top-row">
                     <Col className="currentClassContainer">
                         <div id="currClassHeader">CURRENT CLASS</div>
@@ -111,9 +102,9 @@ class WelcomePage extends Component{
                     </Col>
                     <Col>
                         <div className="newClassButtonContainer">
-                            <div className="subsubhead">CREATE A NEW CLASS:</div>
+                            <div className="button-subhead">CREATE A NEW CLASS:</div>
                             <Button className="welcomeButtons" id="newClassButton">
-                                <Link to={'/classdata'} style={red}>
+                                <Link to={'/classdata'} style={createButton}>
                                     + NEW CLASS
                                 </Link>
                             </Button>
@@ -136,25 +127,25 @@ class WelcomePage extends Component{
                     </Col>
                     <Col>
                         <div className="arrayngeClassButtonContainer">
-                            <div className="subsubhead">ARRAYNGE THIS CLASS:</div>
+                            <div className="button-subhead">ARRAYNGE THIS CLASS:</div>
                             <Button className="welcomeButtons" id="arrayngeClassButton">
-                                <Link to={'/arrayngement'} style={purple}>
+                                <Link to={'/arrayngement'} style={threeButtons}>
                                     ARRAYNGE
                                 </Link>
                             </Button>
                         </div>
                         <div className="editClassButtonContainer">
-                            <div className="subsubhead">EDIT THIS CLASS:</div>
+                            <div className="button-subhead">EDIT THIS CLASS:</div>
                             <Button className="welcomeButtons" id="editClassButton">
-                                <Link to={'/scores'} style={green}>
+                                <Link to={'/scores'} style={threeButtons}>
                                     EDIT
                                 </Link>
                             </Button>
                         </div>
                         <div className="viewChartsButtonContainer">
-                            <div className="subsubhead">VIEW CHARTS FOR THIS CLASS:</div>
+                            <div className="button-subhead">VIEW CHARTS FOR THIS CLASS:</div>
                             <Button className="welcomeButtons" id="viewChartsButton">
-                                <Link to={'/charts'} style={maroon}>
+                                <Link to={'/charts'} style={threeButtons}>
                                     VIEW CHARTS
                                 </Link>
                             </Button>

@@ -21,7 +21,7 @@ ul {
 .navbar a {
     display: flex;
     font-size: 1.25em;
-    color: var(--navbar-text);
+    color: var(--red-shade);
     text-align: left;
     padding: 20%;
     text-decoration: none;
@@ -36,7 +36,7 @@ ul {
     display: flex;
     padding: 20%;
     margin-top: 20%;
-    color: var(--navbar-text);
+    color: var(--red-shade);
     font-size: 1.25em;
 }
 .signoutButton:hover{
