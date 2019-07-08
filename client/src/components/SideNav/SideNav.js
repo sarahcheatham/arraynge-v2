@@ -15,7 +15,7 @@ const SideNav = props => {
 
   return(
     <Nav vertical className="navbar">
-        <NavItem onClick={props.onSignOut} className="signoutButton">{whatToShow}</NavItem> <NavLink href="#">Home</NavLink> <NavLink href="#">Edit Scores</NavLink> <NavLink href="#">Arraynge</NavLink> <NavLink href="#">View Charts</NavLink>
+        <NavItem onClick={props.onSignOut} className="signoutButton">{whatToShow}</NavItem> <NavLink href="/">Home</NavLink> <NavLink href="/scores">Edit Scores</NavLink> <NavLink href="/arrayngement">Arraynge</NavLink> <NavLink href="/charts">View Charts</NavLink>
     </Nav>
   )
   // return (

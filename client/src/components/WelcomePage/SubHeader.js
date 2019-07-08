@@ -1,10 +1,11 @@
 import React from "react";
+import { Col, Row } from 'reactstrap';
 
 const SubHeader = props => {
     return(
-        <div className={props.className}>
-           {props.text}
-        </div>
+        <Row className={props.className}>
+           <Col>{props.text}</Col>
+        </Row>
     )
 }
 
