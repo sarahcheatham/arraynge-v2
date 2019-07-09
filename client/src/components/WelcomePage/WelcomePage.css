@@ -6,39 +6,12 @@
     font-weight: 200;
 }
 
-.ml19 {
-    position: relative;
-    font-family: nobel, sans-serif;
-    font-style: normal;
-    font-weight: 100;
-    font-size: 2.5em;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    color: var(--text-color);
-    margin-top: 0%;
-    margin-bottom: 0%;
-}
-
-.ml19 .text-wrapper {
-    position: relative;
-    display: inline-block;
-    padding-top: 0.2em;
-    padding-right: 0.05em;
-    padding-bottom: 0.1em;
-    overflow: hidden;
-}
-
-.ml19 .letter {
-    transform-origin: 50% 100%;
-    display: inline-block;
-    line-height: 1em;
-}
-
 .welcome-top-row{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-top: 8%;
 }
+
 .welcome-bottom-row{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -51,80 +24,86 @@
     font-size: 1.25em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     margin-left: 10%;
-    margin-right: 10%;
-    height: 80%;
-    padding: 0% 3% 2% 3%;
+    height: 75%;
+    padding-top: 5%;
+    padding-left: 5%;
     /* box-shadow: inset 1em -1em 1em -1em #FDFBED; */ 
 }
+
 #currClassHeader{
     font-size: 1.5em;
     color: var(--ultra-violet-shade);
     font-weight: 200;
+    padding-bottom: 2%;
 }
+
 .currClassPropList{
     padding-top: 3%;
+    font-size: 1.1em;
 }
+
 .currClassTitle{
     font-weight: 300;
     color: var(--ultra-violet-shade);
 }
+
 .currClassText{
     font-weight: 100;
     color: var(--flamingo);
 }
+
 .button-subhead{
     font-size: 1.15em;
 }
+
 .newClassButtonContainer{
     display: flex;
     flex-direction: column;
     align-self: flex-start;
     margin-bottom: 0%;
     margin-top: 5%;
-    /* margin-left: 10%; */
-    margin-right: 10%;
 }
+
 .arrayngeClassButtonContainer{
     display: flex;
     flex-direction: column;
     align-self: flex-start;
     margin-bottom: 5%;
-    /* margin-left: 10%; */
-    margin-right: 10%;
 }
+
 .editClassButtonContainer{
     display: flex;
     flex-direction: column;
     align-self: flex-start;
     margin-bottom: 5%;
     margin-top: 5%;
-    /* margin-left: 10%; */
-    margin-right: 10%;
 }
+
 .viewChartsButtonContainer{
     margin-bottom: 5%;
     margin-top: 5%;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    /* margin-left: 10%; */
-    margin-right: 10%;
 }
+
 .chooseDiffClassContainer{
     display: flex;
     flex-direction: column;
     margin-bottom: 10%;
     margin-top: 0%;
 }
+
 .diffClassHeader{
     margin-top: 2%;
     font-size: 1.5em;
     color: #19182D;
     font-weight: 200;
 }
+
 .welcomeButtons{
     font-size: 1.015em;
     height: 5em;
@@ -137,6 +116,7 @@
     font-style: "normal";
     font-weight: 300;
 }
+
 #newClassButton{
     box-shadow: inset 1em -1em 1em -1em var(--red-shade);
     text-shadow: 0 0 5px var(--cool-white), 0 0 10px var(--cool-white), 0 0 20px var(--purple-gray-tint), 0 0 30px var(--purple-gray-tint), 0 0 40px var(--purple-gray-tint), 0 0 55px var(--purple-gray-tint), 0 0 75px var(--purple-gray-tint);
@@ -145,6 +125,7 @@
     /* color: var(--red-shade); */
     background-color: var(--blue-gray-tint);
 }
+
 #newClassLink{
     text-decoration: 'none';
     font-family: "quasimoda, sans-serif";
@@ -152,6 +133,7 @@
     font-weight: 300;
     color: "#B0585E";
 }
+
 #arrayngeClassButton{
     background-color: var(--blue-gray-tint);
     text-shadow: 0 0 5px var(--cool-white), 0 0 10px var(--cool-white), 0 0 20px var(--purple-gray-tint), 0 0 30px var(--purple-gray-tint), 0 0 40px var(--purple-gray-tint), 0 0 55px var(--purple-gray-tint), 0 0 75px var(--purple-gray-tint);
@@ -159,6 +141,7 @@
     border-radius: 10px;
     color: var(--muted-ultra-violet);
 }
+
 #editClassButton{
     background-color: var(--blue-gray-tint);
     box-shadow: inset 1em -1em 1em -1em var(--muted-ultra-violet);
@@ -166,6 +149,7 @@
     border-radius: 10px;
     color: var(--mermaid-green);
 }
+
 #viewChartsButton{
     background-color: var(--blue-gray-tint);
     box-shadow: inset 1em -1em 1em -1em var(--muted-dark-navy);
@@ -173,10 +157,12 @@
     border-radius: 10px;
     color: var(--burgendy);
 }
+
 .classList{
     padding-inline-start: 10%;
     text-align: left;
 }
+
 .classListProps{
     width: 90%;
     font-size: 1.1em;
@@ -190,10 +176,12 @@
     display: flex;
     flex-direction: column;
 }
+
 .classListItem{
     font-weight: 300;
     color: #353F7C;
 }
+
 #classListItemHeader{
     color: #36407D;
     font-weight: 200;

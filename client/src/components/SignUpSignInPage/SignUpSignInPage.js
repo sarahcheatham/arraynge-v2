@@ -8,6 +8,9 @@ import './SignUpSignIn.css';
 
 
 class SignUpSignInPage extends Component{
+    constructor(props){
+        super(props)
+    }
     // renderError(){
     //     return(
     //         <Alert bsStyle="warning">

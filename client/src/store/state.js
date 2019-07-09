@@ -1,13 +1,17 @@
 const storeState =  {
     currentUserId: "",
+    username: "",
     signUpSignInError: "",
-    welcomeMessage: "",
     currentClass: {},
     classdata: {
         loading: false,
         error: null,
-        classdata: []
-    }
+        classes: []
+    },
+    currentYear: "",
+    currentSubject: "",
+    currentGradeLevel: "",
+    currentCount: 0,
 }
 
 export default storeState

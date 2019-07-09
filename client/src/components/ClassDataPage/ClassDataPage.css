@@ -1,0 +1,128 @@
+/* start ClassDataPage Component */
+.classDataPage{
+    font-family: acumin-pro, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+}
+.classDataPageHeader{
+    margin-top: 8%;
+    font-family: nobel, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 2.5em;
+}
+.classDataSubHeader{
+    font-size: 2.25em;
+    font-family: nobel, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    margin-bottom: 10px;
+}
+.classDataText{
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-top: 0px;
+    font-family: acumin-pro, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+}
+.select{
+    font-family: acumin-pro, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 1.5em;
+    padding: 5%;
+}
+#year{
+    display: flex;
+    justify-content: center;
+}
+.subjectButtons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mathButton{
+    height: 3.75em;
+    width: 35%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #343148;
+    background-color: #EFEEE8;
+}
+.readingButton{
+    height: 3.75em;
+    width: 35%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #343148;
+    background-color: #EFEEE8;
+}
+.nextButton{
+    width: 15%;
+    height: 5em;
+    border-radius: 5px;
+    margin-top: 5%;
+}
+.classdatabutton{
+    width: 15%;
+    height: 5em;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+.classdatacontinuebutton{
+    width: 15%;
+    height: 5em;
+    border-radius: 5px;
+    margin-top: 0px;
+    /* margin-left: 5%; */
+    /* margin-left: 25px; */
+}
+/* css for drop menu start */
+.dropMenuContainer{
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 1fr 1fr 1fr 1fr;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 0px;
+}
+.mainDropMenuButton{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin-top: 0px;
+    color: #343148;
+    background-color: #EFEEE8;
+    height: 40px;
+    width: 300px;
+    justify-self: center;
+    align-self: end;
+}
+.dropMenu{
+    grid-column: 2 / 3;
+    grid-row: 2 / 6;
+    display: grid;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+.grades{
+    width: 300px;
+    height: 40px;
+    background-color: #f9f9f9;
+}
+.years{
+    width: 300px;
+    height: 40px;
+    background-color: #f9f9f9;
+}
+.subjects{
+    width: 300px;
+    height: 40px;
+    background-color: #f9f9f9;
+}
+/* css for drop menu end */
+/* end of ClassDataPage Component */

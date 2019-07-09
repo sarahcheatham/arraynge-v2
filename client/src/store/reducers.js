@@ -20,8 +20,8 @@ const signUpSignInError = (state = storeState, action) => {
     return state;
 }
 
-const welcomeMessage = (state = "", action) => {
-    if(action.type === "SET_WELCOME_MESSAGE"){
+const username = (state = "", action) => {
+    if(action.type === "SET_USER_NAME"){
         return action.value
     }
     return state;
@@ -46,22 +46,50 @@ const classdata = (state = storeState, action) => {
             return {
                 ...state,
                 loading: false, 
-                classdata: action.payload.classdata
+                classes: action.payload.classes
             };
         case FETCH_CLASSDATA_FAILURE:
             return {
                 ...state, 
                 loading: false,
                 error: action.payload.error,
-                classdata: []
+                classes: []
             };
         default:
             return state;
     }
 }
 
+const currentGradeLevel = (state = storeState, action) => {
+    if(action.type === "SET_GRADE_LEVEL"){
+        return action.value
+    }
+    return state;
+}
+
+const currentSubject = (state = storeState, action) => {
+    if(action.type === "SET_SUBJECT"){
+        return action.value
+    }
+    return state;
+}
+
+const currentYear = (state = storeState, action) => {
+    if(action.type === "SET_YEAR"){
+        return action.value
+    }
+    return state;
+}
+
+const currentCount = (state = storeState, action) => {
+    if(action.type === "SET_COUNTER"){
+        return action.value
+    }
+    return state;
+}
+
 const rootReducer = combineReducers({
-    currentUserId, signUpSignInError, welcomeMessage, currentClass, classdata
+    currentUserId, signUpSignInError, username, currentClass, classdata, currentGradeLevel, currentSubject, currentYear, currentCount
 });
 
 export default rootReducer;

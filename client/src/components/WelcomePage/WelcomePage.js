@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
-import { loadWelcomeMessage, loadLastClass, loadClassData } from "../../store/actions";
+import { loadUsername, loadLastClass, loadClassData } from "../../store/actions";
 import PropTypes from 'prop-types';
-import SubHeader from './SubHeader';
+import SubHeader from '../SubHeader/SubHeader';
 import ListItem from './ListItem';
 import SaveButton from './SaveButton';
 import { Container, Col, Row, Button } from 'reactstrap';
@@ -21,13 +21,13 @@ class WelcomePage extends Component{
             year: "",
             itemId: "",
             subject: "",
-            numOfStudents:""
+            numOfStudents: 0
         };
         this.checkedClass = React.createRef();
     }
 
     componentDidMount(){
-        this.props.loadWelcomeMessage();
+        this.props.loadUsername();
         this.props.loadLastClass();
         this.props.loadClassData();
         // this.props.loadStudentData();
@@ -89,9 +89,6 @@ class WelcomePage extends Component{
 
         return(
             <Container className="welcomepage">
-                <Row className="ml19">
-                    <SubHeader text={this.props.welcomeMessage}/>
-                </Row>
                 <Row className="welcome-top-row">
                     <Col className="currentClassContainer">
                         <div id="currClassHeader">CURRENT CLASS</div>
@@ -159,7 +156,7 @@ class WelcomePage extends Component{
 
 const mapStateToProps = state => {
     return{
-        welcomeMessage: state.welcomeMessage,
+        username: state.username,
         currentClass: state.currentClass,
         classdata: {
             loading: state.loading,
@@ -171,7 +168,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadWelcomeMessage: () => dispatch(loadWelcomeMessage()),
+        loadUsername: () => dispatch(loadUsername()),
         loadLastClass: () => dispatch(loadLastClass()),
         loadClassData: () => dispatch(loadClassData()),
     }

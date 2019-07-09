@@ -30,20 +30,20 @@ export const setSignUpSignInError = error => {
     };
 }
 
-export const loadWelcomeMessage = () => {
+export const loadUsername = () => {
     return dispatch => {
-        fetch("/api/welcome").then(res => {
+        fetch("/api/username").then(res => {
             return res.text();
-        }).then(welcomeMessage => {
-            dispatch(setWelcomeMessage(welcomeMessage))
+        }).then(username => {
+            dispatch(setUsername(username))
         });
     }
 }
 
-export const setWelcomeMessage = welcomeMessage => {
+export const setUsername = username => {
     return {
-        type: "SET_WELCOME_MESSAGE",
-        value: welcomeMessage
+        type: "SET_USER_NAME",
+        value: username
     }
 }
 
@@ -128,5 +128,34 @@ export const deleteClassData = item => {
             body: JSON.stringify(item)
         })
         .then(()=> dispatch(loadClassData()))
+    }
+}
+
+// classdatapage
+export const setCurrentGradeLevel = gradelevel =>{
+    return {
+        type: "SET_GRADE_LEVEL",
+        value: gradelevel
+    }
+}
+
+export const setCurrentSubject = subject => {
+    return {
+        type: "SET_SUBJECT",
+        value: subject
+    }
+}
+
+export const setYear = year => {
+    return {
+        type: "SET_YEAR",
+        value: year
+    }
+}
+
+export const setCounter = counter => {
+    return {
+        type: "SET_COUNTER",
+        value: counter
     }
 }

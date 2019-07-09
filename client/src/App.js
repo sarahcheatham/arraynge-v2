@@ -4,8 +4,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import Header from './components/Header/Header';
 import SideNav from './components/SideNav/SideNav';
+import Username from './components/Username/Username';
 import SignUpSignInPage from './components/SignUpSignInPage/SignUpSignInPage';
 import WelcomePage from './components/WelcomePage/WelcomePage';
+import ClassDataPage from './components/ClassDataPage/ClassDataPage';
 import { connect } from 'react-redux';
 import { loadUserId, setCurrentUserId, setSignUpSignInError } from './store/actions';
 // import WelcomeContainer from './containers/WelcomeContainer';
@@ -101,8 +103,8 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={WelcomePage}/>
         {/* <Route exact path="/" component={WelcomeContainer}/> */}
-        {/* <Route path="/studentdata" component={StudentDataPageContainer}/>
-        <Route path="/classdata" component={ClassDataPageContainer}/> */}
+        {/* <Route path="/studentdata" component={StudentDataPageContainer}/> */}
+        <Route path="/classdata" component={ClassDataPage}/>
         {/* <Route exact path="/classdata" render={(props)=> <ClassDataPageContainer gradelevel={props.gradelevel} subject={props.subject} userId={props.userId} classdata={props.classdata}/>}/> */}
         {/* <Route path="/arrayngement" component={ArrayngementPageContainer}/>
         <Route exact path="/scores" component={ScoresPageContainer}/>
@@ -124,6 +126,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             <Header/>
+            <Username />
             <SideNav
               showNavItems={this.state.authenticated} 
               onSignOut={this.handleSignOut}
@@ -141,7 +144,6 @@ const mapStateToProps = state => {
   return {
     signUpSignInError: state.signUpSignInError
   }
-  
 }
 
 const mapDispatchToProps = dispatch => {
