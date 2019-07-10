@@ -92,7 +92,7 @@ class WelcomePage extends Component{
                 <Row className="welcome-top-row">
                     <Col className="currentClassContainer">
                         <div id="currClassHeader">CURRENT CLASS</div>
-                        <div className="currClassPropList"><span className="currClassTitle">YEAR:</span>{" "}<span className="currClassText"></span></div>
+                        <div className="currClassPropList"><span className="currClassTitle">YEAR:</span>{" "}<span className="currClassText">{this.props.currentClass.year || ""}</span></div>
                         <div className="currClassPropList"><span className="currClassTitle">GRADE LEVEL:</span>{" "}<span className="currClassText">{this.props.currentClass.gradelevel || ""}</span></div>
                         <div className="currClassPropList"><span className="currClassTitle">SUBJECT:</span>{" "}<span className="currClassText">{this.props.currentClass.subject || ""}</span></div>
                         <div className="currClassPropList"><span className="currClassTitle">NUMBER OF STUDENTS:</span>{" "}<span className="currClassText"></span></div>
@@ -118,7 +118,7 @@ class WelcomePage extends Component{
                                 const subject = item.subject;
                                 const gradelevel = item.gradelevel;
                                 const itemId = item._id;
-                                return <ListItem ref={this.checkedClass} key={index} className="classListItem" itemId={itemId} subject={subject} gradelevel={gradelevel} onCheck={this.checkItem} show={this.showButton}/>
+                                return <ListItem ref={this.checkedClass} key={index} className="classListItem" itemId={itemId} subject={subject} gradelevel={gradelevel} year={year} onCheck={this.checkItem} show={this.showButton}/>
                             })}
                         </ul>
                     </Col>

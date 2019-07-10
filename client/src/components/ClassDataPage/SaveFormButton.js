@@ -21,9 +21,9 @@ class SaveFormButton extends React.Component {
         this.props.createClassData(classdata)
     }
     
-    handleContinueClick = event => {
-        console.log(event)
-        // this.props.loadStudentData()
+    handleNextClick = e => {
+        e.preventDefault();
+        this.props.setCounter(this.props.currentCount+1)
     }
 
     render(){
@@ -36,11 +36,16 @@ class SaveFormButton extends React.Component {
                 <Button type="submit" className="classdatabutton" onClick={this.handleSubmit}>
                     SAVE
                 </Button>
-                <Link to={'/studentdata'} style={styles} className="classdatabutton">
+              
+                <Button className="nextButton" onClick={this.handleNextClick}>
+                    CONTINUE
+                </Button>
+        
+                {/* <Link to={'/studentdata'} style={styles} className="classdatabutton">
                     <Button type="submit" className="classdatacontinuebutton" onClick={this.handleContinueClick}>
                         CONTINUE
                     </Button>
-                </Link>
+                </Link> */}
             </Row>
         )
     }

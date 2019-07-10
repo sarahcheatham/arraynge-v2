@@ -9,7 +9,7 @@
 .welcome-top-row{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 8%;
+    padding-top: 5%;
 }
 
 .welcome-bottom-row{
@@ -24,17 +24,16 @@
     font-size: 1.25em;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     margin-left: 10%;
-    height: 75%;
-    padding-top: 5%;
+    margin-bottom: 5%;
     padding-left: 5%;
     /* box-shadow: inset 1em -1em 1em -1em #FDFBED; */ 
 }
 
 #currClassHeader{
-    font-size: 1.5em;
+    font-size: 1.65em;
     color: var(--ultra-violet-shade);
     font-weight: 200;
     padding-bottom: 2%;
@@ -51,8 +50,8 @@
 }
 
 .currClassText{
-    font-weight: 100;
-    color: var(--flamingo);
+    font-weight: 200;
+    color: var(--red-shade);
 }
 
 .button-subhead{

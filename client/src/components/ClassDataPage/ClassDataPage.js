@@ -4,6 +4,7 @@ import YearForm from './YearForm';
 import SubjectForm from './SubjectForm';
 import GradeLevelForm from './GradeLevelForm';
 import SaveFormButton from './SaveFormButton';
+import StudentDataPage from '../StudentDataPage/StudentDataPage';
 import { Container, Row, Col, Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
@@ -34,7 +35,8 @@ class ClassDataPage extends Component{
             0 : <YearForm/>,
             1 : <SubjectForm/>,
             2 : <GradeLevelForm/>,
-            3 : <SaveFormButton/>
+            3 : <SaveFormButton/>,
+            4 : <StudentDataPage/>
         }
         console.log("formCountHashMap:", formCountHashMap[counter])
         return formCountHashMap[counter]
