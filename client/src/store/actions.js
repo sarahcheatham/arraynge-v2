@@ -153,6 +153,13 @@ export const setYear = year => {
     }
 }
 
+export const setNumberOfStudents = numOfStudents => {
+    return {
+        type: "SET_NUMBER_OF_STUDENTS",
+        value: numOfStudents
+    }
+}
+
 export const setCounter = counter => {
     return {
         type: "SET_COUNTER",

@@ -12,6 +12,7 @@ const storeState =  {
     currentSubject: "",
     currentGradeLevel: "",
     currentCount: 0,
+    numberOfStudents: 0
 }
 
 export default storeState

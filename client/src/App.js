@@ -9,7 +9,7 @@ import SignUpSignInPage from './components/SignUpSignInPage/SignUpSignInPage';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import ClassDataPage from './components/ClassDataPage/ClassDataPage';
 import { connect } from 'react-redux';
-import { loadUserId, setCurrentUserId, setSignUpSignInError } from './store/actions';
+import { loadUserId, setCurrentUserId, setUsername, setSignUpSignInError } from './store/actions';
 // import WelcomeContainer from './containers/WelcomeContainer';
 // import ScoresPageContainer from './containers/ScoresPageContainer';
 // import ClassDataPageContainer from './containers/ClassDataPageContainer';
@@ -78,6 +78,7 @@ class App extends Component {
     localStorage.removeItem("token");
     this.setState({ authenticated: false });
     this.props.setCurrentUserId(null);
+    this.props.setUsername("Sign In");
   }
 
   renderError = () => {
@@ -150,7 +151,8 @@ const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
         setCurrentUserId: userId => dispatch(setCurrentUserId(userId)),
-        setSignUpSignInError: error => dispatch(setSignUpSignInError(error))
+        setSignUpSignInError: error => dispatch(setSignUpSignInError(error)),
+        setUsername: username => dispatch(setUsername(username))
     }
 }
 

@@ -81,6 +81,13 @@ const currentYear = (state = storeState, action) => {
     return state;
 }
 
+const numberOfStudents = (state = storeState, action) => {
+    if(action.type === "SET_NUMBER_OF_STUDENTS"){
+        return action.value
+    }
+    return state;
+}
+
 const currentCount = (state = storeState, action) => {
     if(action.type === "SET_COUNTER"){
         return action.value
@@ -89,7 +96,7 @@ const currentCount = (state = storeState, action) => {
 }
 
 const rootReducer = combineReducers({
-    currentUserId, signUpSignInError, username, currentClass, classdata, currentGradeLevel, currentSubject, currentYear, currentCount
+    currentUserId, signUpSignInError, username, currentClass, classdata, currentGradeLevel, currentSubject, currentYear, numberOfStudents, currentCount
 });
 
 export default rootReducer;

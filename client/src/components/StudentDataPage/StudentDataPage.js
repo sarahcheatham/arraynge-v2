@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import StudentForm from '../StudentForm/StudentForm';
-import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './StudentDataPage.css';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ class StudentDataPage extends Component{
     constructor(props){
         super(props);
         this.state = {
-            loading: false,
+            // loading: false,
             classdata: [],
             error: null,
             numberOfStudents: "",
@@ -23,7 +23,7 @@ class StudentDataPage extends Component{
     }
 
     componentDidMount(){
-        this.setState({ loading: true })
+        // this.setState({ loading: true })
         this.props.loadUserId();
         this.props.loadClassData();
     }
@@ -79,6 +79,12 @@ class StudentDataPage extends Component{
     handleFormChange = event => {
         this.setState({[event.target.name]: event.target.value});
     }
+
+    handleNextClick = e => {
+        e.preventDefault();
+        this.props.setCounter(this.props.currentCount+1)
+    }
+
     render(){
         const styles = {
             color: 'black',
@@ -90,11 +96,11 @@ class StudentDataPage extends Component{
             studentComponents.push(sc)
         }
         return(
-            <div className="studentdatacontainer">
+            <Container className="studentdatacontainer">
                 <Form>
-                    <h2 className="subjectheader">MATH</h2>
-                    <h2 className="studentdatasubheader">ENTER STUDENT DATA</h2>
-                    <FormGroup controlId='formNumberOfStudents'>
+                    <Row className="subjectheader">MATH</Row>
+                    <Row className="studentdatasubheader">ENTER STUDENT DATA</Row>
+                    <FormGroup id='formNumberOfStudents'>
                         <Label className="numberofstudents">Please enter the number of students in your class:</Label>{' '}
                         <Input 
                             type='text'
@@ -105,8 +111,9 @@ class StudentDataPage extends Component{
                     </FormGroup>
                 </Form>
                 {studentComponents}
-                <Button className="continuebutton" onClick={this.handleClick}><Link to={'/arrayngement'} style={styles} className="continuebutton">CONTINUE</Link></Button>
-            </div>
+                <Button className="continuebutton" onClick={this.handleNextClick}>CONTINUE</Button>
+                {/* <Button className="continuebutton" onClick={this.handleClick}><Link to={'/arrayngement'} style={styles} className="continuebutton">CONTINUE</Link></Button> */}
+            </Container>
         )
     }
 }

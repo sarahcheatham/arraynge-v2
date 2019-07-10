@@ -3,12 +3,13 @@ import SubHeader from '../SubHeader/SubHeader';
 import YearForm from './YearForm';
 import SubjectForm from './SubjectForm';
 import GradeLevelForm from './GradeLevelForm';
-import SaveFormButton from './SaveFormButton';
+import NumberOfStudentsForm from './NumberOfStudentsForm';
+// import SaveFormButton from './SaveFormButton';
 import StudentDataPage from '../StudentDataPage/StudentDataPage';
 import { Container, Row, Col, Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { loadUserId, loadUsername, loadClassData, createClassData, setCurrentGradeLevel, setCurrentSubject, setCounter } from '../../store/actions';
+import { loadUserId, loadUsername, loadClassData } from '../../store/actions';
 import './ClassDataPage.css';
 import dateFns from 'date-fns';
 
@@ -35,29 +36,28 @@ class ClassDataPage extends Component{
             0 : <YearForm/>,
             1 : <SubjectForm/>,
             2 : <GradeLevelForm/>,
-            3 : <SaveFormButton/>,
+            3 : <NumberOfStudentsForm/>,
             4 : <StudentDataPage/>
         }
         console.log("formCountHashMap:", formCountHashMap[counter])
         return formCountHashMap[counter]
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
-        const classdata = {
-            userId: this.props.currentUserId,
-            gradelevel: this.props.currentGradeLevel,
-            subject: this.props.currentSubject,
-            year: this.props.currentYear
-        }
-        this.props.createClassData(classdata)
-    }
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     const classdata = {
+    //         userId: this.props.currentUserId,
+    //         gradelevel: this.props.currentGradeLevel,
+    //         subject: this.props.currentSubject,
+    //         year: this.props.currentYear
+    //     }
+    //     this.props.createClassData(classdata)
+    // }
     
-    handleContinueClick = event => {
-        event.preventDefault();
-        console.log(event)
-        // this.props.loadStudentData()
-    }
+    // handleContinueClick = event => {
+    //     event.preventDefault();
+    //     console.log(event)
+    // }
 
     
     
@@ -93,13 +93,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadClassData: () => dispatch(loadClassData()),
         loadUserId: () => dispatch(loadUserId()),
         loadUsername: () => dispatch(loadUsername()),
-        setGradeLevel: gradelevel => dispatch(setCurrentGradeLevel(gradelevel)),
-        setSubject: subject => dispatch(setCurrentSubject(subject)),
-        createClassData: classdata => dispatch(createClassData(classdata)),
-        setCounter: counter => dispatch(setCounter(counter))
+        loadClassData: () => dispatch(loadClassData())
     };
 }
 
