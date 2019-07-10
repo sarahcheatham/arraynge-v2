@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, FormGroup, CustomInput, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setYear, setCounter } from '../../store/actions';
+import SubHeader from '../SubHeader/SubHeader';
 
 class GradeLevelForm extends React.Component {
     constructor(props){
@@ -43,7 +44,8 @@ class GradeLevelForm extends React.Component {
         return (
             <FormGroup row className="subject">
                 <Row className="gradeLevel">
-                    <p className="classDataSubHeader">SCHOOL YEAR</p>
+                    {/* <p className="classDataSubHeader">SCHOOL YEAR</p> */}
+                    <SubHeader className="classDataSubHeader" text="SCHOOL YEAR"/>
                     
                     <p className="classDataText">Choose the school year of the class that you would like to arraynge</p>
             

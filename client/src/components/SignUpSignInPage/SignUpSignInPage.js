@@ -1,32 +1,26 @@
-import React, {Component} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-// import { Alert } from 'react-bootstrap';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Alert } from 'reactstrap';
 import './SignUpSignIn.css';
 
 
-class SignUpSignInPage extends Component{
-    constructor(props){
-        super(props)
-    }
-    // renderError(){
-    //     return(
-    //         <Alert bsStyle="warning">
-    //             <strong className="signupsigninerr">{this.props.err}</strong>
-    //         </Alert>
-    //     )
-    // }
-    render(){
+const SignUpSignInPage = props => {
+    const renderError = () => {
         return(
-            <Container className="loginPage">
-                    <SignIn onSignIn={this.props.onSignIn} err={this.renderError}/>
-                    <SignUp onSignUp={this.props.onSignUp} err={this.renderError}/>
-                {/* {this.props.err && this.renderError()} */}
-            </Container>
+            <Alert bsStyle="warning">
+                <strong className="signupsigninerr">{props.err}</strong>
+            </Alert>
         )
     }
+    return(
+        <Container className="loginPage">
+                <SignIn onSignIn={props.onSignIn} err={renderError}/>
+                <SignUp onSignUp={props.onSignUp} err={renderError}/>
+            {props.err && this.renderError()}
+        </Container>
+    )
 }
 
 Container.propTypes = {

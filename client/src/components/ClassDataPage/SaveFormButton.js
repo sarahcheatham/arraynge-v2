@@ -1,14 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
 import { Row, Button } from 'reactstrap';
 import { connect } from "react-redux";
 import { loadUserId, createClassData, setCounter } from '../../store/actions';
 
 
-class SaveFormButton extends React.Component {
-    constructor(props){
-        super(props);
-    }
+class SaveFormButton extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
@@ -27,10 +24,10 @@ class SaveFormButton extends React.Component {
     }
 
     render(){
-        const styles = {
-            color: 'black',
-            textDecoration: 'none'
-        }
+        // const styles = {
+        //     color: 'black',
+        //     textDecoration: 'none'
+        // }
         return (
             <Row className="classdatabuttonscontainer">
                 <Button type="submit" className="classdatabutton" onClick={this.handleSubmit}>

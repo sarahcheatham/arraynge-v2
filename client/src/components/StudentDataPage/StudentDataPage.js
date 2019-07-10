@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import StudentForm from '../StudentForm/StudentForm';
+import SubHeader from '../SubHeader/SubHeader';
 import { Container, Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './StudentDataPage.css';
@@ -43,7 +44,7 @@ class StudentDataPage extends Component{
         if (studentdata.score[3].EOYscore === undefined){
             studentdata.score[3].EOYscore = blankScore
         }
-        console.log("studentdata.score:", studentdata.score[0])
+        // console.log("studentdata.score:", studentdata.score[0])
         // this.setState({
         //     name: studentdata.name,
         //     score: studentdata.score,
@@ -76,14 +77,8 @@ class StudentDataPage extends Component{
     // handleClick(e){
     //     this.props.loadStudentData()
     // }
-    handleFormChange = event => {
-        this.setState({[event.target.name]: event.target.value});
-    }
+    
 
-    handleNextClick = e => {
-        e.preventDefault();
-        this.props.setCounter(this.props.currentCount+1)
-    }
 
     render(){
         const styles = {
@@ -91,28 +86,16 @@ class StudentDataPage extends Component{
             textDecoration: 'none'
         }
         let studentComponents = [];
-        for(let i = 0; i < this.state.numberOfStudents; i++){
+        for(let i = 0; i < this.props.numberOfStudents; i++){
             let sc = <StudentForm key={i} onFormSubmit={this.handleFormSubmit}/>
             studentComponents.push(sc)
         }
         return(
             <Container className="studentdatacontainer">
-                <Form>
-                    <Row className="subjectheader">MATH</Row>
-                    <Row className="studentdatasubheader">ENTER STUDENT DATA</Row>
-                    <FormGroup id='formNumberOfStudents'>
-                        <Label className="numberofstudents">Please enter the number of students in your class:</Label>{' '}
-                        <Input 
-                            type='text'
-                            name='numberOfStudents'
-                            onChange={this.handleFormChange}
-                            value={this.state.numberOfStudents}
-                        />
-                    </FormGroup>
-                </Form>
+                <SubHeader className="classDataSubHeader" text="ENTER STUDENT DATA" id="student-form-header"/>
                 {studentComponents}
-                <Button className="continuebutton" onClick={this.handleNextClick}>CONTINUE</Button>
-                {/* <Button className="continuebutton" onClick={this.handleClick}><Link to={'/arrayngement'} style={styles} className="continuebutton">CONTINUE</Link></Button> */}
+                {/* <Button className="continuebutton" onClick={this.handleClick}>CONTINUE</Button> */}
+                <Button className="continuebutton" onClick={this.handleClick}><Link to={'/arrayngement'} style={styles} className="continuebutton">CONTINUE</Link></Button>
             </Container>
         )
     }
@@ -125,7 +108,8 @@ const mapStateToProps = state => {
             loading: state.loading,
             error: state.error,
             classes: state.classes
-        } 
+        },
+        numberOfStudents: state.numberOfStudents
     }
 }
 

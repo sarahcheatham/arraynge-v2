@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Col, Row, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadUserId, loadClassData, updateClassData } from '../../store/actions';
@@ -36,8 +36,8 @@ class StudentForm extends Component{
     handleSubmit = event => {
         event.preventDefault();
         this.setState({check: true})
-        this.props.onFormSubmit({
-            userId: this.state.userId,
+        this.props.updateClassData({
+            userId: this.props.currentUserId,
             name: this.state.name,
             score:[
                 {BOYscore: this.state.BOYscore},
@@ -64,70 +64,85 @@ class StudentForm extends Component{
         }
 
         return(
-            <Form onSubmit={this.handleSubmit}>
-                <FormGroup className="studentdatapage">
-                    <FormGroup id='formInlineStudent'>
-                        <Label className="studentdataname">Student First Name:</Label>{' '}
-                        <Input 
-                            type="text" 
-                            placeholder="Jane Doe" 
-                            className="studentdatainputs" 
-                            name="name" 
-                            onChange={this.handleFormChange}
-                            value={this.state.name}
-                        />
-                    </FormGroup>{' '}
-                    <FormGroup id="formInlineBoyScore">
-                        <Label className="studentdatalabels">BOY Score:</Label>{' '}
-                        <Input 
-                            type="text" 
-                            className="studentdatainputs"
-                            name="BOYscore" 
-                            onChange={this.handleFormChange}
-                            value={this.state.BOYscore}
-                        />
-                    </FormGroup>
-                    <FormGroup id="formInlineEoyGoal">
-                        <Label className="studentdatalabels">EOY Goal:</Label>{' '}
-                        <Input 
-                            type="text" 
-                            className="studentdatainputs"
-                            name="EOYgoal" 
-                            onChange={this.handleFormChange}
-                            value={this.state.EOYgoal}
-                        />
-                    </FormGroup>
-                    <FormGroup id="formInlineMoyScore">
-                        <Label className="studentdatalabels">MOY Score:</Label>{' '}
-                        <Input 
-                            type="text" 
-                            className="studentdatainputs"
-                            name="MOYscore" 
-                            onChange={this.handleFormChange}
-                            value={this.state.MOYscore}
-                        />
-                    </FormGroup>
-                    <FormGroup id="formInlineEoyScore">
-                        <Label className="studentdatalabels">EOY Score:</Label>{' '}
-                        <Input 
-                            type="text" 
-                            className="studentdatainputs"
-                            name="EOYscore" 
-                            onChange={this.handleFormChange}
-                            value={this.state.EOYscore}
-                        />
-                    </FormGroup>
-                    <Button type="submit" className="studentdatapagebutton">
-                        <img 
-                            src={Image1} 
-                            alt="save" 
-                            id="saveimage"
-                        />
-                    </Button>
-                    <div className="checkbox">
+            <Form onSubmit={this.handleSubmit} className="studentdatapage">
+                <Row className="single-form-container">
+                    <Col>
+                        <FormGroup id='formInlineStudent'> 
+                            <Label className="studentdataname">Student First Name:</Label>
+                            <Input 
+                                type="text" 
+                                placeholder="Jane Doe" 
+                                className="studentdatainputs" 
+                                name="name" 
+                                onChange={this.handleFormChange}
+                                value={this.state.name}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup id="formInlineBoyScore">
+                            <Label className="studentdatalabels">BOY Score:</Label>{' '}
+                            <Input 
+                                type="text" 
+                                className="studentdatainputs"
+                                name="BOYscore" 
+                                onChange={this.handleFormChange}
+                                value={this.state.BOYscore}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup id="formInlineEoyGoal">
+                            <Label className="studentdatalabels">EOY Goal:</Label>{' '}
+                            <Input 
+                                type="text" 
+                                className="studentdatainputs"
+                                name="EOYgoal" 
+                                onChange={this.handleFormChange}
+                                value={this.state.EOYgoal}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup id="formInlineMoyScore">
+                            <Label className="studentdatalabels">MOY Score:</Label>{' '}
+                            <Input 
+                                type="text" 
+                                className="studentdatainputs"
+                                name="MOYscore" 
+                                onChange={this.handleFormChange}
+                                value={this.state.MOYscore}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup id="formInlineEoyScore">
+                            <Label className="studentdatalabels">EOY Score:</Label>{' '}
+                            <Input 
+                                type="text" 
+                                className="studentdatainputs"
+                                name="EOYscore" 
+                                onChange={this.handleFormChange}
+                                value={this.state.EOYscore}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col className="studentdata-button-container">
+                        <Row>{" "}</Row>
+                        <Row>
+                            <Button type="submit" className="studentdatainputs" id="studentdatapagebutton">
+                                <img 
+                                    src={Image1} 
+                                    alt="save" 
+                                    // id="saveimage"
+                                />
+                            </Button>
+                        </Row>
+                    </Col>
+                    <Col className="checkbox-container">
                         <svg style={{showStyle}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path nativeColor="#8FAD57" fill="none" d="M0 0h24v24H0z"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                    </div>
-                </FormGroup>
+                    </Col>
+                </Row>
             </Form>
         );
     }

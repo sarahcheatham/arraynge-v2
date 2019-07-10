@@ -4,7 +4,6 @@ import YearForm from './YearForm';
 import SubjectForm from './SubjectForm';
 import GradeLevelForm from './GradeLevelForm';
 import NumberOfStudentsForm from './NumberOfStudentsForm';
-// import SaveFormButton from './SaveFormButton';
 import StudentDataPage from '../StudentDataPage/StudentDataPage';
 import { Container, Row, Col, Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -66,8 +65,8 @@ class ClassDataPage extends Component{
         console.log("formToShow:", formToShow)
         return(
             <Container className="classDataPage">
-                <SubHeader text="CREATE A NEW CLASS" className="classDataPageHeader"/>
                 <Form className="classdata-form">
+                    <SubHeader text="CREATE A NEW CLASS" className="classDataPageHeader"/>
                     {formToShow}
                 </Form>
             </Container>

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Row, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { connect } from "react-redux";
 import { loadUserId, createClassData, setNumberOfStudents, setCounter } from '../../store/actions';
 import SaveFormButton from './SaveFormButton';
+import SubHeader from '../SubHeader/SubHeader'
+import './ClassDataPage.css';
 
 
 class NumberOfStudentsForm extends Component {
@@ -36,21 +38,21 @@ class NumberOfStudentsForm extends Component {
     }
 
     render(){
-        const styles = {
-            color: 'black',
-            textDecoration: 'none'
-        }
+        // const styles = {
+        //     color: 'black',
+        //     textDecoration: 'none'
+        // }
         return (
-            <Form>
-                <Row className="subjectheader">MATH</Row>
-                <Row className="studentdatasubheader">ENTER STUDENT DATA</Row>
+            <Row>
+                <SubHeader className="classDataSubHeader" text="NUMBER OF STUDENTS"/>
                 <FormGroup id='formNumberOfStudents'>
-                    <Label className="numberofstudents">Please enter the number of students in your class:</Label>{' '}
+                    <Label className="classDataText">Please enter the number of students in your class:</Label>{' '}
                     <Input 
                         type='text'
                         name='numberOfStudents'
                         onChange={this.handleFormChange}
                         value={this.state.numberOfStudents}
+                        className="numberofstudents-input"
                     />
                 </FormGroup>
                 <Row className="classdatabuttonscontainer">
@@ -62,7 +64,7 @@ class NumberOfStudentsForm extends Component {
                         CONTINUE
                     </Button>
                 </Row>
-        </Form>
+        </Row>
         
                 /* <Link to={'/studentdata'} style={styles} className="classdatabutton">
                     <Button type="submit" className="classdatacontinuebutton" onClick={this.handleContinueClick}>
@@ -91,4 +93,4 @@ const mapDispatchToProps = dispatch => {
         setCounter: counter => dispatch(setCounter(counter))
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps) (SaveFormButton);
+export default connect(mapStateToProps, mapDispatchToProps) (NumberOfStudentsForm);
