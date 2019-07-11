@@ -8,12 +8,13 @@ import Username from './components/Username/Username';
 import SignUpSignInPage from './components/SignUpSignInPage/SignUpSignInPage';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import ClassDataPage from './components/ClassDataPage/ClassDataPage';
+import StudentDataPage from './components/StudentDataPage/StudentDataPage';
 import { connect } from 'react-redux';
-import { loadUserId, setCurrentUserId, setUsername, setSignUpSignInError } from './store/actions';
+import { loadUserId, setCurrentUserId, setUsername, setSignUpSignInError, loadClassData } from './store/actions';
 // import WelcomeContainer from './containers/WelcomeContainer';
 // import ScoresPageContainer from './containers/ScoresPageContainer';
 // import ClassDataPageContainer from './containers/ClassDataPageContainer';
-// import StudentDataPageContainer from './containers/StudentDataPageContainer';
+
 // import ArrayngementPageContainer from './containers/ArrayngementPageContainer';
 // import BarChartContainer from './containers/BarChartContainer';
 
@@ -69,7 +70,7 @@ class App extends Component {
         localStorage.setItem("token", token);
         this.setState({ authenticated: token });
         this.props.loadUserId();
-        // this.props.loadClassData();
+        this.props.loadClassData();
       });
     }  
   }
@@ -104,8 +105,8 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={WelcomePage}/>
         {/* <Route exact path="/" component={WelcomeContainer}/> */}
-        {/* <Route path="/studentdata" component={StudentDataPageContainer}/> */}
         <Route path="/classdata" component={ClassDataPage}/>
+        <Route path="/studentdata" component={StudentDataPage}/>
         {/* <Route exact path="/classdata" render={(props)=> <ClassDataPageContainer gradelevel={props.gradelevel} subject={props.subject} userId={props.userId} classdata={props.classdata}/>}/> */}
         {/* <Route path="/arrayngement" component={ArrayngementPageContainer}/>
         <Route exact path="/scores" component={ScoresPageContainer}/>
@@ -116,7 +117,7 @@ class App extends Component {
   }
  
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     let whatToShow = "";
     if(this.state.authenticated){
       whatToShow = this.renderApp();
@@ -152,7 +153,8 @@ const mapDispatchToProps = dispatch => {
         loadUserId: () => dispatch(loadUserId()),
         setCurrentUserId: userId => dispatch(setCurrentUserId(userId)),
         setSignUpSignInError: error => dispatch(setSignUpSignInError(error)),
-        setUsername: username => dispatch(setUsername(username))
+        setUsername: username => dispatch(setUsername(username)),
+        loadClassData: () => dispatch(loadClassData())
     }
 }
 

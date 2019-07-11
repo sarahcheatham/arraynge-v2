@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, FormGroup, CustomInput, Button } from 'reactstrap';
+import { Row, FormGroup, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setCurrentSubject, setCounter } from '../../store/actions';
 

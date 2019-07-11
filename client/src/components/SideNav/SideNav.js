@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import { Navbar, Nav, NavItem } from "react-bootstrap";
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
-import { Link } from "react-router-dom";
+import { Nav, NavItem, NavLink } from 'reactstrap';
+// import { Link } from "react-router-dom";
 import './SideNav.css';
 const SideNav = props => {
   let whatToShow = "";
@@ -47,7 +47,7 @@ SideNav.propTypes = {
 
 export default SideNav;
 
-{/* <Nav vertical>
+/* <Nav vertical>
           <NavItem>
             <NavLink href="#">Link</NavLink>
           </NavItem>
@@ -60,4 +60,4 @@ export default SideNav;
           <NavItem>
             <NavLink disabled href="#">Disabled Link</NavLink>
           </NavItem>
-        </Nav> */}
+        </Nav> */

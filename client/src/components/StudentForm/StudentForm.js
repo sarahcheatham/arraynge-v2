@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadUserId, loadClassData, updateClassData } from '../../store/actions';
+import { loadUserId, loadLastClass, loadClassData, updateClassData } from '../../store/actions';
 import Image1 from './content-save.png';
 import './StudentForm.css';
 // import SvgIcon from '@material-ui/core/SvgIcon';
@@ -36,7 +36,9 @@ class StudentForm extends Component{
     handleSubmit = event => {
         event.preventDefault();
         this.setState({check: true})
-        this.props.updateClassData({
+        console.log("CURRENT CLASS ID:", this.props.currentClass._id)
+        this.props.onFormSubmit({
+            id: this.props.currentClass._id,
             userId: this.props.currentUserId,
             name: this.state.name,
             score:[
@@ -49,7 +51,7 @@ class StudentForm extends Component{
     }
 
     render(){
-        console.log("PROPS:", this.props)
+        // console.log("PROPS:", this.props)
         let showStyle = "";
         const noShow = {
             display: "none"
@@ -75,7 +77,7 @@ class StudentForm extends Component{
                                 className="studentdatainputs" 
                                 name="name" 
                                 onChange={this.handleFormChange}
-                                value={this.state.name}
+                                // value={this.state.name}
                             />
                         </FormGroup>
                     </Col>
@@ -87,7 +89,7 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="BOYscore" 
                                 onChange={this.handleFormChange}
-                                value={this.state.BOYscore}
+                                // value={this.state.BOYscore}
                             />
                         </FormGroup>
                     </Col>
@@ -99,7 +101,7 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="EOYgoal" 
                                 onChange={this.handleFormChange}
-                                value={this.state.EOYgoal}
+                                // value={this.state.EOYgoal}
                             />
                         </FormGroup>
                     </Col>
@@ -111,7 +113,7 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="MOYscore" 
                                 onChange={this.handleFormChange}
-                                value={this.state.MOYscore}
+                                // value={this.state.MOYscore}
                             />
                         </FormGroup>
                     </Col>
@@ -123,7 +125,7 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="EOYscore" 
                                 onChange={this.handleFormChange}
-                                value={this.state.EOYscore}
+                                // value={this.state.EOYscore}
                             />
                         </FormGroup>
                     </Col>
@@ -140,7 +142,7 @@ class StudentForm extends Component{
                         </Row>
                     </Col>
                     <Col className="checkbox-container">
-                        <svg style={{showStyle}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path nativeColor="#8FAD57" fill="none" d="M0 0h24v24H0z"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                        <svg style={{showStyle}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path nativecolor="#8FAD57" fill="none" d="M0 0h24v24H0z"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
                     </Col>
                 </Row>
             </Form>
@@ -155,11 +157,8 @@ StudentForm.propTypes ={
 const mapStateToProps = state => {
     return{
         currentUserId: state.currentUserId,
-        classdata: {
-            loading: state.loading,
-            error: state.error,
-            classes: state.classes
-        } 
+        classdata: state.classdata,
+        currentClass: state.currentClass,
     }
 }
 
@@ -167,6 +166,7 @@ const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
         loadClassData: () => dispatch(loadClassData()),
+        loadLastClass: () => dispatch(loadLastClass()),
         updateClassData: item => dispatch(updateClassData(item)),
     }
 }

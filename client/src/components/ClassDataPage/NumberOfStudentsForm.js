@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-import { Row, Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Row, FormGroup, Input, Label, Button } from 'reactstrap';
 import { connect } from "react-redux";
 import { loadUserId, createClassData, setNumberOfStudents, setCounter } from '../../store/actions';
-import SaveFormButton from './SaveFormButton';
+// import SaveFormButton from './SaveFormButton';
 import SubHeader from '../SubHeader/SubHeader'
 import './ClassDataPage.css';
 
@@ -38,10 +38,10 @@ class NumberOfStudentsForm extends Component {
     }
 
     render(){
-        // const styles = {
-        //     color: 'black',
-        //     textDecoration: 'none'
-        // }
+        const styles = {
+            color: 'black',
+            textDecoration: 'none'
+        }
         return (
             <Row>
                 <SubHeader className="classDataSubHeader" text="NUMBER OF STUDENTS"/>
@@ -59,18 +59,23 @@ class NumberOfStudentsForm extends Component {
                     <Button type="submit" className="classdatabutton" onClick={this.handleSubmit}>
                         SAVE
                     </Button>
+                    <Link to={'/studentdata'} style={styles} className="classdatabutton">
+                        <Button type="submit" className="classdatacontinuebutton">
+                            CONTINUE
+                        </Button>
+                    </Link>
                     
-                    <Button className="nextButton" onClick={this.handleNextClick}>
+                    {/* <Button className="nextButton" onClick={this.handleNextClick}>
                         CONTINUE
-                    </Button>
+                    </Button> */}
                 </Row>
         </Row>
         
-                /* <Link to={'/studentdata'} style={styles} className="classdatabutton">
-                    <Button type="submit" className="classdatacontinuebutton" onClick={this.handleContinueClick}>
-                        CONTINUE
-                    </Button>
-                </Link> */
+                // <Link to={'/studentdata'} style={styles} className="classdatabutton">
+                //     <Button type="submit" className="classdatacontinuebutton" onClick={this.handleContinueClick}>
+                //         CONTINUE
+                //     </Button>
+                // </Link>
            
         )
     }

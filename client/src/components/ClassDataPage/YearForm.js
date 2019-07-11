@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, FormGroup, CustomInput, Button } from 'reactstrap';
+import { Row, FormGroup, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setYear, setCounter } from '../../store/actions';
 import SubHeader from '../SubHeader/SubHeader';
@@ -29,7 +29,7 @@ class GradeLevelForm extends React.Component {
     }
     yearClick = event => {
         event.preventDefault();
-        const year = { year: event.target.value };
+        // const year = { year: event.target.value };
 
         this.props.setYear(event.target.value)
     }
@@ -39,7 +39,6 @@ class GradeLevelForm extends React.Component {
     }
     render(){
         let whatToShow = "";
-        console.log(this.props.currentYear === undefined)
         this.props.currentYear === "" ? whatToShow = "SCHOOL YEAR" : whatToShow = this.props.currentYear;
         return (
             <FormGroup row className="subject">

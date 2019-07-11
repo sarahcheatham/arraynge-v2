@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import Star from './Star';
 
 class SignIn extends Component {

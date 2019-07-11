@@ -109,12 +109,12 @@ export const createClassData = classdata => {
     }
 }
 
-export const updateClassData = item => {
+export const updateClassData = (id, student) => {
     return dispatch => {
-        fetch("/api/classdata/:id", {
+        fetch(`/api/classdata/:${id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(item)
+            body: JSON.stringify(student)
         })
         .then(()=> dispatch(loadClassData()))
     }

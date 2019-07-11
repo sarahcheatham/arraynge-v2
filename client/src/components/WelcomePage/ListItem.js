@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import Checkbox from '@material-ui/core/Checkbox';
 // import DeleteIcon from '@material-ui/icons/Delete';
 import { Button } from 'reactstrap';
-import SaveButton from './SaveButton';
+// import SaveButton from './SaveButton';
 
 class ListItem extends Component {
     constructor(props){

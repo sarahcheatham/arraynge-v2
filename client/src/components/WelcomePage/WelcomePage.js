@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { connect } from 'react-redux';
 import { loadUsername, loadLastClass, loadClassData } from "../../store/actions";
 import PropTypes from 'prop-types';
-import SubHeader from '../SubHeader/SubHeader';
+// import SubHeader from '../SubHeader/SubHeader';
 import ListItem from './ListItem';
 import SaveButton from './SaveButton';
 import { Container, Col, Row, Button } from 'reactstrap';
@@ -57,6 +57,7 @@ class WelcomePage extends Component{
     // }
 
     render(){
+        // console.log(this.props.currentClass)
         const createButton = { 
             color: "var(--text-color)",
             backgroundColor: "var(--blue-gray-tint)",
@@ -73,19 +74,19 @@ class WelcomePage extends Component{
             fontStyle: "normal",
             fontWeight: 300,
         }
-        const buttonStyle = {
-            float: 'right',
-            padding: 0,
-            margin: 0,
-        }
+        // const buttonStyle = {
+        //     float: 'right',
+        //     padding: 0,
+        //     margin: 0,
+        // }
         const saveButton = {
             width: 75,
             alignSelf: 'flex-end',
             fontFamily: 'quasimoda, sans-serif'
         }
 
-        let classDataList = "";
-        console.log(this.props)
+        // let classDataList = "";
+       
 
         return(
             <Container className="welcomepage">
@@ -158,11 +159,7 @@ const mapStateToProps = state => {
     return{
         username: state.username,
         currentClass: state.currentClass,
-        classdata: {
-            loading: state.loading,
-            error: state.error,
-            classes: state.classes
-        }
+        classdata: state.classdata
     }
 }
 

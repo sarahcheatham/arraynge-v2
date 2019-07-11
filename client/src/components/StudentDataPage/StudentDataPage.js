@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import StudentForm from '../StudentForm/StudentForm';
 import SubHeader from '../SubHeader/SubHeader';
-import { Container, Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './StudentDataPage.css';
+import '../ClassDataPage/ClassDataPage.css';
 import { connect } from 'react-redux';
-import { loadUserId, loadClassData, updateClassData } from '../../store/actions';
+import { loadUserId, loadLastClass, loadClassData, updateClassData } from '../../store/actions';
 
 class StudentDataPage extends Component{
     constructor(props){
@@ -26,11 +27,14 @@ class StudentDataPage extends Component{
     componentDidMount(){
         // this.setState({ loading: true })
         this.props.loadUserId();
-        this.props.loadClassData();
+        this.props.loadLastClass();
+        // this.props.loadClassData();
+        
     }
     
 
     handleFormSubmit = studentdata => {
+        console.log("STUDENTDATA:", studentdata)
         const blankScore = "";
         if(studentdata.score[0].BOYscore=== undefined){
             studentdata.score[0].BOYscore = blankScore
@@ -44,22 +48,23 @@ class StudentDataPage extends Component{
         if (studentdata.score[3].EOYscore === undefined){
             studentdata.score[3].EOYscore = blankScore
         }
+        // this.props.updateClassData(studentdata)
         // console.log("studentdata.score:", studentdata.score[0])
         // this.setState({
         //     name: studentdata.name,
         //     score: studentdata.score,
         //     userId: studentdata.userId
         // });
-        const name = studentdata.name;
-        const score = studentdata.score;
-        const userId = studentdata.userId;
-        const gradelevel = this.state.gradelevel;
-        const subject = this.state.subject;
+        // const name = studentdata.name;
+        // const score = studentdata.score;
+        // const userId = studentdata.userId;
+        // const gradelevel = this.state.gradelevel;
+        // const subject = this.state.subject;
 
         // var student = { userId, name, gradelevel, subject, score }
         // this.state.lastClass.students.push(student); // add the student to the class
         // do a fetch(PUT) to /api/classdata/:id to update the class
-        this.props.updateClassData({userId, name, gradelevel, subject, score})
+        // this.props.updateClassData({userId, name, gradelevel, subject, score})
         // let options = {
         //     method: "POST",
         //     headers: {"Content-Type": "application/json"},
@@ -81,6 +86,7 @@ class StudentDataPage extends Component{
 
 
     render(){
+        console.log("CURRENT CLASS:",this.props.currentClass)
         const styles = {
             color: 'black',
             textDecoration: 'none'
@@ -104,11 +110,8 @@ class StudentDataPage extends Component{
 const mapStateToProps = state => {
     return{
         currentUserId: state.currentUserId,
-        classdata: {
-            loading: state.loading,
-            error: state.error,
-            classes: state.classes
-        },
+        currentClass: state.currentClass,
+        classdata: state.classdata,
         numberOfStudents: state.numberOfStudents
     }
 }
@@ -116,7 +119,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
-        loadClassData: () => dispatch(loadClassData()),
+        loadLastClass: () => dispatch(loadLastClass()),
+        // loadClassData: () => dispatch(loadClassData()),
         updateClassData: item => dispatch(updateClassData(item)),
     }
 }

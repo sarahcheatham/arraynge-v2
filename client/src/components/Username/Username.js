@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { loadUsername } from '../../store/actions';
 import "./Username.css";
 
-class Username extends React.Component{
-    constructor(props){
-        super(props);
-    }
+class Username extends Component{
     componentDidMount(){
         this.props.loadUsername();
     }
