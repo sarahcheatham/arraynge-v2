@@ -37,8 +37,9 @@
 #studentdatapagebutton{
     height: 2.5em;
     color: var(--blue-white);
-    background-color: var(--desert-blush);
+    background-color: var(--red-shade);
     border-radius: 3px;
+    /* padding: 5%; */
 }
 
 .studentdata-button-container{
