@@ -4,6 +4,9 @@ import {
     FETCH_CLASSDATA_BEGIN,
     FETCH_CLASSDATA_SUCCESS,
     FETCH_CLASSDATA_FAILURE,
+    // FETCH_STUDENTDATA_BEGIN,
+    // FETCH_STUDENTDATA_SUCCESS,
+    // FETCH_STUDENTDATA_FAILURE,
 } from './actions';
 
 const currentUserId = (state = storeState, action) => {
@@ -59,6 +62,32 @@ const classdata = (state = storeState, action) => {
             return state;
     }
 }
+
+// const students = (state = storeState.classdata.classes, action) => {
+//     switch(action.type){
+//         case FETCH_STUDENTDATA_BEGIN:
+//             return {
+//                 ...state,
+//                 loading: true,
+//                 error: null
+//             };
+//         case FETCH_STUDENTDATA_SUCCESS:
+//             return {
+//                 ...state,
+//                 loading: false, 
+//                 students: action.payload.students
+//             };
+//         case FETCH_STUDENTDATA_FAILURE:
+//             return {
+//                 ...state, 
+//                 loading: false,
+//                 error: action.payload.error,
+//                 students: []
+//             };
+//         default:
+//             return state;
+//     }
+// }
 
 const currentGradeLevel = (state = storeState, action) => {
     if(action.type === "SET_GRADE_LEVEL"){

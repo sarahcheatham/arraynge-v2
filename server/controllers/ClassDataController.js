@@ -55,7 +55,7 @@ module.exports.remove = (req, res)=>{
 
         //creating a simple object to send back with a message and the id of the document that was removed
         const response = {
-            message: "Student successfully deleted",
+            message: "Class successfully deleted",
             id: classdata._id
         }
         return res.status(200).send(response);

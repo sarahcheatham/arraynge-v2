@@ -6,21 +6,14 @@ import { Link } from 'react-router-dom';
 import './StudentDataPage.css';
 import '../ClassDataPage/ClassDataPage.css';
 import { connect } from 'react-redux';
-import { loadUserId, loadLastClass, loadClassData, updateClassData } from '../../store/actions';
+import { loadUserId, loadLastClass, updateStudentData } from '../../store/actions';
 
 class StudentDataPage extends Component{
     constructor(props){
         super(props);
         this.state = {
             // loading: false,
-            classdata: [],
-            error: null,
-            numberOfStudents: "",
-            data: [],
-            lastclass: {},
-            gradelevel: "",
-            subject: "",
-            userId: ""
+            students: [],
         };
     }
 
@@ -28,6 +21,7 @@ class StudentDataPage extends Component{
         // this.setState({ loading: true })
         this.props.loadUserId();
         this.props.loadLastClass();
+        // this.props.loadStudentData();
         // this.props.loadClassData();
         
     }
@@ -49,44 +43,36 @@ class StudentDataPage extends Component{
             studentdata.score[3].EOYscore = blankScore
         }
         // this.props.updateClassData(studentdata)
-        // console.log("studentdata.score:", studentdata.score[0])
-        // this.setState({
-        //     name: studentdata.name,
-        //     score: studentdata.score,
-        //     userId: studentdata.userId
-        // });
-        // const name = studentdata.name;
-        // const score = studentdata.score;
-        // const userId = studentdata.userId;
-        // const gradelevel = this.state.gradelevel;
-        // const subject = this.state.subject;
+        const classId = studentdata.classId;
+        const name = studentdata.name;
+        const score = studentdata.score;
+        const userId = studentdata.userId;
+        const gradelevel = this.props.currentClass.gradelevel;
+        const subject = this.props.currentClass.subject;
 
-        // var student = { userId, name, gradelevel, subject, score }
-        // this.state.lastClass.students.push(student); // add the student to the class
+        let students = { userId, name, gradelevel, subject, score }
+        this.state.students.push(students);
+        console.log("STATE:", this.state.students) // add the student to the class
         // do a fetch(PUT) to /api/classdata/:id to update the class
-        // this.props.updateClassData({userId, name, gradelevel, subject, score})
-        // let options = {
-        //     method: "POST",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify({ userId, name, gradelevel, subject, score })
-        // }
-        // fetch("/api/studentdata", options).then((res)=>{
-        //     return res.json()
-        // }).then((res)=>{
-        //     console.log(res)
-        // }).catch((err)=>{
-        //     console.log(err)
-        // })
+        // this.props.updateClassData(id, {userId, name, gradelevel, subject, score})
+        // this.props.updateClassData(id, student)
+        // this.props.createStudent(classId, student)
+        
     }
 
-    // handleClick(e){
-    //     this.props.loadStudentData()
-    // }
+    handleClick = e => {
+        e.preventDefault();
+        const students = this.state.students;
+        this.props.updateStudentData(this.props.currentClass._id, { students });
+    }
+
+
+
     
 
-
     render(){
-        console.log("CURRENT CLASS:",this.props.currentClass)
+        console.log(this.props.currentClass._id)
+        // console.log("CURRENT CLASS:",this.props.currentClass)
         const styles = {
             color: 'black',
             textDecoration: 'none'
@@ -101,7 +87,8 @@ class StudentDataPage extends Component{
                 <SubHeader className="classDataSubHeader" text="ENTER STUDENT DATA" id="student-form-header"/>
                 {studentComponents}
                 {/* <Button className="continuebutton" onClick={this.handleClick}>CONTINUE</Button> */}
-                <Button className="continuebutton" onClick={this.handleClick}><Link to={'/arrayngement'} style={styles} className="continuebutton">CONTINUE</Link></Button>
+                <Button type="submit" className="classdatabutton" onClick={this.handleClick}>SAVE</Button>
+                <Button className="continuebutton"><Link to={'/arrayngement'} style={styles} className="continuebutton">CONTINUE</Link></Button>
             </Container>
         )
     }
@@ -120,8 +107,10 @@ const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
         loadLastClass: () => dispatch(loadLastClass()),
+        // loadStudentData: classId => dispatch(loadStudentData(classId)),
+        // createStudent: (classId, student) => dispatch(createStudent(classId, student))
         // loadClassData: () => dispatch(loadClassData()),
-        updateClassData: item => dispatch(updateClassData(item)),
+        updateStudentData: (classId, classdata) => dispatch(updateStudentData(classId, classdata)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (StudentDataPage);

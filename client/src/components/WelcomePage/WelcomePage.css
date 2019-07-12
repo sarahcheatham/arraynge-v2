@@ -24,10 +24,12 @@
     font-size: 1.25em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     margin-left: 10%;
-    margin-bottom: 5%;
+    height: 70%;
+    /* margin-bottom: 5%; */
+    padding-top: 10%;
     padding-left: 5%;
     /* box-shadow: inset 1em -1em 1em -1em #FDFBED; */ 
 }
