@@ -17,6 +17,9 @@ const scoreSchema = new Schema({
 });
 
 const studentSchema = new Schema({
+    classId: {
+        type: String
+    },
     name:{
         type: String
     },

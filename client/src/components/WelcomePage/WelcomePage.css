@@ -27,9 +27,9 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin-left: 10%;
-    height: 70%;
+    height: 75%;
     /* margin-bottom: 5%; */
-    padding-top: 10%;
+    padding-top: 5%;
     padding-left: 5%;
     /* box-shadow: inset 1em -1em 1em -1em #FDFBED; */ 
 }
@@ -100,6 +100,7 @@
 
 .diffClassHeader{
     margin-top: 2%;
+    margin-bottom: 2%;
     font-size: 1.5em;
     color: #19182D;
     font-weight: 200;

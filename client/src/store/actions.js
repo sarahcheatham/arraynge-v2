@@ -59,6 +59,17 @@ export const loadLastClass = () => {
     }
 }
 
+export const loadCurrentClass = classId => {
+    return dispatch => {
+        fetch(`/api/classdata/${classId}`)
+        .then(res => {
+            return res.json();
+        }).then(currentClass => {
+            dispatch(setCurrentClass(currentClass))
+        });
+    }
+}
+
 //sets the current class to the class you select 
 export const setCurrentClass = currentClass => {
     return {
@@ -191,6 +202,8 @@ export const setCounter = counter => {
         value: counter
     }
 }
+
+
 
 //student data
 // export const FETCH_STUDENTDATA_BEGIN = "FETCH_STUDENTDATA_BEGIN";

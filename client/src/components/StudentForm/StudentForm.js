@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { loadUserId, loadLastClass, loadClassData, updateClassData } from '../../store/actions';
 import Image1 from './content-save.png';
 import './StudentForm.css';
-// import SvgIcon from '@material-ui/core/SvgIcon';
 
 class StudentForm extends Component{
     constructor(props){
@@ -51,7 +50,6 @@ class StudentForm extends Component{
     }
 
     render(){
-        // console.log("PROPS:", this.props)
         let showStyle = "";
         const noShow = {
             display: "none"
@@ -77,7 +75,6 @@ class StudentForm extends Component{
                                 className="studentdatainputs" 
                                 name="name" 
                                 onChange={this.handleFormChange}
-                                // value={this.state.name}
                             />
                         </FormGroup>
                     </Col>
@@ -89,7 +86,6 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="BOYscore" 
                                 onChange={this.handleFormChange}
-                                // value={this.state.BOYscore}
                             />
                         </FormGroup>
                     </Col>
@@ -101,7 +97,6 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="EOYgoal" 
                                 onChange={this.handleFormChange}
-                                // value={this.state.EOYgoal}
                             />
                         </FormGroup>
                     </Col>
@@ -113,7 +108,6 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="MOYscore" 
                                 onChange={this.handleFormChange}
-                                // value={this.state.MOYscore}
                             />
                         </FormGroup>
                     </Col>
@@ -125,7 +119,6 @@ class StudentForm extends Component{
                                 className="studentdatainputs"
                                 name="EOYscore" 
                                 onChange={this.handleFormChange}
-                                // value={this.state.EOYscore}
                             />
                         </FormGroup>
                     </Col>
@@ -136,7 +129,6 @@ class StudentForm extends Component{
                                 <img 
                                     src={Image1} 
                                     alt="save" 
-                                    // id="saveimage"
                                 />
                             </Button>
                         </Row>
@@ -165,9 +157,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
-        loadClassData: () => dispatch(loadClassData()),
-        loadLastClass: () => dispatch(loadLastClass()),
-        updateClassData: item => dispatch(updateClassData(item)),
+        loadClassData: () => dispatch(loadClassData())
     }
 }
 

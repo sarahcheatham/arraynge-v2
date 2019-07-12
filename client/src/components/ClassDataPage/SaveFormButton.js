@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import { Row, Button } from 'reactstrap';
 import { connect } from "react-redux";
-import { loadUserId, createClassData, setCounter } from '../../store/actions';
+import { createClassData, setCounter } from '../../store/actions';
 
 
 class SaveFormButton extends Component {
@@ -24,25 +23,10 @@ class SaveFormButton extends Component {
     }
 
     render(){
-        // const styles = {
-        //     color: 'black',
-        //     textDecoration: 'none'
-        // }
         return (
             <Row className="classdatabuttonscontainer">
-                <Button type="submit" className="classdatabutton" onClick={this.handleSubmit}>
-                    SAVE
-                </Button>
-              
-                <Button className="nextButton" onClick={this.handleNextClick}>
-                    CONTINUE
-                </Button>
-        
-                {/* <Link to={'/studentdata'} style={styles} className="classdatabutton">
-                    <Button type="submit" className="classdatacontinuebutton" onClick={this.handleContinueClick}>
-                        CONTINUE
-                    </Button>
-                </Link> */}
+                <Button type="submit" className="classdatabutton" onClick={this.handleSubmit}>SAVE</Button>
+                <Button className="nextButton" onClick={this.handleNextClick}>CONTINUE</Button>
             </Row>
         )
     }
@@ -58,7 +42,6 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        loadUserId: () => dispatch(loadUserId()),
         createClassData: classdata => dispatch(createClassData(classdata)),
         setCounter: counter => dispatch(setCounter(counter))
     };

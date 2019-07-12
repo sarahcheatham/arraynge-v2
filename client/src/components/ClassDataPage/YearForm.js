@@ -29,8 +29,6 @@ class GradeLevelForm extends React.Component {
     }
     yearClick = event => {
         event.preventDefault();
-        // const year = { year: event.target.value };
-
         this.props.setYear(event.target.value)
     }
     handleNextClick = e => {
@@ -43,7 +41,6 @@ class GradeLevelForm extends React.Component {
         return (
             <FormGroup row className="subject">
                 <Row className="gradeLevel">
-                    {/* <p className="classDataSubHeader">SCHOOL YEAR</p> */}
                     <SubHeader className="classDataSubHeader" text="SCHOOL YEAR"/>
                     
                     <p className="classDataText">Choose the school year of the class that you would like to arraynge</p>
@@ -101,46 +98,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (GradeLevelForm);
-// import React from 'react';
-// import { Row, FormGroup, CustomInput, Button } from 'reactstrap';
-
-// class YearForm extends React.Component {
-//     constructor(props){
-//         super(props);
-//         this.state = { 
-//             startYear: "",
-//             endYear: ""
-//         }
-//     }
-//     handleNextClick = e => {
-//         e.preventDefault();
-//         console.log(e)
-//     }
-//     render(){
-//         return (
-//                 <FormGroup row className="yearContainer">
-//                     <p className="classDataSubHeader">YEAR</p>
-//                     <p className="classDataText">Choose the year of the class that you would like to arraynge</p>
-//                     <Row>
-//                         <CustomInput type="select" className="select" id="select" name="customSelect">
-//                             <option className="select" id="year" value="">YEAR</option>
-//                             <option className="select" value="2015 2016">2015 - 2016</option>
-//                             <option className="select" value="2016 2017">2016 - 2017</option>
-//                             <option className="select" value="2017 2018">2017 - 2018</option>
-//                             <option className="select" value="2018 2019">2018 - 2019</option>
-//                             <option className="select" value="2019 2020">2019 - 2020</option>
-//                             <option className="select" value="2020 2021">2020 - 2021</option>
-//                         </CustomInput>
-//                     </Row>
-                    // <Row>
-                    //     <Button className="nextButton" onClick={this.handleNextClick}>
-                    //         CONTINUE
-                    //     </Button>
-                    // </Row>
-//                 </FormGroup>
-//         )
-
-//     }
-// }
-
-// export default YearForm;

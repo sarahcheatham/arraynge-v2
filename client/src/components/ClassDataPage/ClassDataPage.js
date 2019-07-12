@@ -27,7 +27,6 @@ class ClassDataPage extends Component{
     }
 
     getFormCount = counter =>{
-        // console.log(counter)
         const formCountHashMap = {
             0 : <YearForm/>,
             1 : <SubjectForm/>,

@@ -29,8 +29,6 @@ class SubjectForm extends React.Component {
 
     subjectClick = event => {
         event.preventDefault();
-        // const year = { year: event.target.value };
-
         this.props.setCurrentSubject(event.target.value)
     }
   
@@ -69,14 +67,6 @@ class SubjectForm extends React.Component {
                             )
                         }
                     </div>
-                    {/* <div className="subjectButtons">
-                        <Button type="button" className="mathButton" onClick={this.subjectClick} value="MATH">
-                            MATH
-                        </Button>
-                        <Button type="button" className="readingButton" onClick={this.subjectClick} value="READING">
-                            READING
-                        </Button>
-                    </div> */}
                     <Row>
                         <Button className="nextButton" onClick={this.handleNextClick}>
                             CONTINUE

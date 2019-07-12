@@ -34,7 +34,7 @@ const currentClass = (state = storeState, action) => {
     if(action.type === "SET_CURRENT_CLASS"){
         return action.value
     }
-    return state
+    return state;
 }
 
 const classdata = (state = storeState, action) => {

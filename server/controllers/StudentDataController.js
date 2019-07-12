@@ -2,45 +2,41 @@ const ClassDataModel = require("../models/ClassDataModel");
 const StudentModel = require("../models/StudentModel");
 
 module.exports.listStudents = (req, res) => {
-    ClassDataModel.find({ userId: req.user._id }).exec().then(students => {
-        return res.json(students)
+    req.body.students.map(student => {
+        StudentModel.find({ classId: student.classId }).exec().then(students => {
+            return res.json(students)
+        })
     })
 }
 
-// module.exports.getLastClass = (req, res) => {
-//     ClassDataModel.find({ userId: req.user._id }).exec()
-//     .then((lastClass, err) => {
-//         if(err) return res.status(500).send(err);
-//         if(lastClass[lastClass.length - 1] === undefined){
-//             return res.json({})
-//         }
-//         return res.json(lastClass[lastClass.length - 1]);
-//     });
-// }
-
-
 module.exports.showStudent = (req, res)=>{
-    StudentModel.findById(req.params.id).exec().then(student =>{
-        return res.json(student)
+    req.body.students.map(oneStudent => {
+        StudentModel.findById(req.params.id).exec().then(student =>{
+            return res.json(student)
+        })
     })
 }
 
 module.exports.createStudent = (req, res)=>{
-    const s = new StudentModel({
-        name: req.body.name,
-        gradelevel: req.body.gradelevel,
-        subject: req.body.subject,
-        score: req.body.score
-    });
-    s.save().then(savedStudent =>{
-        return res.json(savedStudent)
+    req.body.students.map((student, index)=> {
+        const s = new StudentModel({
+            classId: student.classId,
+            name: student.name,
+            gradelevel: student.gradelevel,
+            subject: student.subject,
+            score: student.score
+        });
+        s.save().then(savedStudent =>{
+            return res.json(savedStudent)
+        })
     })
 }
 
 module.exports.updateStudent = (req, res)=>{
+    console.log(req.body.students)
     StudentModel.findByIdAndUpdate(
         req.params.id, 
-        req.body, 
+        req.body,
         {new: true},
         (err, studentUpdate)=>{
             if(err) return res.status(500).send(err);

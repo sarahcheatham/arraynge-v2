@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, FormGroup, Input, Label, Button } from 'reactstrap';
 import { connect } from "react-redux";
-import { loadUserId, createClassData, setNumberOfStudents, setCounter, loadLastClass } from '../../store/actions';
-// import SaveFormButton from './SaveFormButton';
+import {  createClassData, setNumberOfStudents, setCounter, loadLastClass } from '../../store/actions';
 import SubHeader from '../SubHeader/SubHeader'
 import './ClassDataPage.css';
 
@@ -23,8 +22,6 @@ class NumberOfStudentsForm extends Component {
 
     handleNextClick = e => {
         this.props.loadLastClass();
-        console.log(this.props.currentClass)
-        // e.preventDefault();
         this.props.setCounter(this.props.currentCount+1)
     }
 
@@ -66,19 +63,8 @@ class NumberOfStudentsForm extends Component {
                             CONTINUE
                         </Button>
                     </Link>
-                    
-                    {/* <Button className="nextButton" onClick={this.handleNextClick}>
-                        CONTINUE
-                    </Button> */}
                 </Row>
-        </Row>
-        
-                // <Link to={'/studentdata'} style={styles} className="classdatabutton">
-                //     <Button type="submit" className="classdatacontinuebutton" onClick={this.handleContinueClick}>
-                //         CONTINUE
-                //     </Button>
-                // </Link>
-           
+        </Row> 
         )
     }
 }
@@ -94,7 +80,6 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        loadUserId: () => dispatch(loadUserId()),
         createClassData: classdata => dispatch(createClassData(classdata)),
         setNumberOfStudents: numOfStudents => dispatch(setNumberOfStudents(numOfStudents)),
         setCounter: counter => dispatch(setCounter(counter)),

@@ -28,7 +28,6 @@ class GradeLevelForm extends React.Component {
 
     gradeLevelClick = event => {
         event.preventDefault();
-        // const gradelevel = {gradelevel: event.target.value};
         this.props.setGradeLevel(event.target.value)
     }
 

@@ -12,23 +12,16 @@ class StudentDataPage extends Component{
     constructor(props){
         super(props);
         this.state = {
-            // loading: false,
-            students: [],
+            students: []
         };
     }
 
     componentDidMount(){
-        // this.setState({ loading: true })
         this.props.loadUserId();
-        this.props.loadLastClass();
-        // this.props.loadStudentData();
-        // this.props.loadClassData();
-        
+        this.props.loadLastClass(); 
     }
     
-
     handleFormSubmit = studentdata => {
-        console.log("STUDENTDATA:", studentdata)
         const blankScore = "";
         if(studentdata.score[0].BOYscore=== undefined){
             studentdata.score[0].BOYscore = blankScore
@@ -42,7 +35,7 @@ class StudentDataPage extends Component{
         if (studentdata.score[3].EOYscore === undefined){
             studentdata.score[3].EOYscore = blankScore
         }
-        // this.props.updateClassData(studentdata)
+    
         const classId = studentdata.classId;
         const name = studentdata.name;
         const score = studentdata.score;
@@ -51,28 +44,23 @@ class StudentDataPage extends Component{
         const subject = this.props.currentClass.subject;
 
         let students = { userId, name, gradelevel, subject, score }
+         // add the student to the class
         this.state.students.push(students);
-        console.log("STATE:", this.state.students) // add the student to the class
+        this.props.updateStudentData(this.props.currentClass._id, { students });
+
         // do a fetch(PUT) to /api/classdata/:id to update the class
         // this.props.updateClassData(id, {userId, name, gradelevel, subject, score})
         // this.props.updateClassData(id, student)
-        // this.props.createStudent(classId, student)
-        
+        // this.props.createStudent(classId, student) 
     }
 
     handleClick = e => {
         e.preventDefault();
         const students = this.state.students;
-        this.props.updateStudentData(this.props.currentClass._id, { students });
+        // this.props.updateStudentData(this.props.currentClass._id, { students });
     }
 
-
-
-    
-
     render(){
-        console.log(this.props.currentClass._id)
-        // console.log("CURRENT CLASS:",this.props.currentClass)
         const styles = {
             color: 'black',
             textDecoration: 'none'
@@ -86,7 +74,6 @@ class StudentDataPage extends Component{
             <Container className="studentdatacontainer">
                 <SubHeader className="classDataSubHeader" text="ENTER STUDENT DATA" id="student-form-header"/>
                 {studentComponents}
-                {/* <Button className="continuebutton" onClick={this.handleClick}>CONTINUE</Button> */}
                 <Button type="submit" className="classdatabutton" onClick={this.handleClick}>SAVE</Button>
                 <Button className="continuebutton"><Link to={'/arrayngement'} style={styles} className="continuebutton">CONTINUE</Link></Button>
             </Container>
@@ -107,9 +94,6 @@ const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
         loadLastClass: () => dispatch(loadLastClass()),
-        // loadStudentData: classId => dispatch(loadStudentData(classId)),
-        // createStudent: (classId, student) => dispatch(createStudent(classId, student))
-        // loadClassData: () => dispatch(loadClassData()),
         updateStudentData: (classId, classdata) => dispatch(updateStudentData(classId, classdata)),
     }
 }
