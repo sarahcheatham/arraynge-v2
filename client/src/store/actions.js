@@ -77,6 +77,42 @@ export const setCurrentClass = currentClass => {
         value: currentClass
     }
 }
+
+export const setCurrentGradeLevel = gradelevel =>{
+    return {
+        type: "SET_GRADE_LEVEL",
+        value: gradelevel
+    }
+}
+
+export const setCurrentSubject = subject => {
+    return {
+        type: "SET_SUBJECT",
+        value: subject
+    }
+}
+
+export const setYear = year => {
+    return {
+        type: "SET_YEAR",
+        value: year
+    }
+}
+
+export const setNumberOfStudents = numOfStudents => {
+    return {
+        type: "SET_NUMBER_OF_STUDENTS",
+        value: numOfStudents
+    }
+}
+
+export const setCounter = counter => {
+    return {
+        type: "SET_COUNTER",
+        value: counter
+    }
+}
+
 //classdata fetch
 export const FETCH_CLASSDATA_BEGIN = "FETCH_CLASSDATA_BEGIN";
 export const FETCH_CLASSDATA_SUCCESS = "FETCH_CLASSDATA_SUCCESS";
@@ -132,153 +168,91 @@ export const updateClassData = (classId, classdata) => {
     }
 }
 
-export const updateStudentData = (classId, students) => {
-    console.log("ACTIONS:", students)
+export const deleteClassData = (classId, classdata) => {
     return dispatch => {
         fetch(`/api/classdata/${classId}`, {
-            method: "PUT",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(students)
-        })
-        .then(()=> dispatch(loadClassData()))
-    }
-}
-
-
-// export const updateClassData = (id, student) => {
-//     return dispatch => {
-//         fetch(`/api/classdata/${id}`, {
-//             method: "PUT",
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify(student)
-//         })
-//         .then(()=> dispatch(loadClassData()))
-//     }
-// }
-
-export const deleteClassData = item => {
-    return dispatch => {
-        fetch("/api/classdata/:id", {
             method: "DELETE",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(item)
+            body: JSON.stringify(classdata)
         })
         .then(()=> dispatch(loadClassData()))
     }
 }
-
-// classdatapage
-export const setCurrentGradeLevel = gradelevel =>{
-    return {
-        type: "SET_GRADE_LEVEL",
-        value: gradelevel
-    }
-}
-
-export const setCurrentSubject = subject => {
-    return {
-        type: "SET_SUBJECT",
-        value: subject
-    }
-}
-
-export const setYear = year => {
-    return {
-        type: "SET_YEAR",
-        value: year
-    }
-}
-
-export const setNumberOfStudents = numOfStudents => {
-    return {
-        type: "SET_NUMBER_OF_STUDENTS",
-        value: numOfStudents
-    }
-}
-
-export const setCounter = counter => {
-    return {
-        type: "SET_COUNTER",
-        value: counter
-    }
-}
-
-
-
 //student data
-// export const FETCH_STUDENTDATA_BEGIN = "FETCH_STUDENTDATA_BEGIN";
-// export const FETCH_STUDENTDATA_SUCCESS = "FETCH_STUDENTDATA_SUCCESS";
-// export const FETCH_STUDENTDATA_FAILURE = "FETCH_STUDENTDATA_FAILURE";
+export const FETCH_STUDENT_DATA_BEGIN = "FETCH_STUDENT_DATA_BEGIN";
+export const FETCH_STUDENT_DATA_SUCCESS = "FETCH_STUDENT_DATA_SUCCESS";
+export const FETCH_STUDENT_DATA_FAILURE = "FETCH_STUDENT_DATA_FAILURE";
 
-// export const fetchStudentDataBegin = () =>({
-//     type: FETCH_STUDENTDATA_BEGIN
-// });
+export const fetchStudentDataBegin = () =>({
+    type: FETCH_STUDENT_DATA_BEGIN
+});
 
-// export const fetchStudentDataSuccess = students =>({
-//     type: FETCH_STUDENTDATA_SUCCESS,
-//     payload: { students }
-// });
+export const fetchStudentDataSuccess = students =>({
+    type: FETCH_STUDENT_DATA_SUCCESS,
+    payload: { students }
+});
 
-// export const fetchStudentDataFailure = error =>({
-//     type: FETCH_STUDENTDATA_FAILURE,
-//     payload: { error }
-// });
+export const fetchStudentDataFailure = error =>({
+    type: FETCH_STUDENT_DATA_FAILURE,
+    payload: { error }
+});
 
-// export const loadStudentData = classId => {
-//     return dispatch => {
-//         dispatch(fetchStudentDataBegin());
-//         return fetch(`/api/classdata/${classId}/studentdata`)
-//             .then(handleErrors)
-//             .then(res => res.json())
-//             .then(students => {
-//                     dispatch(fetchStudentDataSuccess(students));
-//                     return students;
-//             })
-//             .catch(error => dispatch(fetchStudentDataFailure(error)))
-//     };
-// }
+export const loadStudentData = (classId) => {
+    return dispatch => {
+        dispatch(fetchStudentDataBegin());
+        return fetch(`/api/classdata/${classId}`)
+            .then(handleErrors)
+            .then(res => res.json())
+            .then(students => {
+                    dispatch(fetchStudentDataSuccess(students));
+                    return students;
+            })
+            .catch(error => dispatch(fetchStudentDataFailure(error)))
+    };
+}
 
-// export const createStudent = (classId, student) => {
-//     return dispatch => {
-//         fetch(`/api/classdata/${classId}/studentdata`,{
-//             method: "POST",
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify(student)
-//         }).then(()=> dispatch(loadStudentData(classId)));
-//     }
-// }
+export const showOneStudent = (classId, student) => {
+    console.log("ACTIONS:", student)
+    return dispatch => {
+        fetch(`/api/classdata/${classId}/studentdata/:id`, {
+            method: "GET",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(student)
+        })
+        .then(()=> dispatch(loadStudentData(classId)))
+    }
+}
 
-// export const updateStudent = (classId, student) => {
-//     return dispatch => {
-//         fetch(`/api/classdata/${classId}/studentdata/:id`, {
-//             method: "PUT",
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify(student)
-//         })
-//         .then(()=> dispatch(loadStudentData(classId)))
-//     }
-// }
-
-// export const deleteStudent = (classId, student) => {
-//     return dispatch => {
-//         fetch(`/api/classdata/${classId}/studentdata/:id`, {
-//             method: "DELETE",
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify(student)
-//         })
-//         .then(()=> dispatch(loadStudentData(classId)))
-//     }
-// }
+export const createStudentData = (classId, student) => {
+    return dispatch => {
+        fetch(`/api/classdata/${classId}/studentdata`,{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(student)
+        }).then(()=> dispatch(loadClassData()));
+    }
+}
 
 
-// export const updateClassData = (id, student) => {
-//     return dispatch => {
-//         fetch(`/api/classdata/${id}`, {
-//             method: "PUT",
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify(student)
-//         })
-//         .then(()=> dispatch(loadClassData()))
-//     }
-// }
+export const updateStudentData = (classId, student) => {
+    console.log("ACTIONS:", student)
+    return dispatch => {
+        fetch(`/api/classdata/${classId}/studentdata/:id`, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(student)
+        })
+        .then(()=> dispatch(loadStudentData(classId)))
+    }
+}
 
+export const deleteStudentData = (classId, student) => {
+    return dispatch => {
+        fetch(`/api/classdata/${classId}/studentdata/:id`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(student)
+        })
+        .then(()=> dispatch(loadStudentData(classId)))
+    }
+}

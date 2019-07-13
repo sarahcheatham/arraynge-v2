@@ -20,6 +20,9 @@ const studentSchema = new Schema({
     classId: {
         type: String
     },
+    userId: {
+        type: String
+    },
     name:{
         type: String
     },

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import './StudentDataPage.css';
 import '../ClassDataPage/ClassDataPage.css';
 import { connect } from 'react-redux';
-import { loadUserId, loadLastClass, updateStudentData } from '../../store/actions';
+import { loadUserId, loadLastClass, createStudentData } from '../../store/actions';
 
 class StudentDataPage extends Component{
     constructor(props){
@@ -37,16 +37,16 @@ class StudentDataPage extends Component{
         }
     
         const classId = studentdata.classId;
-        const name = studentdata.name;
-        const score = studentdata.score;
         const userId = studentdata.userId;
+        const name = studentdata.name;
         const gradelevel = this.props.currentClass.gradelevel;
         const subject = this.props.currentClass.subject;
+        const score = studentdata.score;
 
-        let students = { userId, name, gradelevel, subject, score }
+        let students = { classId, userId, name, gradelevel, subject, score }
          // add the student to the class
         this.state.students.push(students);
-        this.props.updateStudentData(this.props.currentClass._id, { students });
+        this.props.createStudentData(classId, students);
 
         // do a fetch(PUT) to /api/classdata/:id to update the class
         // this.props.updateClassData(id, {userId, name, gradelevel, subject, score})
@@ -94,7 +94,7 @@ const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
         loadLastClass: () => dispatch(loadLastClass()),
-        updateStudentData: (classId, classdata) => dispatch(updateStudentData(classId, classdata)),
+        createStudentData: (classId, student) => dispatch(createStudentData(classId, student)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (StudentDataPage);

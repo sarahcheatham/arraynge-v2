@@ -4,9 +4,9 @@ import {
     FETCH_CLASSDATA_BEGIN,
     FETCH_CLASSDATA_SUCCESS,
     FETCH_CLASSDATA_FAILURE,
-    // FETCH_STUDENTDATA_BEGIN,
-    // FETCH_STUDENTDATA_SUCCESS,
-    // FETCH_STUDENTDATA_FAILURE,
+    // FETCH_STUDENT_DATA_BEGIN,
+    // FETCH_STUDENT_DATA_SUCCESS,
+    // FETCH_STUDENT_DATA_FAILURE,
 } from './actions';
 
 const currentUserId = (state = storeState, action) => {
@@ -58,26 +58,53 @@ const classdata = (state = storeState, action) => {
                 error: action.payload.error,
                 classes: []
             };
+        // case FETCH_STUDENT_DATA_BEGIN:
+        //     return {
+        //         ...state,
+        //         loading: true,
+        //         error: null
+        //     };
+        // case FETCH_STUDENT_DATA_SUCCESS:
+        //     return {
+        //         ...state,
+        //         loading: false, 
+        //         students: action.payload.classdata.classes.students
+        //     };
+        // case FETCH_STUDENT_DATA_FAILURE:
+        //     return {
+        //         ...state, 
+        //         loading: false,
+        //         error: action.payload.error,
+        //         students: []
+        //     };
         default:
             return state;
     }
 }
 
 // const students = (state = storeState.classdata.classes, action) => {
+//     if(action.type === "FETCH_STUDENT_DATA"){
+//         return action.value
+//     }
+//     return state;
+// }
+
+// const studentdata = (state = storeState, action) => {
+//     console.log("STATE:", state)
 //     switch(action.type){
-//         case FETCH_STUDENTDATA_BEGIN:
+//         case FETCH_STUDENT_DATA_BEGIN:
 //             return {
 //                 ...state,
 //                 loading: true,
 //                 error: null
 //             };
-//         case FETCH_STUDENTDATA_SUCCESS:
+//         case FETCH_STUDENT_DATA_SUCCESS:
 //             return {
 //                 ...state,
 //                 loading: false, 
 //                 students: action.payload.students
 //             };
-//         case FETCH_STUDENTDATA_FAILURE:
+//         case FETCH_STUDENT_DATA_FAILURE:
 //             return {
 //                 ...state, 
 //                 loading: false,
