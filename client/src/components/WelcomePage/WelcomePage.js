@@ -81,27 +81,23 @@ class WelcomePage extends Component{
 
         return(
             <Container className="welcomepage">
-                <Row className="welcome-top-row">
-                    <Col className="currentClassContainer">
+                <Col className="welcome-left-col">
+                    <Row className="currentClassContainer">
                         <div id="currClassHeader">CURRENT CLASS</div>
                         <div className="currClassPropList"><span className="currClassTitle">YEAR:</span>{" "}<span className="currClassText">{this.props.currentClass.year || ""}</span></div>
                         <div className="currClassPropList"><span className="currClassTitle">GRADE LEVEL:</span>{" "}<span className="currClassText">{this.props.currentClass.gradelevel || ""}</span></div>
                         <div className="currClassPropList"><span className="currClassTitle">SUBJECT:</span>{" "}<span className="currClassText">{this.props.currentClass.subject || ""}</span></div>
                         <div className="currClassPropList"><span className="currClassTitle">NUMBER OF STUDENTS:</span>{" "}<span className="currClassText"></span></div>
-                    </Col>
-                    <Col>
-                        <div className="newClassButtonContainer">
+                    </Row>
+                    <Row className="newClassButtonContainer">
                             <div className="button-subhead">CREATE A NEW CLASS:</div>
                             <Button className="welcomeButtons" id="newClassButton">
                                 <Link to={'/classdata'} style={createButton}>
                                     + NEW CLASS
                                 </Link>
                             </Button>
-                        </div>
-                    </Col>
                     </Row>
-                <Row className="welcome-bottom-row">
-                    <Col className="chooseDiffClassContainer">
+                    <Row className="chooseDiffClassContainer">
                         <div className="diffClassHeader">CHOOSE A DIFFERENT CLASS:</div>
                         {this.state.checked ? <SaveButton style={saveButton} show={this.showButton}/> : <div></div>}
                         <ul className="classList">
@@ -113,34 +109,34 @@ class WelcomePage extends Component{
                                 return <ListItem ref={this.checkedClass} key={index} className="classListItem" itemId={itemId} subject={subject} gradelevel={gradelevel} year={year} onCheck={this.checkItem} show={this.showButton}/>
                             })}
                         </ul>
-                    </Col>
-                    <Col>
-                        <div className="arrayngeClassButtonContainer">
+                    </Row>
+                </Col>
+                <Col className="threeButtonContainer">
+                        <Row className="arrayngeClassButtonContainer">
                             <div className="button-subhead">ARRAYNGE THIS CLASS:</div>
                             <Button className="welcomeButtons" id="arrayngeClassButton">
                                 <Link to={'/arrayngement'} style={threeButtons}>
                                     ARRAYNGE
                                 </Link>
                             </Button>
-                        </div>
-                        <div className="editClassButtonContainer">
+                        </Row>
+                        <Row className="editClassButtonContainer">
                             <div className="button-subhead">EDIT THIS CLASS:</div>
                             <Button className="welcomeButtons" id="editClassButton">
                                 <Link to={'/scores'} style={threeButtons}>
                                     EDIT
                                 </Link>
                             </Button>
-                        </div>
-                        <div className="viewChartsButtonContainer">
+                        </Row>
+                        <Row className="viewChartsButtonContainer">
                             <div className="button-subhead">VIEW CHARTS FOR THIS CLASS:</div>
                             <Button className="welcomeButtons" id="viewChartsButton">
                                 <Link to={'/charts'} style={threeButtons}>
                                     VIEW CHARTS
                                 </Link>
                             </Button>
-                        </div>
+                        </Row>
                     </Col>
-                </Row> 
             </Container>
         )
     }

@@ -13,6 +13,11 @@ const storeState =  {
     currentGradeLevel: "",
     currentCount: 0,
     numberOfStudents: 0,
+    studentdata: {
+        loading: false,
+        error: null,
+        students: []
+    },
     
 }
 

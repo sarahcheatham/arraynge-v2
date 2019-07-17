@@ -4,9 +4,9 @@ import {
     FETCH_CLASSDATA_BEGIN,
     FETCH_CLASSDATA_SUCCESS,
     FETCH_CLASSDATA_FAILURE,
-    // FETCH_STUDENT_DATA_BEGIN,
-    // FETCH_STUDENT_DATA_SUCCESS,
-    // FETCH_STUDENT_DATA_FAILURE,
+    FETCH_STUDENT_DATA_BEGIN,
+    FETCH_STUDENT_DATA_SUCCESS,
+    FETCH_STUDENT_DATA_FAILURE,
 } from './actions';
 
 const currentUserId = (state = storeState, action) => {
@@ -58,63 +58,37 @@ const classdata = (state = storeState, action) => {
                 error: action.payload.error,
                 classes: []
             };
-        // case FETCH_STUDENT_DATA_BEGIN:
-        //     return {
-        //         ...state,
-        //         loading: true,
-        //         error: null
-        //     };
-        // case FETCH_STUDENT_DATA_SUCCESS:
-        //     return {
-        //         ...state,
-        //         loading: false, 
-        //         students: action.payload.classdata.classes.students
-        //     };
-        // case FETCH_STUDENT_DATA_FAILURE:
-        //     return {
-        //         ...state, 
-        //         loading: false,
-        //         error: action.payload.error,
-        //         students: []
-        //     };
         default:
             return state;
     }
 }
 
-// const students = (state = storeState.classdata.classes, action) => {
-//     if(action.type === "FETCH_STUDENT_DATA"){
-//         return action.value
-//     }
-//     return state;
-// }
 
-// const studentdata = (state = storeState, action) => {
-//     console.log("STATE:", state)
-//     switch(action.type){
-//         case FETCH_STUDENT_DATA_BEGIN:
-//             return {
-//                 ...state,
-//                 loading: true,
-//                 error: null
-//             };
-//         case FETCH_STUDENT_DATA_SUCCESS:
-//             return {
-//                 ...state,
-//                 loading: false, 
-//                 students: action.payload.students
-//             };
-//         case FETCH_STUDENT_DATA_FAILURE:
-//             return {
-//                 ...state, 
-//                 loading: false,
-//                 error: action.payload.error,
-//                 students: []
-//             };
-//         default:
-//             return state;
-//     }
-// }
+const studentdata = (state = storeState, action) => {
+    switch(action.type){
+        case FETCH_STUDENT_DATA_BEGIN:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+        case FETCH_STUDENT_DATA_SUCCESS:
+            return {
+                ...state,
+                loading: false, 
+                students: action.payload.students
+            };
+        case FETCH_STUDENT_DATA_FAILURE:
+            return {
+                ...state, 
+                loading: false,
+                error: action.payload.error,
+                students: []
+            };
+        default:
+            return state;
+    }
+}
 
 const currentGradeLevel = (state = storeState, action) => {
     if(action.type === "SET_GRADE_LEVEL"){
@@ -152,7 +126,7 @@ const currentCount = (state = storeState, action) => {
 }
 
 const rootReducer = combineReducers({
-    currentUserId, signUpSignInError, username, currentClass, classdata, currentGradeLevel, currentSubject, currentYear, numberOfStudents, currentCount
+    currentUserId, signUpSignInError, username, currentClass, classdata, studentdata, currentGradeLevel, currentSubject, currentYear, numberOfStudents, currentCount
 });
 
 export default rootReducer;

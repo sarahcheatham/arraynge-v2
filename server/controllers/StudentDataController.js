@@ -1,31 +1,19 @@
-const ClassDataModel = require("../models/ClassDataModel");
+
 const StudentModel = require("../models/StudentModel");
 
 module.exports.listStudents = (req, res) => {
-    console.log(req)
-    StudentModel.find({ classId: req.params.id }).exec().then(students => {
+    StudentModel.find({classId: req.params.id }).exec().then(students => {
         return res.json(students)
     })
-    // req.body.students.map(student => {
-    //     StudentModel.find({ classId: student.classId }).exec().then(students => {
-    //         return res.json(students)
-    //     })
-    // })
 }
 
 module.exports.showStudent = (req, res)=>{
     StudentModel.findById(req.params.id).exec().then(student =>{
         return res.json(student)
     })
-    // req.body.students.map(oneStudent => {
-    //     StudentModel.findById(req.params.id).exec().then(student =>{
-    //         return res.json(student)
-    //     })
-    // })
 }
 
 module.exports.createStudent = (req, res)=>{
-    console.log("REQ.BODY:", req.body)
     const s = new StudentModel({
         classId: req.body.classId,
         userId: req.body.userId,
@@ -37,28 +25,10 @@ module.exports.createStudent = (req, res)=>{
     s.save().then(savedStudent =>{
         return res.json(savedStudent)
     })
-    // req.body.students.map(student => {
-        
-    // })
 }
 
-// module.exports.createStudent = (req, res)=>{
-//     req.body.students.map(student => {
-//         const s = new StudentModel({
-//             classId: student.classId,
-//             name: student.name,
-//             gradelevel: student.gradelevel,
-//             subject: student.subject,
-//             score: student.score
-//         });
-//         s.save().then(savedStudent =>{
-//             return res.json(savedStudent)
-//         })
-//     })
-// }
 
 module.exports.updateStudent = (req, res)=>{
-    console.log(req.body.students)
     StudentModel.findByIdAndUpdate(
         req.params.id, 
         req.body,

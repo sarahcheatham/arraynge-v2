@@ -45,7 +45,7 @@ class StudentDataPage extends Component{
 
         let students = { classId, userId, name, gradelevel, subject, score }
          // add the student to the class
-        this.state.students.push(students);
+        this.state.students.push({students});
         this.props.createStudentData(classId, students);
 
         // do a fetch(PUT) to /api/classdata/:id to update the class
@@ -56,8 +56,7 @@ class StudentDataPage extends Component{
 
     handleClick = e => {
         e.preventDefault();
-        const students = this.state.students;
-        // this.props.updateStudentData(this.props.currentClass._id, { students });
+        // const students = this.state.students;
     }
 
     render(){
@@ -86,7 +85,8 @@ const mapStateToProps = state => {
         currentUserId: state.currentUserId,
         currentClass: state.currentClass,
         classdata: state.classdata,
-        numberOfStudents: state.numberOfStudents
+        numberOfStudents: state.numberOfStudents,
+        studentdata: state.studentdata
     }
 }
 
@@ -94,7 +94,7 @@ const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
         loadLastClass: () => dispatch(loadLastClass()),
-        createStudentData: (classId, student) => dispatch(createStudentData(classId, student)),
+        createStudentData: (classId, students) => dispatch(createStudentData(classId, students)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (StudentDataPage);

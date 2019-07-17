@@ -7,6 +7,7 @@ const userRoutes = require("./routes/UserRoutes");
 const sessionRoutes = require("./routes/SessionRoutes");
 const authenticationRoutes = require("./routes/AuthenticationRoutes");
 const classdataRoutes = require("./routes/ClassDataRoutes");
+const studentdataRoutes = require("./routes/StudentDataRoutes");
 
 
 mongoose.set("debug", true);
@@ -38,6 +39,7 @@ function startWebServer(){
   app.use(authenticationRoutes);
   //secure
   app.use(classdataRoutes);
+  app.use(studentdataRoutes);
   //deployment
   // app.use(express.static(path.join(__dirname + "public" + "build" )))
 
@@ -62,6 +64,10 @@ function startWebServer(){
   })
   
   app.get("api/classdata", (req, res) => {
+    res.send(req.body)
+  });
+
+  app.get("api/studentdata", (req, res) => {
     res.send(req.body)
   });
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadUserId, loadLastClass, loadClassData, updateClassData } from '../../store/actions';
+import { loadUserId, loadLastClass, loadClassData, updateClassData, createStudentData } from '../../store/actions';
 import Image1 from './content-save.png';
 import './StudentForm.css';
 
@@ -35,7 +35,6 @@ class StudentForm extends Component{
     handleSubmit = event => {
         event.preventDefault();
         this.setState({check: true})
-        console.log("CURRENT CLASS ID:", this.props.currentClass._id)
         this.props.onFormSubmit({
             classId: this.props.currentClass._id,
             userId: this.props.currentUserId,
@@ -151,13 +150,15 @@ const mapStateToProps = state => {
         currentUserId: state.currentUserId,
         classdata: state.classdata,
         currentClass: state.currentClass,
+        studentdata: state.studentdata
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         loadUserId: () => dispatch(loadUserId()),
-        loadClassData: () => dispatch(loadClassData())
+        loadClassData: () => dispatch(loadClassData()),
+        createStudentData: (classId, student) => dispatch(createStudentData(classId, student))
     }
 }
 

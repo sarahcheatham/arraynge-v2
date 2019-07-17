@@ -200,7 +200,8 @@ export const fetchStudentDataFailure = error =>({
 export const loadStudentData = (classId) => {
     return dispatch => {
         dispatch(fetchStudentDataBegin());
-        return fetch(`/api/classdata/${classId}`)
+        // return fetch(`/api/studentdata`)
+        return fetch(`/api/classdata/${classId}/studentdata`)
             .then(handleErrors)
             .then(res => res.json())
             .then(students => {
@@ -229,7 +230,7 @@ export const createStudentData = (classId, student) => {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(student)
-        }).then(()=> dispatch(loadClassData()));
+        }).then(()=> dispatch(loadStudentData(classId)));
     }
 }
 
