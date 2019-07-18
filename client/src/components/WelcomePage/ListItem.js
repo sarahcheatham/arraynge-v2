@@ -10,27 +10,33 @@ class ListItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            itemId: "",
+            classId: "",
             year: "",
             gradelevel: "",
             subject: "",
             numStudents: "",
-            
+            checkboxState: false,
         }
+        
     }
-    checked = item => {
-        console.log("CHECKED ITEM:",item)
+   
+    checked = event => {
+        this.setState({ checkboxState: !this.state.checkboxState })
+        console.log("LIST ITEM:", event.target)
         const li = this.props;
-        const itemId = this.props.itemId;
+        const classId = this.props.classId;
         const gradelevel = this.props.gradelevel;
         const subject = this.props.subject;
         const year = this.props.year;
-        const numStudents = this.props.numStudents;
-        console.log("li:", li)
+        console.log("this.props:", this.props)
 
         this.props.onCheck({
-            itemId, gradelevel, subject, year, numStudents
+            classId, gradelevel, subject, year
         })
+    }
+
+    onlyChecked = event => {
+        console.log(this.state.checkboxState)
     }
     render(){
         const textStyle = {
@@ -49,25 +55,24 @@ class ListItem extends Component {
             margin: 0,
         }
         return (
-            <li onChange={this.checked} itemId={this.props.itemId} className="classListProps">
+            <li onChange={this.checked} classId={this.props.classId} className="classListProps">
                 <div><span className={this.props.className}>YEAR:</span>{" "}<span style={textStyle}>{this.props.year}</span><input type="checkbox" style={checkbox} onChange={this.props.onCheck}/></div>
                 <div><span className={this.props.className}>GRADE LEVEL:</span>{" "}<span style={textStyle}>{this.props.gradelevel}</span></div>
                 <div><span className={this.props.className}>SUBJECT:</span>{" "}<span style={textStyle}>{this.props.subject}</span></div>
-                <div><span className={this.props.className}>NUMBER OF STUDENTS:</span>{" "}<span style={textStyle}>{this.props.numStudents}</span><Button style={buttonStyle}/></div>
             </li>
         )
     }  
 }
 
 ListItem.propTypes ={
-    itemId: PropTypes.string.isRequired,
-    // year: PropTypes.string.isRequired,
+    classId: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
     gradelevel: PropTypes.string.isRequired,
     subject: PropTypes.string.isRequired,
     // numStudents: PropTypes.string.isRequired,
     className: PropTypes.string.isRequired,
     onCheck: PropTypes.func.isRequired,
-    show: PropTypes.func.isRequired
+    // show: PropTypes.func.isRequired
 };
 
 export default ListItem;

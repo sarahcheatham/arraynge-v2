@@ -13,14 +13,29 @@ class GradeLevelForm extends React.Component {
     }
     showMenu = event => {
         event.preventDefault();
-        this.setState({ showMenu: true}, ()=>{
+        // console.log("GRADELEVEL FORM:", this.dropdownMenu.current)
+        this.setState({ showMenu: !this.state.showMenu}, ()=>{
             document.addEventListener('click', this.closeMenu);
         });
     }
+    componentDidMount() {
+        document.addEventListener("mousedown", this.handleClickOutside);
+    }
+    componentWillUnmount() {
+       document.removeEventListener("mousedown", this.handleClickOutside);
+    }
 
+    handleClickOutside = event => {
+        console.log("outside:", this.dropdownMenu)
+        if (this.dropdownMenu && !this.dropdownMenu.contains(event.target)) {
+          this.setState({
+            showMenu: false,
+          });
+        }
+      };
     closeMenu = event => {
         if(!this.dropdownMenu.contains(event.target)){
-            this.setState({ showMenu: false}, ()=>{
+            this.setState({ showMenu: !this.state.showMenu}, ()=>{
                 document.removeEventListener('click', this.closeMenu);
             });
         }

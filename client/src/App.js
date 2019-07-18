@@ -12,7 +12,7 @@ import StudentDataPage from './components/StudentDataPage/StudentDataPage';
 import { connect } from 'react-redux';
 import { loadUserId, setCurrentUserId, setUsername, setSignUpSignInError, loadClassData } from './store/actions';
 // import WelcomeContainer from './containers/WelcomeContainer';
-// import ScoresPageContainer from './containers/ScoresPageContainer';
+import EditDataPage from './components/EditDataPage/EditDataPage';
 // import ClassDataPageContainer from './containers/ClassDataPageContainer';
 
 // import ArrayngementPageContainer from './containers/ArrayngementPageContainer';
@@ -107,6 +107,7 @@ class App extends Component {
         {/* <Route exact path="/" component={WelcomeContainer}/> */}
         <Route path="/classdata" component={ClassDataPage}/>
         <Route path="/studentdata" component={StudentDataPage}/>
+        <Route path="/scores" component={EditDataPage}/>
         {/* <Route exact path="/classdata" render={(props)=> <ClassDataPageContainer gradelevel={props.gradelevel} subject={props.subject} userId={props.userId} classdata={props.classdata}/>}/> */}
         {/* <Route path="/arrayngement" component={ArrayngementPageContainer}/>
         <Route exact path="/scores" component={ScoresPageContainer}/>

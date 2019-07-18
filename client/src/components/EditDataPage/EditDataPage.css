@@ -1,0 +1,117 @@
+/* start ScoresPage Component */
+.secretpage{
+    background-color: #F9F9F9;
+}
+table, th, td {
+    border: 1px solid black;
+}
+table {
+    width: 60%;
+    margin: 0 auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-bottom: 10%;
+}
+th {
+    height: 50px;
+}
+.tableheader{
+    font-family: quasimoda, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: #F9E7E4;
+}
+.secretgradeandbutton{
+    display: grid;
+    margin-left: 20%;
+    margin-right: 20%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 75px;
+}
+.secretgradelevel{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-family: quasimoda, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    justify-self: flex-start;
+    color: #19182D;
+}
+.editbutton{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin-top: 20px;
+    width: 100px;
+    height: 40px;
+    justify-self: flex-end;
+    border-radius: 5px;
+}
+/* end ScoresPage Component */
+
+/* start StudentUpdateTable Component */
+.tablecell{
+    font-family: quasimoda, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+#hidelabel{
+    display:none;
+}
+#hidecell{
+    display: none;
+}
+#hideinput{
+    display: none;
+}
+.A{
+    /* background-color: #EDEFFB; */
+    background-color: #F7F7FB;
+}
+/* end StudentUpdateTable Component */
+
+/* start StudentUpdateForm Component */
+td {
+    height: 20px;
+    padding-right: 5px;
+}
+.studentlistinput{
+    height: 20px;
+    width: 90%;
+    font-family: quasimoda, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 5%;
+}
+.studentlistbutton{
+    background-color: #656588;
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+.studentlistbutton2{
+    background-color: #CE7870;
+    margin-left: 2%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+.saved{
+    color: #8FAD57;
+    font-family: quasimoda, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+.savetd{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* padding-left: 5px; */
+}
+#saveheader{
+    padding-bottom: 10px;
+}
+/* end StudentUpdateForm Component */
+/* material icons css */
