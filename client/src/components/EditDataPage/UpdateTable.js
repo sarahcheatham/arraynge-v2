@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import { Table } from 'reactstrap';
 
 class UpdateTable extends Component{
     constructor(){
@@ -22,6 +23,7 @@ class UpdateTable extends Component{
     render(){
         let props = this.props;
         return(
+            
             <tr className="A">
                 <td className="tablecell">{props.name}</td>
                 <td className="tablecell" id="hidecell">{props.gradelevel}</td>
@@ -31,6 +33,7 @@ class UpdateTable extends Component{
                 <td className="tablecell">{props.MOYscore}</td>
                 <td className="tablecell">{props.EOYscore}</td>
             </tr>
+              
         )
     }
 }

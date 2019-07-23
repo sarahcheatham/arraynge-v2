@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UpdateForm from "./UpdateForm";
 import UpdateTable from "./UpdateTable";
-import { Button, Table, thead, tr } from 'reactstrap';
+import { Form, Button, Table, thead, tr } from 'reactstrap';
 import './EditDataPage.css';
 import { connect } from 'react-redux';
 import { loadStudentData } from "../../store/actions";
@@ -54,11 +54,6 @@ class EditDataPage extends Component{
         this.setState({isEdit: !this.state.isEdit})
         if(this.state.isEdit === true){
             this.props.loadStudentData();
-            // fetch("/api/studentdata").then((res)=>{
-            //     return res.json()
-            // }).then((studentdata)=>{
-            //     this.setState({students: studentdata})
-            // })
         }
     }
     handleDelete(student){
@@ -163,12 +158,29 @@ class EditDataPage extends Component{
             tableComponents.push(sc)
         })
         if(this.state.isEdit === true){
-            formOrTable = formComponents;
+            formOrTable = <Form>{formComponents}</Form>
             buttonText = "Save Scores";
             showStyle = show;
             showStyle2 = showInline;
         } else {
-            formOrTable = tableComponents;
+            formOrTable = <Table striped bordered>
+                                <thead>
+                                    <tr>
+                                        <th className="tableheader">Student Name:</th>
+                                        <th className="tableheader" id="hidelabel">Grade Levels:</th>
+                                        <th className="tableheader">Subject:</th>
+                                        <th className="tableheader">BOY Score:</th>
+                                        <th className="tableheader">EOY Goal:</th>
+                                        <th className="tableheader">MOY Score:</th>
+                                        <th className="tableheader" id="EOY">EOY Score:</th>
+                                        <th className="tableheader" id="saveheader"></th>
+                                        <th className="tableheader"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {tableComponents}
+                                </tbody>
+                            </Table>
             buttonText = "Edit Scores";
             showStyle = noShow;
             showStyle2 = noShow;
@@ -179,26 +191,7 @@ class EditDataPage extends Component{
                     <h2 className="secretgradelevel">{this.state.gradelevel}</h2>
                     <Button className="editbutton" onClick={this.handleEdit} onMouseDown={this.mouseDown} onMouseUp={this.mouseUp} style={{backgroundColor: this.state.bgColor}}>{buttonText}</Button>
                 </div>
-                <form>
-                <Table striped bordered>
-                    <thead>
-                        <tr>
-                            <th className="tableheader">Student Name:</th>
-                            <th className="tableheader" id="hidelabel">Grade Levels:</th>
-                            <th className="tableheader">Subject:</th>
-                            <th className="tableheader">BOY Score:</th>
-                            <th className="tableheader">EOY Goal:</th>
-                            <th className="tableheader">MOY Score:</th>
-                            <th className="tableheader" id="EOY">EOY Score:</th>
-                            <th className="tableheader" style={{showStyle}} id="saveheader"></th>
-                            <th className="tableheader" style={{showStyle2}}></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {formOrTable}
-                    </tbody>
-                </Table>
-                </form>
+                {formOrTable}
             </div>
         );
     }
@@ -206,20 +199,14 @@ class EditDataPage extends Component{
 
 const mapStateToProps = state => {
     return{
-        // username: state.username,
         currentClass: state.currentClass,
-        // classdata: state.classdata,
         studentdata: state.studentdata
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        // loadUsername: () => dispatch(loadUsername()),
-        // loadLastClass: () => dispatch(loadLastClass()),
-        // loadClassData: () => dispatch(loadClassData()),
         // setCurrentClass: currentClass => dispatch(setCurrentClass(currentClass)),
-        // loadCurrentClass: classId => dispatch(loadCurrentClass(classId)),
         loadStudentData: classId => dispatch(loadStudentData(classId))
     }
 }

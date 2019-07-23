@@ -67,6 +67,7 @@ class App extends Component {
         return res.json();
       }).then(data => {
         const { token } = data;
+        console.log("token:", token)
         localStorage.setItem("token", token);
         this.setState({ authenticated: token });
         this.props.loadUserId();

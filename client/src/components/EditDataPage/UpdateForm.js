@@ -118,6 +118,7 @@ class UpdateForm extends Component{
         //     showStyle = noShow;
         // }
         return(
+            <form>
             <tr>
                 <td>
                     <input 
@@ -209,6 +210,7 @@ class UpdateForm extends Component{
                     </span>
                 </td> */}
             </tr>
+            </form>
         )
     }
 }
