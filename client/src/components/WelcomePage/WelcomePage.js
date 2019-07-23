@@ -120,7 +120,7 @@ class WelcomePage extends Component{
                         </Row>
                         <Row className="editClassButtonContainer">
                             <div className="button-subhead">EDIT THIS CLASS:</div>
-                            <Button className="welcomeButtons" id="editClassButton">
+                            <Button className="welcomeButtons" id="editClassButton" onClick={this.onEditClick}>
                                 <Link to={'/scores'} style={threeButtons}>
                                     EDIT
                                 </Link>

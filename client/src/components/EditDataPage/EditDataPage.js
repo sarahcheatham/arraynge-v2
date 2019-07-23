@@ -31,8 +31,12 @@ class EditDataPage extends Component{
     }
 
     componentDidMount(){
-        console.log(this.props.currentClass._id)
-        this.props.loadStudentData(this.props.currentClass._id)
+        console.log("PROPS:", this.props)
+
+        sessionStorage.setItem("currentClass", JSON.stringify(this.props.currentClass));
+
+        // console.log(this.props.currentClass._id)
+        // this.props.loadStudentData(this.props.currentClass._id)
         // const students = this.props.studentdata.students;
         // const lastStudent = students[students.length-1];
         // const gradelevel = lastStudent.gradelevel;
@@ -41,14 +45,17 @@ class EditDataPage extends Component{
         // console.log("componentdidmount:", this.props.studentdata.students)
         // this.setState({ students, gradelevel })
     }
+
     mouseDown(event){
         event.preventDefault();
         this.setState({bgColor: "#E9EBF4"})
     }
+
     mouseUp(event){
         event.preventDefault();
         this.setState({bgColor: "#F7F7FB"})
     }
+
     handleEdit(event){
         event.preventDefault();
         this.setState({isEdit: !this.state.isEdit})
@@ -158,7 +165,7 @@ class EditDataPage extends Component{
             tableComponents.push(sc)
         })
         if(this.state.isEdit === true){
-            formOrTable = <Form>{formComponents}</Form>
+            formOrTable = formComponents;
             buttonText = "Save Scores";
             showStyle = show;
             showStyle2 = showInline;
@@ -173,8 +180,6 @@ class EditDataPage extends Component{
                                         <th className="tableheader">EOY Goal:</th>
                                         <th className="tableheader">MOY Score:</th>
                                         <th className="tableheader" id="EOY">EOY Score:</th>
-                                        <th className="tableheader" id="saveheader"></th>
-                                        <th className="tableheader"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
