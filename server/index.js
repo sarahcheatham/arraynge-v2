@@ -56,6 +56,7 @@ function startWebServer(){
   })
 
   app.get("/api/username", function(req, res){
+    // console.log("api/username:", req.user)
     res.send(`${req.user.firstName} ${req.user.lastName}`)
   });
 

@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
-// import SaveIcon from '@material-ui/icons/Save';
-// import Button from '@material-ui/core/Button';
 
 const SaveButton = (props) => {
     return (
-        <Button variant="contained" color="primary" size="small" style={props.style} onClick={props.show}>
-            {/* <SaveIcon fontSize="small"/> */}
+        <Button style={props.style} onClick={props.show}>
             <span>Save</span>
         </Button>
     )
@@ -16,5 +13,6 @@ const SaveButton = (props) => {
 SaveButton.propTypes ={
     show: PropTypes.func.isRequired
 };
+ 
 
 export default SaveButton;

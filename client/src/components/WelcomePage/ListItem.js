@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import Checkbox from '@material-ui/core/Checkbox';
 // import DeleteIcon from '@material-ui/icons/Delete';
 import { Button } from 'reactstrap';
-// import SaveButton from './SaveButton';
+
 
 class ListItem extends Component {
     constructor(props){
@@ -14,24 +14,23 @@ class ListItem extends Component {
             year: "",
             gradelevel: "",
             subject: "",
-            numStudents: "",
             checkboxState: false,
         }
-        
     }
+   
    
     checked = event => {
         this.setState({ checkboxState: !this.state.checkboxState })
-        console.log("LIST ITEM:", event.target)
+        // console.log("LIST ITEM:", event.currentTarget)
         const li = this.props;
-        const classId = this.props.classId;
+        const classID = this.props.classID;
         const gradelevel = this.props.gradelevel;
         const subject = this.props.subject;
         const year = this.props.year;
-        console.log("this.props:", this.props)
+        // console.log("this.props:", this.props)
 
         this.props.onCheck({
-            classId, gradelevel, subject, year
+            classID, gradelevel, subject, year
         })
     }
 
@@ -39,13 +38,14 @@ class ListItem extends Component {
         console.log(this.state.checkboxState)
     }
     render(){
+        // console.log("CURRENT CLASS:", this.props.currentClass)
         const textStyle = {
             color: '#F9586B'
         }
         const checkbox = {
             float: 'right',
-            height: '10px',
-            width: '10px',
+            height: '20px',
+            width: '20px',
             padding: 0,
             marginTop: '1%'
         }
@@ -55,24 +55,22 @@ class ListItem extends Component {
             margin: 0,
         }
         return (
-            <li onChange={this.checked} classId={this.props.classId} className="classListProps">
+            <li onChange={this.checked} classID={this.props.classID} className="classListProps">
                 <div><span className={this.props.className}>YEAR:</span>{" "}<span style={textStyle}>{this.props.year}</span><input type="checkbox" style={checkbox} onChange={this.props.onCheck}/></div>
-                <div><span className={this.props.className}>GRADE LEVEL:</span>{" "}<span style={textStyle}>{this.props.gradelevel}</span></div>
-                <div><span className={this.props.className}>SUBJECT:</span>{" "}<span style={textStyle}>{this.props.subject}</span></div>
+                <div className="listItemPropCont"><span className={this.props.className}>GRADE LEVEL:</span>{" "}<span style={textStyle}>{this.props.gradelevel}</span></div>
+                <div className="listItemPropCont"><span className={this.props.className}>SUBJECT:</span>{" "}<span style={textStyle}>{this.props.subject}</span></div>
             </li>
         )
     }  
 }
 
 ListItem.propTypes ={
-    classId: PropTypes.string.isRequired,
+    classID: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
     gradelevel: PropTypes.string.isRequired,
     subject: PropTypes.string.isRequired,
-    // numStudents: PropTypes.string.isRequired,
     className: PropTypes.string.isRequired,
     onCheck: PropTypes.func.isRequired,
-    // show: PropTypes.func.isRequired
 };
 
 export default ListItem;

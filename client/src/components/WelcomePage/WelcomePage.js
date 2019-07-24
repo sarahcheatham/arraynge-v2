@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { loadUsername, loadLastClass, loadClassData, setCurrentClass, loadCurrentClass, loadStudentData } from "../../store/actions";
 import PropTypes from 'prop-types';
-// import SubHeader from '../SubHeader/SubHeader';
 import ListItem from './ListItem';
 import SaveButton from './SaveButton';
 import { Container, Col, Row, Button } from 'reactstrap';
@@ -22,34 +22,64 @@ class WelcomePage extends Component{
         this.checkedClass = React.createRef();
     }
 
-    componentDidMount(){
-        this.props.loadUsername();
-        this.props.loadLastClass();
-        this.props.loadClassData();
+    isEmpty = obj => {
+        for(var key in obj){
+            if(obj.hasOwnProperty(key)){
+                return false
+            }
+        }
+        return true
     }
 
+    componentDidMount(){
+        this.props.loadUsername();
+        this.props.loadClassData();
+        const getClass  = localStorage.getItem("currentClass");
+        const currentClass = JSON.parse(getClass);
+        
+        if(this.isEmpty(currentClass)){
+            this.props.loadLastClass();
+        } else {
+            const currentClassId = currentClass._id;
+            this.props.loadCurrentClass(currentClassId)
+        }
+    }
+
+    // componentDidUpdate(prevProps, prevState, snapshot){
+    //     // console.log("prevProps:", prevProps)
+    //     // console.log("prevState:", prevState)
+    //     // console.log("snapshot:", snapshot)
+    // }
+
     checkItem = item =>{
+        console.log(this.props.currentClass._id, item.classID)
         this.setState({checkboxState: !this.state.checkboxState})
-        const classId = item.classId;
+        const classId = item.classID;
         const gradelevel = item.gradelevel;
         const subject = item.subject; 
         const year = item.year;
         this.setState({ classId, gradelevel, subject, year })
-        console.log(this.props)
+        console.log("CURRENT CLASS:", this.props.currentClass)
         if(this.state.checkboxState === true && this.props.checkboxState === true){
             console.log("here")
         }
     };
 
-    showButton = (e) => {
+    saveButton = (e) => {
         e.preventDefault();
         const classId = this.state.classId;
         this.props.loadCurrentClass(classId);
         this.props.loadStudentData(classId);
+        // console.log("currentCLASS:", this.props.currentClass)
     }
 
     onEditClick = (e) => {
+        // console.log("currentCLASS:", this.props.currentClass)
+        // console.log('edit click', this.state.classId)
+        localStorage.setItem("currentClass", JSON.stringify(this.props.currentClass));
+        this.props.setCurrentClass(this.props.currentClass)
         this.props.loadStudentData(this.state.classId)
+        
     }
 
 
@@ -73,9 +103,18 @@ class WelcomePage extends Component{
     
         const saveButton = {
             // width: 75,
+            float: "right",
             marginBottom: "2%",
+            borderRadius: 5,
+            paddingLeft: "2%",
+            paddingRight: "2%",
+            paddingTop: "1%",
+            paddingBottom: "1%",
             alignSelf: 'flex-end',
-            fontFamily: 'quasimoda, sans-serif'
+            fontFamily: 'quasimoda, sans-serif',
+            backgroundColor: "var(--mermaid-tint)",
+            borderColor: "var(--mermaid-green)",
+            color: "var(--mermaid-green)"
         }
 
         return(
@@ -96,15 +135,15 @@ class WelcomePage extends Component{
                             </Button>
                     </Row>
                     <Row className="chooseDiffClassContainer">
-                        <div className="diffClassHeader">CHOOSE A DIFFERENT CLASS:</div>
-                        {this.state.checkboxState ? <SaveButton style={saveButton} show={this.showButton}/> : <div></div>}
+                        <Row className="diffClassHeader">CHOOSE A DIFFERENT CLASS: {" "} {this.state.checkboxState ? <SaveButton style={saveButton} show={this.saveButton}/> : <div className="saveButton-noDisplay"></div>}</Row>
                         <ul className="classList">
                             {this.props.classdata.classes.map((item, index) => {
                                 const year = item.year;
                                 const subject = item.subject;
                                 const gradelevel = item.gradelevel;
-                                const classId = item._id;
-                                return <ListItem ref={this.checkedClass} key={index} className="classListItem" classId={classId} subject={subject} gradelevel={gradelevel} year={year} onCheck={this.checkItem}/>
+                                const classID = item._id;
+                                // console.log(this.checkedClass.current)
+                                return <ListItem currentClass={this.props.currentClass} ref={this.checkedClass} key={index} className="classListItem" classID={classID} subject={subject} gradelevel={gradelevel} year={year} onCheck={this.checkItem}/>
                             })}
                         </ul>
                     </Row>
@@ -143,6 +182,7 @@ class WelcomePage extends Component{
 const mapStateToProps = state => {
     return{
         username: state.username,
+        currentUserId: state.currentUserId,
         currentClass: state.currentClass,
         classdata: state.classdata,
         studentdata: state.studentdata
@@ -160,4 +200,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (WelcomePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (WelcomePage));

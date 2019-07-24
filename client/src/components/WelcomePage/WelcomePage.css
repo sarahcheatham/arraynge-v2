@@ -170,7 +170,7 @@
 
 .classListProps{
     width: 90%;
-    font-size: 1.1em;
+    font-size: 1.15em;
     font-family: quasimoda, sans-serif;
     font-style: normal;
     font-weight: 200;
@@ -191,3 +191,9 @@
     color: #36407D;
     font-weight: 200;
 }
+.listItemPropCont{
+    padding-bottom: 3%;
+}
+/* .saveButton-noDisplay{
+    height: 25px;
+} */

@@ -11,7 +11,7 @@ import ClassDataPage from './components/ClassDataPage/ClassDataPage';
 import StudentDataPage from './components/StudentDataPage/StudentDataPage';
 import { connect } from 'react-redux';
 import { loadUserId, setCurrentUserId, setUsername, setSignUpSignInError, loadClassData } from './store/actions';
-// import WelcomeContainer from './containers/WelcomeContainer';
+// import { withRouter } from 'react-router-dom';
 import EditDataPage from './components/EditDataPage/EditDataPage';
 // import ClassDataPageContainer from './containers/ClassDataPageContainer';
 
@@ -26,6 +26,10 @@ class App extends Component {
       userId: ""
     };
   };
+
+  componentDidMount(){
+    console.log("history:", this.props.history)
+  }
 
   
   handleSignUp = credentials => {
@@ -72,6 +76,7 @@ class App extends Component {
         this.setState({ authenticated: token });
         this.props.loadUserId();
         this.props.loadClassData();
+        // this.props.loadLastClass();
       });
     }  
   }
@@ -81,6 +86,7 @@ class App extends Component {
     this.setState({ authenticated: false });
     this.props.setCurrentUserId(null);
     this.props.setUsername("Sign In");
+    localStorage.clear();
   }
 
   renderError = () => {
@@ -119,7 +125,7 @@ class App extends Component {
   }
  
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     let whatToShow = "";
     if(this.state.authenticated){
       whatToShow = this.renderApp();
@@ -156,7 +162,7 @@ const mapDispatchToProps = dispatch => {
         setCurrentUserId: userId => dispatch(setCurrentUserId(userId)),
         setSignUpSignInError: error => dispatch(setSignUpSignInError(error)),
         setUsername: username => dispatch(setUsername(username)),
-        loadClassData: () => dispatch(loadClassData())
+        loadClassData: () => dispatch(loadClassData()),
     }
 }
 

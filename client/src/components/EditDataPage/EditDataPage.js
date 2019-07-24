@@ -4,7 +4,7 @@ import UpdateTable from "./UpdateTable";
 import { Form, Button, Table, thead, tr } from 'reactstrap';
 import './EditDataPage.css';
 import { connect } from 'react-redux';
-import { loadStudentData } from "../../store/actions";
+import { loadStudentData, setCurrentClass } from "../../store/actions";
 
 //loading previous students when you log out and log in as a new user 
 //until you click the home button then come back to the scores page.
@@ -13,6 +13,7 @@ class EditDataPage extends Component{
     constructor(props){
         super(props);
         this.state = {
+            currentClass: {},
             message: "",
             save: {},
             isEdit: false,
@@ -30,20 +31,24 @@ class EditDataPage extends Component{
         this.handleDelete = this.handleDelete.bind(this);
     }
 
+    isEmpty = obj => {
+        for(var key in obj){
+            if(obj.hasOwnProperty(key)){
+                return false
+            }
+        }
+        return true
+    }
+
     componentDidMount(){
-        console.log("PROPS:", this.props)
-
-        sessionStorage.setItem("currentClass", JSON.stringify(this.props.currentClass));
-
-        // console.log(this.props.currentClass._id)
-        // this.props.loadStudentData(this.props.currentClass._id)
-        // const students = this.props.studentdata.students;
-        // const lastStudent = students[students.length-1];
-        // const gradelevel = lastStudent.gradelevel;
-        // console.log("lastStudent", lastStudent)
-        // console.log("gradelevel:", gradelevel)
-        // console.log("componentdidmount:", this.props.studentdata.students)
-        // this.setState({ students, gradelevel })
+        if(this.isEmpty(this.props.currentClass)){
+            const getClass  = localStorage.getItem("currentClass");
+            const currentClass = JSON.parse(getClass);
+            const currentClassId = currentClass._id;
+            this.props.loadStudentData(currentClassId)
+            this.props.setCurrentClass(currentClass)
+        }
+        this.props.loadStudentData(this.props.currentClass._id)
     }
 
     mouseDown(event){
@@ -120,7 +125,8 @@ class EditDataPage extends Component{
     }
 
     render(){
-        console.log(this.props.studentdata)
+        console.log("STATE CURRENT CLASS IN RENDER:", this.state.currentClass)
+        // console.log(this.props.studentdata)
         let students = this.props.studentdata.students;
         let formOrTable = "";
         let buttonText = "";
@@ -211,7 +217,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // setCurrentClass: currentClass => dispatch(setCurrentClass(currentClass)),
+        setCurrentClass: currentClass => dispatch(setCurrentClass(currentClass)),
         loadStudentData: classId => dispatch(loadStudentData(classId))
     }
 }

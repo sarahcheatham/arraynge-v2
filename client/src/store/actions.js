@@ -116,6 +116,7 @@ export const loadClassData = () => {
 }
 
 // show one class fetch call
+// takes in just the classId
 export const loadCurrentClass = classId => {
     return dispatch => {
         fetch(`/api/classdata/${classId}`)
@@ -128,6 +129,7 @@ export const loadCurrentClass = classId => {
 }
 
 //sets the current class to the class you select 
+// takes in the entire class object
 export const setCurrentClass = currentClass => {
     return {
         type: "SET_CURRENT_CLASS",
@@ -138,10 +140,11 @@ export const setCurrentClass = currentClass => {
 // last class default fetch
 export const loadLastClass = () => {
     return dispatch => {
-        fetch(`/api/classdata/lastclass/:id`)
+        fetch('/api/classdata/lastclass/:id')
         .then(res => {
             return res.json();
         }).then(currentClass => {
+            console.log("currentClass", currentClass)
             dispatch(setCurrentClass(currentClass))
         });
     }
