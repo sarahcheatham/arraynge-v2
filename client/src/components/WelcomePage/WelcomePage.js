@@ -39,7 +39,7 @@ class WelcomePage extends Component{
         
         if(this.isEmpty(currentClass)){
             this.props.loadLastClass();
-        } else {
+        } else{
             const currentClassId = currentClass._id;
             this.props.loadCurrentClass(currentClassId)
         }
@@ -73,7 +73,7 @@ class WelcomePage extends Component{
         // console.log("currentCLASS:", this.props.currentClass)
     }
 
-    onEditClick = (e) => {
+    onRouterClick = (e) => {
         // console.log("currentCLASS:", this.props.currentClass)
         // console.log('edit click', this.state.classId)
         localStorage.setItem("currentClass", JSON.stringify(this.props.currentClass));
@@ -117,14 +117,19 @@ class WelcomePage extends Component{
             color: "var(--mermaid-green)"
         }
 
+        // let year = "";
+        // let gradelevel = "";
+        // let subject = "";
+        
+
         return(
             <Container className="welcomepage">
                 <Col className="welcome-left-col">
                     <Row className="currentClassContainer">
                         <div id="currClassHeader">CURRENT CLASS</div>
-                        <div className="currClassPropList"><span className="currClassTitle">YEAR:</span>{" "}<span className="currClassText">{this.props.currentClass.year || ""}</span></div>
-                        <div className="currClassPropList"><span className="currClassTitle">GRADE LEVEL:</span>{" "}<span className="currClassText">{this.props.currentClass.gradelevel || ""}</span></div>
-                        <div className="currClassPropList"><span className="currClassTitle">SUBJECT:</span>{" "}<span className="currClassText">{this.props.currentClass.subject || ""}</span></div>
+                        <div className="currClassPropList"><span className="currClassTitle">YEAR:</span>{" "}<span className="currClassText">{this.props.currentClass.year}</span></div>
+                        <div className="currClassPropList"><span className="currClassTitle">GRADE LEVEL:</span>{" "}<span className="currClassText">{this.props.currentClass.gradelevel}</span></div>
+                        <div className="currClassPropList"><span className="currClassTitle">SUBJECT:</span>{" "}<span className="currClassText">{this.props.currentClass.subject}</span></div>
                     </Row>
                     <Row className="newClassButtonContainer">
                             <div className="button-subhead">CREATE A NEW CLASS:</div>
@@ -151,7 +156,7 @@ class WelcomePage extends Component{
                 <Col className="threeButtonContainer">
                         <Row className="arrayngeClassButtonContainer">
                             <div className="button-subhead">ARRAYNGE THIS CLASS:</div>
-                            <Button className="welcomeButtons" id="arrayngeClassButton">
+                            <Button className="welcomeButtons" id="arrayngeClassButton" onClick={this.onRouterClick}>
                                 <Link to={'/arrayngement'} style={threeButtons}>
                                     ARRAYNGE
                                 </Link>
@@ -159,7 +164,7 @@ class WelcomePage extends Component{
                         </Row>
                         <Row className="editClassButtonContainer">
                             <div className="button-subhead">EDIT THIS CLASS:</div>
-                            <Button className="welcomeButtons" id="editClassButton" onClick={this.onEditClick}>
+                            <Button className="welcomeButtons" id="editClassButton" onClick={this.onRouterClick}>
                                 <Link to={'/scores'} style={threeButtons}>
                                     EDIT
                                 </Link>
@@ -167,7 +172,7 @@ class WelcomePage extends Component{
                         </Row>
                         <Row className="viewChartsButtonContainer">
                             <div className="button-subhead">VIEW CHARTS FOR THIS CLASS:</div>
-                            <Button className="welcomeButtons" id="viewChartsButton">
+                            <Button className="welcomeButtons" id="viewChartsButton" onClick={this.onRouterClick}>
                                 <Link to={'/charts'} style={threeButtons}>
                                     VIEW CHARTS
                                 </Link>
