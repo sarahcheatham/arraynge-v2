@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UpdateForm from "./UpdateForm";
 import UpdateTable from "./UpdateTable";
-import { Form, Button, Table, thead, tr } from 'reactstrap';
+import { Container, Row, Col, Form, Button, Table, thead, tr } from 'reactstrap';
 import './EditDataPage.css';
 import { connect } from 'react-redux';
 import { loadStudentData, setCurrentClass } from "../../store/actions";
@@ -148,7 +148,7 @@ class EditDataPage extends Component{
             const id = student._id;
             const userId = this.props.currentUserId;
             const name = student.name;
-            const gradelevel = this.state.gradelevel;
+            const gradelevel = student.gradelevel;
             const subject = student.subject;
             const BOYscore = student.score[0].BOYscore;
             const EOYgoal = student.score[1].EOYgoal;
@@ -171,7 +171,22 @@ class EditDataPage extends Component{
             tableComponents.push(sc)
         })
         if(this.state.isEdit === true){
-            formOrTable = formComponents;
+            formOrTable = <Container className="fullForm-container">
+                            <div className="formheader-container">
+                                <Col className="formheader">Student Name:</Col>
+                                <Col className="formheader">Grade Levels:</Col>
+                                <Col className="formheader">Subject:</Col>
+                                <Col className="formheader">BOY Score:</Col>
+                                <Col className="formheader">EOY Goal:</Col>
+                                <Col className="formheader">MOY Score:</Col>
+                                <Col className="formheader">EOY Score:</Col>
+                                {/* <Col className="formheader">{" "}</Col> */}
+                            </div>
+                           
+                       
+                            {formComponents}
+                            
+                        </Container>
             buttonText = "Save Scores";
             showStyle = show;
             showStyle2 = showInline;

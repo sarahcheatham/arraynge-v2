@@ -122,62 +122,65 @@ class UpdateForm extends Component{
         //     showStyle = noShow;
         // }
         return(
-            <Container>
-            <Form>
+            <Container className="updateForm-container">
+                <Form className="updateForm">
              
                     <Input 
                         type="text"
                         value={this.state.name} 
                         name="name" 
                         className="studentlistinput" 
+                        id="updateForm-name"
                         onChange={this.handleFormChange}
                         placeholder={props.name} 
                     />
-        
-            
+                
                     <Input 
                         type="text" 
                         value={this.state.gradelevel} 
                         name="gradelevel" 
                         className="studentlistinput" 
+                        id="updateForm-gradelevel"
                         onChange={this.handleFormChange}
                         placeholder={props.gradelevel} 
                     />
-        
-          
+                
                     <Input 
                         type="text"
                         value={this.state.subject} 
                         name="subject" 
                         className="studentlistinput" 
+                        id="updateForm-subject"
                         onChange={this.handleFormChange}
                         placeholder={props.subject} 
                     />
-              
-   
+                
                     <Input 
                         type="text" 
                         value={this.state.BOYscore || ""} 
                         name="BOYscore" 
                         className="studentlistinput" 
+                        id="updateForm-BOY"
                         onChange={this.handleFormChange}
                         placeholder={props.BOYscore} 
                     />
-             
+                
                     <Input 
                         type="text" 
                         value={this.state.EOYgoal || ""} 
                         name="EOYgoal" 
                         className="studentlistinput" 
+                        id="updateForm-EOYgoal"
                         onChange={this.handleFormChange}
                         placeholder={props.EOYgoal} 
                     />
-              
+                
                     <Input 
                         type="text" 
                         value={this.state.MOYscore || ""} 
                         name="MOYscore"
                         className="studentlistinput" 
+                        id="updateForm-MOY"
                         onChange={this.handleFormChange}
                         placeholder={props.MOYscore}
                     />
@@ -187,31 +190,21 @@ class UpdateForm extends Component{
                         value={this.state.EOYscore || ""} 
                         name="EOYscore" 
                         className="studentlistinput" 
+                        id="updateForm-EOY"
                         onChange={this.handleFormChange}
                         placeholder={props.EOYscore} 
                     />
+            
                 
-               
-                <Button className="studentlistbutton" onClick={this.handleSubmit}>
-                    <img 
-                        src={Image1} 
-                        alt="save" 
-                        id="saveimage"
-                    />
-                </Button>
-                    {/* <Button className="studentlistbutton2" onClick={this.handleDelete}>
-                        <SvgIcon style={{color: "#F7F7FB"}}>
-                            <DeleteTwoTone/>
-                        </SvgIcon>
-                    </Button> */}
-             
-                {/* <td style={showStyle}>
-                    <span className="saved" style={showStyle}>
-                        saved!<SvgIcon style={showStyle}xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path nativecolor="#8FAD57" fill="none" d="M0 0h24v24H0z"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></SvgIcon>
-                    </span>
-                </td> */}
-          
-            </Form>
+            
+                    <Button className="studentlistbutton" id="updateForm-button" onClick={this.handleSubmit}>
+                        <img 
+                            src={Image1} 
+                            alt="save" 
+                            id="saveimage"
+                        />
+                    </Button>
+                </Form>
             </Container>
         )
     }
@@ -226,16 +219,6 @@ UpdateForm.propTypes = {
     MOYscore: PropTypes.number,
     EOYscore: PropTypes.number
 };
-
-Form.propTypes = {
-    children: PropTypes.node,
-    inline: PropTypes.bool,
-    // Pass in a Component to override default element
-    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]), // default: 'form'
-    innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
-    className: PropTypes.string,
-    cssModule: PropTypes.object,
-  };
   
 
 export default UpdateForm;
