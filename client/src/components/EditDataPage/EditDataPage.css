@@ -22,6 +22,9 @@ th {
     font-size: 18px;
     background-color: #F9E7E4;
 }
+.tablecell{
+    font-size: 1.5em;
+}
 .secretgradeandbutton{
     display: grid;
     margin-left: 20%;
@@ -71,27 +74,20 @@ th {
 /* end StudentUpdateTable Component */
 
 /* start StudentUpdateForm Component */
-/* td {
-    height: 20px;
-    padding-right: 5px;
-} */
+
 .fullForm-container{
-    /* background: var(--light-gray); */
     padding-top: 1%;
     padding-bottom: 2%;
-    /* margin-left: 15%;
-    margin-right: 15%; */
 }
 .formheader-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 12em);
-    margin-left: 10%;
-    margin-right: 10%;
+    grid-template-columns: repeat(auto-fit, 10em);
+    margin-left: 15%;
+    margin-right: 15%;
     height: 3em;
 }
 .formheader{
     background: var(--light-gray);
-    /* display: flex; */
     padding-top: 5%;
     padding-bottom: 3%;
     padding-left: 2%;
@@ -103,16 +99,14 @@ th {
     font-weight: 400;
     font-size: 1.3em;
     display: flex;
-    /* align-self: center; */
 }
 .updateForm-container{
-    margin-left: 10%;
+    margin-left: 15%;
 }
 .updateForm{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 12em);
+    grid-template-columns: repeat(auto-fit, 10em);
     margin-bottom: 1%;
-    /* display: flex; */
 }
 #updateForm-name{
     grid-column: 1 / 2;
@@ -144,13 +138,13 @@ th {
     font-family: quasimoda, sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1.2em;
     margin-right: 5%;
     /* margin: 5%; */
     /* display: inline-flex; */
 }
 .studentlistbutton{
-    height: 3.5em;
+    height: 3.1em;
     background-color: #656588;
     /* margin-top: 2%; */
     margin-left: 1%;

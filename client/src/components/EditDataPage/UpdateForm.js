@@ -24,13 +24,6 @@ class UpdateForm extends Component{
             check: false,
             delete: false
         }
-        // this.changeNameValue = this.changeNameValue.bind(this);
-        // this.changeSubjectValue = this.changeSubjectValue.bind(this);
-        // this.changeBoyScore = this.changeBoyScore.bind(this);
-        // this.changeEoyGoal = this.changeEoyGoal.bind(this);
-        // this.changeMoyScore = this.changeMoyScore.bind(this);
-        // this.changeEoyScore = this.changeEoyScore.bind(this);
-        // this.changeGradeLevel = this.changeGradeLevel.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
@@ -43,33 +36,7 @@ class UpdateForm extends Component{
     handleFormChange = event => {
         this.setState({[event.target.name]: event.target.value});
     }
-    // changeNameValue(event){
-    //     this.setState({name: event.target.value})
-    // }
-
-    // changeSubjectValue(event){
-    //     this.setState({subject: event.target.value})
-    // }
-
-    // changeBoyScore(event){
-    //     this.setState({BOYscore: event.target.value})
-    // }
-
-    // changeEoyGoal(event){
-    //     this.setState({EOYgoal: event.target.value})
-    // }
-
-    // changeMoyScore(event){
-    //     this.setState({MOYscore: event.target.value})
-    // }
-
-    // changeEoyScore(event){
-    //     this.setState({EOYscore: event.target.value})
-    // }
-
-    // changeGradeLevel(event){
-    //     this.setState({gradelevel: event.target.value})
-    // }
+   
 
     //handleDelete
     handleDelete(event){
@@ -109,18 +76,7 @@ class UpdateForm extends Component{
     }
     render(){
         let props = this.props;
-        // let showStyle = "";
-        // const noShow = {
-        //     display: "none"
-        // }
-        // const show = {
-        //     color: "8FAD57"
-        // }
-        // if(this.state.check === true){
-        //     showStyle = show;
-        // } else {
-        //     showStyle = noShow;
-        // }
+       
         return(
             <Container className="updateForm-container">
                 <Form className="updateForm">

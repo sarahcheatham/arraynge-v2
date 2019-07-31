@@ -22,11 +22,12 @@ class UpdateTable extends Component{
     }
     render(){
         let props = this.props;
+      
         return(
             
             <tr className="A">
                 <td className="tablecell">{props.name}</td>
-                <td className="tablecell" id="hidecell">{props.gradelevel}</td>
+                <td className="tablecell">{props.gradelevel}</td>
                 <td className="tablecell">{props.subject}</td>
                 <td className="tablecell">{props.BOYscore}</td>
                 <td className="tablecell">{props.EOYgoal}</td>

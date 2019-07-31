@@ -85,7 +85,7 @@ class App extends Component {
     localStorage.removeItem("token");
     this.setState({ authenticated: false });
     this.props.setCurrentUserId(null);
-    this.props.setUsername("Sign In");
+    // this.props.setUsername("Sign In");
     localStorage.clear();
   }
 
@@ -136,7 +136,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             <Header/>
-            <Username />
+            {/* <Username /> */}
             <SideNav
               showNavItems={this.state.authenticated} 
               onSignOut={this.handleSignOut}

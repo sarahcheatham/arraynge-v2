@@ -4,7 +4,7 @@ import UpdateTable from "./UpdateTable";
 import { Container, Row, Col, Form, Button, Table, thead, tr } from 'reactstrap';
 import './EditDataPage.css';
 import { connect } from 'react-redux';
-import { loadStudentData, setCurrentClass } from "../../store/actions";
+import { loadStudentData, setCurrentClass, updateStudentData } from "../../store/actions";
 
 //loading previous students when you log out and log in as a new user 
 //until you click the home button then come back to the scores page.
@@ -14,6 +14,7 @@ class EditDataPage extends Component{
         super(props);
         this.state = {
             currentClass: {},
+            classId: "",
             message: "",
             save: {},
             isEdit: false,
@@ -41,14 +42,23 @@ class EditDataPage extends Component{
     }
 
     componentDidMount(){
+        const getClass  = localStorage.getItem("currentClass");
+        const currentClass = JSON.parse(getClass);
+        const currentClassId = currentClass._id;
+        this.setState({classId: currentClassId})
         if(this.isEmpty(this.props.currentClass)){
-            const getClass  = localStorage.getItem("currentClass");
-            const currentClass = JSON.parse(getClass);
-            const currentClassId = currentClass._id;
+            console.log("EMPTY")
             this.props.loadStudentData(currentClassId)
             this.props.setCurrentClass(currentClass)
         }
+        console.log("NOT EMPTY")
         this.props.loadStudentData(this.props.currentClass._id)
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.currentClass !== this.props.currentClass) {
+            this.props.loadStudentData(this.props.currentClass._id)
+        }
     }
 
     mouseDown(event){
@@ -64,9 +74,10 @@ class EditDataPage extends Component{
     handleEdit(event){
         event.preventDefault();
         this.setState({isEdit: !this.state.isEdit})
-        if(this.state.isEdit === true){
-            this.props.loadStudentData();
-        }
+        // if(this.state.isEdit === true){
+        //     this.props.loadStudentData(this.props.currentClass._id);
+        // }
+        // this.props.loadStudentData(this.props.currentClass._id);
     }
     handleDelete(student){
         const id = student.id;
@@ -107,43 +118,21 @@ class EditDataPage extends Component{
         const name = studentdata.name;
         const score = studentdata.score;
         const userId = this.props.currentUserId;
-        const gradelevel = this.state.gradelevel;
+        const gradelevel = studentdata.gradelevel;
         const subject = studentdata.subject;
+        const classId = this.state.classId;
         console.log("studentdata:", studentdata)
-        let options = {
-            method: "PUT",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({name, score, userId, gradelevel, subject})
-        }
-        fetch(`/api/studentdata/${id}`, options).then((res)=>{
-            return res.json()
-        }).then((res)=>{
-            console.log("response:", res)
-        }).catch((err)=>{
-            console.log("error:", err)
-        })
+        this.props.updateStudentData(classId, id, { classId, userId, name, gradelevel, subject, score })
     }
 
     render(){
-        console.log("STATE CURRENT CLASS IN RENDER:", this.state.currentClass)
-        // console.log(this.props.studentdata)
-        let students = this.props.studentdata.students;
+        const students = this.props.studentdata.students;
         let formOrTable = "";
         let buttonText = "";
-        // let studentList = [];
-        let formComponents =[];
-        let tableComponents = [];
-        let showStyle = "";
-        let showStyle2 = "";
-        const noShow = {
-            display: "none"
-        }
-        const show = {
-            display: "block"
-        }
-        const showInline = {
-            display: "inline flex"
-        }
+      
+        const formComponents =[];
+        const tableComponents = [];
+       
         students.forEach((student, index)=>{
             const id = student._id;
             const userId = this.props.currentUserId;
@@ -154,19 +143,20 @@ class EditDataPage extends Component{
             const EOYgoal = student.score[1].EOYgoal;
             const MOYscore = student.score[2].MOYscore;
             const EOYscore = student.score[3].EOYscore;
-            // console.log(id, name, gradelevel, subject, BOYscore, EOYgoal, MOYscore, EOYscore)
+          
             let sc = <UpdateForm key={index} id={id} userId={userId} name={name} gradelevel={gradelevel} subject={subject} BOYscore={BOYscore} EOYgoal={EOYgoal} MOYscore={MOYscore} EOYscore={EOYscore} onFormSubmit={this.handleSubmit} onStudentDelete={this.handleDelete}/>
             formComponents.push(sc);
         })
         students.forEach((student, index)=>{
             const id = student._id;
             const name = student.name;
-            const gradelevel = this.state.gradelevel;
+            const gradelevel = student.gradelevel;
             const subject = student.subject;
             const BOYscore = student.score[0].BOYscore;
             const EOYgoal = student.score[1].EOYgoal;
             const MOYscore = student.score[2].MOYscore;
             const EOYscore = student.score[3].EOYscore;
+
             let sc = <UpdateTable key={index} id={id} name={name} gradelevel={gradelevel} subject={subject} BOYscore={BOYscore} EOYgoal={EOYgoal} MOYscore={MOYscore} EOYscore={EOYscore}/>
             tableComponents.push(sc)
         })
@@ -174,33 +164,27 @@ class EditDataPage extends Component{
             formOrTable = <Container className="fullForm-container">
                             <div className="formheader-container">
                                 <Col className="formheader">Student Name:</Col>
-                                <Col className="formheader">Grade Levels:</Col>
+                                <Col className="formheader">Grade Level:</Col>
                                 <Col className="formheader">Subject:</Col>
                                 <Col className="formheader">BOY Score:</Col>
                                 <Col className="formheader">EOY Goal:</Col>
                                 <Col className="formheader">MOY Score:</Col>
                                 <Col className="formheader">EOY Score:</Col>
-                                {/* <Col className="formheader">{" "}</Col> */}
                             </div>
-                           
-                       
                             {formComponents}
-                            
                         </Container>
-            buttonText = "Save Scores";
-            showStyle = show;
-            showStyle2 = showInline;
+            buttonText = "View Scores";
         } else {
             formOrTable = <Table striped bordered>
                                 <thead>
                                     <tr>
                                         <th className="tableheader">Student Name:</th>
-                                        <th className="tableheader" id="hidelabel">Grade Levels:</th>
+                                        <th className="tableheader">Grade Level:</th>
                                         <th className="tableheader">Subject:</th>
                                         <th className="tableheader">BOY Score:</th>
                                         <th className="tableheader">EOY Goal:</th>
                                         <th className="tableheader">MOY Score:</th>
-                                        <th className="tableheader" id="EOY">EOY Score:</th>
+                                        <th className="tableheader">EOY Score:</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -208,8 +192,6 @@ class EditDataPage extends Component{
                                 </tbody>
                             </Table>
             buttonText = "Edit Scores";
-            showStyle = noShow;
-            showStyle2 = noShow;
         }
         return(
             <div className="secretpage">
@@ -233,7 +215,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentClass: currentClass => dispatch(setCurrentClass(currentClass)),
-        loadStudentData: classId => dispatch(loadStudentData(classId))
+        loadStudentData: classId => dispatch(loadStudentData(classId)),
+        updateStudentData: (classId, studentId, student) => dispatch(updateStudentData(classId, studentId, student))
     }
 }
 
