@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import benchmarks from '../../api/benchmarks.json';
 import './Arraynge.css';
+import { Container } from 'reactstrap';
 // import './Groups/Groups.css';
 import ArrayngementDropMenu from "../DropMenus/ArrayngementDropMenu";
 import { connect } from 'react-redux';
-import { loadStudentData, setCurrentClass } from '../../store/actions'
+import { loadStudentData, setCurrentClass } from '../../store/actions';
 // import SubjectDropMenu from "./DropMenus/SubjectDropMenu";
 // import NumberOfGroupsDropMenu from './DropMenus/NumberOfGroupsDropMenu';
 // import TwoGroups from "./Groups/TwoGroups";
@@ -19,18 +20,18 @@ class Arraynge extends Component{
         this.state={
             // students: [],
             // list: [],
-            sortBy: "",
+            // sortBy: "",
             // userId: "",
             subject: "",
             gradelevel: "", 
             numberOfGroups: ""    
         };
-        this.handleSortBy = this.handleSortBy.bind(this);
-        this.handleSubjectChange = this.handleSubjectChange.bind(this);
-        this.handleGroupsChange = this.handleGroupsChange.bind(this);
+        // this.handleSortBy = this.handleSortBy.bind(this);
+        // this.handleSubjectChange = this.handleSubjectChange.bind(this);
+        // this.handleGroupsChange = this.handleGroupsChange.bind(this);
         this.allowDrop = this.allowDrop.bind(this);
         this.drop = this.drop.bind(this);
-        this.sortStudentScore = this.sortStudentScore.bind(this);
+        // this.sortStudentScore = this.sortStudentScore.bind(this);
     }
 
     isEmpty = obj => {
@@ -63,22 +64,22 @@ class Arraynge extends Component{
     }
     
 
-    handleSortBy(event){
-        // console.log("handleSortBy:", event)
-        this.setState({
-            sortBy: event.sortBy
-        });
-    }
+    // handleSortBy = event =>{
+    //     console.log("handleSortBy:", event)
+    //     this.setState({
+    //         sortBy: event.sortBy
+    //     });
+    // }
 
-    handleSubjectChange(event){
-        // console.log("handleSubjectChange:", event)
+    handleSubjectChange = event => {
+        console.log("handleSubjectChange:", event)
         this.setState({
             subject: event.subject
         });
     }
 
-    handleGroupsChange(event){
-        // console.log("handleGroupsChange:", event)
+    handleGroupsChange = event => {
+        console.log("handleGroupsChange:", event)
         this.setState({
             numberOfGroups: event.numberOfGroups
         });
@@ -120,7 +121,7 @@ class Arraynge extends Component{
     }
 
     //sort students by time of year for tests
-    sortStudentScore(students, sortBy){
+    sortStudentScore = (students, sortBy) =>{
         const propertyName = this.scoreInfo[sortBy].propertyName;
         const index = this.scoreInfo[sortBy].index;
 
@@ -153,9 +154,9 @@ class Arraynge extends Component{
         const index = this.scoreInfo[sortBy].index;
         // const { propertyName, index } = this.scoreInfo[sortBy]; // same as above, but using "destructuring"
         let color = "";
-        // if(student.score[index][propertyName] === null){
-        //     color = "blankSquare"
-        // }
+        if(student.score[index][propertyName] === null){
+            color = "blankSquare"
+        }
         if(student.score[index][propertyName] >= benchmark +5){
             color = "blueSquare"
         } else if(student.score[index][propertyName] >= benchmark){
@@ -237,7 +238,8 @@ class Arraynge extends Component{
 
     render(){
         console.log("currentClass:", this.props.currentClass)
-        const benchmarkScore = this.getBenchmarkForScore(this.state.sortBy);
+        console.log("props", this.props)
+        const benchmarkScore = this.getBenchmarkForScore(this.props.sortBy);
         let studentCards = null;
         const students = this.props.studentdata.students;
         console.log("students:", students)
@@ -248,15 +250,15 @@ class Arraynge extends Component{
         // console.log("filteredStudents:", filteredStudents)
         
         //sort students by time of year for tests
-        if(this.state.sortBy !== ""){
-            studentCards = this.sortStudentScore(students, this.state.sortBy)  
+        if(this.props.sortBy !== ""){
+            studentCards = this.sortStudentScore(students, this.props.sortBy)  
         }
         //assign a square to each student based on their scores compared to the benchmarks
         // studentCards.map((student, index)=>{
         studentCards = students.map((student, index)=>{
             // console.log("student:", student.name, student.score[3].EOYscore)
             let color = "";
-            if(this.state.sortBy === ""){
+            if(this.props.sortBy === ""){
                 color = "blankSquare"
                 return <li 
                             key={index}
@@ -278,8 +280,8 @@ class Arraynge extends Component{
                             </div> 
                         </li>
             }
-            if(this.state.sortBy !== ""){
-                color = this.getColorForScore(this.state.sortBy, student, benchmarkScore)
+            if(this.props.sortBy !== ""){
+                color = this.getColorForScore(this.props.sortBy, student, benchmarkScore)
                 return <li 
                         key={index}
                         id={index}
@@ -307,15 +309,15 @@ class Arraynge extends Component{
             <div className="arrayngementpage">
                 <span className="inputbar">
                     <p className="studentlabel">STUDENTS:</p>
-                    <ArrayngementDropMenu className="arrayngementdropmenu" onSortBy={this.handleSortBy}/>
+                    <ArrayngementDropMenu className="arrayngementdropmenu"/>
                     {/* <NumberOfGroupsDropMenu className="arrayngementgroups" onGroupsClick={this.handleGroupsChange}/>
                     <SubjectDropMenu className="arrayngementsubject" subject={this.state.subject} onSubjectClick={this.handleSubjectChange}/> */}
                 </span>
-                <div>
+                <Container className="mt-3 pl-0 pr-0">
                     <ul className="studentlist">
                         {studentCards}
                     </ul>
-                </div>
+                </Container>
                 {/* {numberOfGroupsToShow} */}
             </div>
         );
@@ -325,7 +327,8 @@ class Arraynge extends Component{
 const mapStateToProps = state => {
     return{
         currentClass: state.currentClass,
-        studentdata: state.studentdata
+        studentdata: state.studentdata,
+        sortBy: state.sortBy
     }
 }
 

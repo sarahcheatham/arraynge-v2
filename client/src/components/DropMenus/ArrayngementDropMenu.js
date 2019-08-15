@@ -1,83 +1,68 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import { Label, Button } from 'reactstrap';
+import { Container, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
+import { connect } from 'react-redux';
+import { setSortBy } from '../../store/actions';
 
 class ArrayngementDropMenu extends Component{
-    constructor(){
-        super();
-        this.state={
+    constructor(props){
+        super(props);
+        this.state = {
             showMenu: false,
             sortBy: ""
         }
-        this.showMenu = this.showMenu.bind(this);
-        this.closeMenu = this.closeMenu.bind(this);
-        this.scoreClick = this.scoreClick.bind(this);
     }
 
-    showMenu(event){
+    scoreClick = event => {
         event.preventDefault();
-        this.setState({ showMenu: true}, ()=>{
-            document.addEventListener('click', this.closeMenu);
-        });
+        this.props.setSortBy(event.target.innerHTML)
     }
 
-    closeMenu(event){
-        if(!this.dropdownMenu) return;
-        if(!this.dropdownMenu.contains(event.target)){
-            this.setState({ showMenu: false }, ()=>{
-                document.removeEventListener('click', this.closeMenu);
-            });
-        }
-    }
-
-    scoreClick(event){
-        event.preventDefault();
-        this.setState({
-            sortBy: event.target.innerHTML
-        })
-        this.props.onSortBy({
-            sortBy: this.state.sortBy
-        })
+    toggle = () => {
+        this.setState(prevState => ({
+            showMenu: !prevState.showMenu
+        }))
     }
 
     render(){
-        let whatToShow = "score";
-        if(this.state.gradelevel !==""){
-            whatToShow = this.state.sortBy;
-        }
+        console.log("DROPMENU PROPS:", this.props)
+        let whatToShow = "";
+        this.props.sortBy === "" ? whatToShow = "Scores" : whatToShow = this.props.sortBy;
         return(
-            <form className={this.props.className} onSubmit={this.scoreClick.bind(this)}>
-                <Label className="scoresLabel">Sort By:</Label>{' '}
-                <Button onClick={this.showMenu} className='mainDropMenuButtonArrayngement'>
-                    {whatToShow}
-                </Button>
 
-                {
-                    this.state.showMenu 
-                    ?
-                    (
-                        <div 
-                            className='arrayngementDropMenu'
-                            ref = {(element)=>{
-                                this.dropdownMenu = element;
-                            }}
-                        >
-                            <Button className='scores' onClick={this.scoreClick}>BOY score</Button>
-                            <Button className='scores' onClick={this.scoreClick}>MOY score</Button>
-                            <Button className='scores' onClick={this.scoreClick}>EOY score</Button>
-                            <Button className='scores' onClick={this.scoreClick}>EOY goal</Button>
-                        </div>
-                    ) 
-                    : (
-                        null
-                    )
-                }
-            </form>
+            <Container className={this.props.className}>
+                <Label className="scoresLabel">Sort By:</Label>{' '}
+                <Dropdown group isOpen={this.state.showMenu} toggle={this.toggle}>
+                    <DropdownToggle className="arraynge-menu-btn" caret>
+                        {whatToShow}
+                    </DropdownToggle>
+                        <DropdownMenu className="arrayngementDropMenu">
+                            <DropdownItem className="arraynge-menu-item" onClick={this.scoreClick}>BOY score</DropdownItem>
+                            <DropdownItem className="arraynge-menu-item" onClick={this.scoreClick}>EOY goal</DropdownItem>
+                            <DropdownItem className="arraynge-menu-item" onClick={this.scoreClick}>MOY score</DropdownItem>
+                            <DropdownItem className="arraynge-menu-item" onClick={this.scoreClick}>EOY score</DropdownItem>
+                        </DropdownMenu>
+                </Dropdown>
+            </Container>  
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        currentClass: state.currentClass,
+        sortBy: state.sortBy
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setSortBy: sortBy => dispatch(setSortBy(sortBy))
+    }
+}
+
 ArrayngementDropMenu.propTypes ={
     onSortBy: PropTypes.func.isRequired
 };
 
-export default ArrayngementDropMenu;
+export default connect(mapStateToProps, mapDispatchToProps)(ArrayngementDropMenu);

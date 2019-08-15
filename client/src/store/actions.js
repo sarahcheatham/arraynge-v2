@@ -82,6 +82,14 @@ export const setCounter = counter => {
     }
 }
 
+export const setSortBy = sortBy => {
+    return{
+        type: "SET_SORT_BY",
+        value: sortBy
+    }
+    
+}
+
 //classdata fetch
 export const FETCH_CLASSDATA_BEGIN = "FETCH_CLASSDATA_BEGIN";
 export const FETCH_CLASSDATA_SUCCESS = "FETCH_CLASSDATA_SUCCESS";

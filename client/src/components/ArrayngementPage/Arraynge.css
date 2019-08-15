@@ -1,10 +1,10 @@
 /* start ArrayngementPage component */
 .arrayngementpage{
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 18em 1fr;
     grid-template-rows: 75px 1fr;
     background-color: #F9F6EF;
- 
+    margin-top: 2em;
     height: 150vh;
     /* margin-right: 20px; */
 }
@@ -12,7 +12,7 @@
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     margin-top: 2px;
-    margin-left: -20px;
+    margin-left: 1em;
     margin-right: 10px;
 }
 .list{
@@ -108,36 +108,33 @@
 
 /* start ArrayngementDropMenu component */
 .arrayngementdropmenu{
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    display: grid;
-    grid-template-columns: 50px 100px;
-    grid-template-rows: 40px 1fr 1fr 1fr 1fr;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-top: 10px;
-}
-.mainDropMenuButtonArrayngement{
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    margin-top: 0px;
-    color: #343148;
-    background-color: #EFEEE8;
-    height: 30px;
-    width: 100px;
-    justify-self: center;
-    align-self: end;
-    display: flex;
     font-family: quasimoda, sans-serif;
     font-style: normal;
     font-weight: 400;
+    font-size: 1.1em;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: grid;
+    grid-template-columns: 4.25em 8em;
+    grid-template-rows: 3em 1fr 1fr 1fr 1fr;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 1.25em;
 }
+
 .arrayngementDropMenu{
     grid-column: 2 / 3;
     grid-row: 2 / 6;
     display: grid;
     justify-content: center;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9 !important;
+}
+.arraynge-menu-btn{
+    background-color: var(--mermaid-green) !important;
+    border-color: var(--mermaid-green) !important;
+}
+.arraynge-menu-item:hover{
+    background-color: var(--mermaid-tint) !important;
 }
 .scores{
     width: 100px;

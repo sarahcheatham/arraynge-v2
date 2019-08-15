@@ -157,7 +157,7 @@ class WelcomePage extends Component{
                         <Row className="arrayngeClassButtonContainer">
                             <div className="button-subhead">ARRAYNGE THIS CLASS:</div>
                             <Button className="welcomeButtons" id="arrayngeClassButton" onClick={this.onRouterClick}>
-                                <Link to={'/arrayngement'} style={threeButtons}>
+                                <Link to={'/arraynge'} style={threeButtons}>
                                     ARRAYNGE
                                 </Link>
                             </Button>

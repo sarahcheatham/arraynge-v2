@@ -125,8 +125,15 @@ const currentCount = (state = storeState, action) => {
     return state;
 }
 
+const sortBy = (state = storeState, action) => {
+    if(action.type === "SET_SORT_BY"){
+        return action.value
+    }
+    return state;
+}
+
 const rootReducer = combineReducers({
-    currentUserId, signUpSignInError, username, currentClass, classdata, studentdata, currentGradeLevel, currentSubject, currentYear, numberOfStudents, currentCount
+    currentUserId, signUpSignInError, username, currentClass, classdata, studentdata, currentGradeLevel, currentSubject, currentYear, numberOfStudents, currentCount, sortBy
 });
 
 export default rootReducer;
