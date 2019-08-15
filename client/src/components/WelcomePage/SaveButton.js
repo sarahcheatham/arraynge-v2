@@ -4,8 +4,8 @@ import { Button } from 'reactstrap';
 
 const SaveButton = (props) => {
     return (
-        <Button style={props.style} onClick={props.show}>
-            <span>Save</span>
+        <Button className={props.className} onClick={props.show}>
+            Save
         </Button>
     )
 }

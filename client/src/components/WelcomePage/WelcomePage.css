@@ -1,12 +1,16 @@
 .welcomepage{
-    display: grid;
     height: 100vh;
     font-family: quasimoda, sans-serif;
     font-style: normal;
     font-weight: 200;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 5%;
+    /* margin-top: 0%; */
+    width: 100%;
 }
+
+/* need to find a good color */
+/* .welcome-bg{
+    background-color: var(--blue-gray-tint)
+} */
 
 .welcome-left-col{
     padding-top: 5%;
@@ -27,13 +31,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-left: 10%;
-    /* height: 75%; */
     margin-bottom: 5%;
     padding-top: 5%;
     padding-bottom: 8%;
     padding-left: 5%;
-    /* box-shadow: inset 1em -1em 1em -1em #FDFBED; */ 
 }
 
 #currClassHeader{
@@ -98,7 +99,6 @@
     flex-direction: column;
     margin-bottom: 10%;
     margin-top: 5%;
-    grid-column: 1 / 2;
 }
 
 .diffClassHeader{
@@ -127,7 +127,6 @@
     text-shadow: 0 0 5px var(--cool-white), 0 0 10px var(--cool-white), 0 0 20px var(--purple-gray-tint), 0 0 30px var(--purple-gray-tint), 0 0 40px var(--purple-gray-tint), 0 0 55px var(--purple-gray-tint), 0 0 75px var(--purple-gray-tint);
     border-radius: 10px;
     color: var(--mermaid-green);
-    /* color: var(--red-shade); */
     background-color: var(--blue-gray-tint);
 }
 
@@ -164,12 +163,12 @@
 }
 
 .classList{
-    padding-inline-start: 10%;
+    padding-inline-start: 0%;
     text-align: left;
 }
 
 .classListProps{
-    width: 90%;
+    width: 100%;
     font-size: 1.15em;
     font-family: quasimoda, sans-serif;
     font-style: normal;
@@ -194,6 +193,16 @@
 .listItemPropCont{
     padding-bottom: 3%;
 }
-/* .saveButton-noDisplay{
-    height: 25px;
-} */
+.saveButton{
+    width: 6em;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-family: quasimoda, sans-serif !important;
+    background-color: var(--mermaid-tint) !important;
+    border-color: var(--mermaid-green) !important;
+    color: var(--mermaid-green) !important;
+}
