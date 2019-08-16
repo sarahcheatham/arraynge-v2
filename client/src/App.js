@@ -10,6 +10,7 @@ import WelcomePage from './components/WelcomePage/WelcomePage';
 import ClassDataPage from './components/ClassDataPage/ClassDataPage';
 import StudentDataPage from './components/StudentDataPage/StudentDataPage';
 import Arraynge from './components/ArrayngementPage/Arraynge';
+import Charts from './components/ChartsPage/Charts';
 import { connect } from 'react-redux';
 import { loadUserId, setCurrentUserId, setUsername, setSignUpSignInError, loadClassData } from './store/actions';
 // import { withRouter } from 'react-router-dom';
@@ -117,6 +118,7 @@ class App extends Component {
         <Route path="/studentdata" component={StudentDataPage}/>
         <Route path="/scores" component={EditDataPage}/>
         <Route path="/arraynge" component={Arraynge}/>
+        <Route path="/charts" component={Charts}/>
         {/* <Route exact path="/classdata" render={(props)=> <ClassDataPageContainer gradelevel={props.gradelevel} subject={props.subject} userId={props.userId} classdata={props.classdata}/>}/> */}
         {/* <Route path="/arrayngement" component={ArrayngementPageContainer}/>
         <Route exact path="/scores" component={ScoresPageContainer}/>
