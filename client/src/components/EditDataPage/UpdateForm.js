@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import { Container, Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Container, Form, Input, Button } from 'reactstrap';
 import Image1 from './content-save.png';
 // import DeleteTwoTone from '@material-ui/icons/DeleteTwoTone';
 // import SvgIcon from '@material-ui/core/SvgIcon';

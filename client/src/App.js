@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import Header from './components/Header/Header';
 import SideNav from './components/SideNav/SideNav';
-import Username from './components/Username/Username';
+// import Username from './components/Username/Username';
 import SignUpSignInPage from './components/SignUpSignInPage/SignUpSignInPage';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import ClassDataPage from './components/ClassDataPage/ClassDataPage';
@@ -154,7 +154,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    signUpSignInError: state.signUpSignInError
+    signUpSignInError: state.signUpSignInError,
+    errors: state.errors
   }
 }
 

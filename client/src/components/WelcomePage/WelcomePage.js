@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 import { loadUsername, loadLastClass, loadClassData, setCurrentClass, loadCurrentClass, loadStudentData } from "../../store/actions";
-import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 import SaveButton from './SaveButton';
 import { Container, Col, Row, Button } from 'reactstrap';
@@ -45,6 +44,7 @@ class WelcomePage extends Component{
     }
 
     // componentDidUpdate(prevProps, prevState, snapshot){
+
     //     // console.log("prevProps:", prevProps)
     //     // console.log("prevState:", prevState)
     //     // console.log("snapshot:", snapshot)
@@ -130,7 +130,8 @@ class WelcomePage extends Component{
                         <Row className="arrayngeClassButtonContainer">
                             <div className="button-subhead">ARRAYNGE THIS CLASS:</div>
                             <Button className="welcomeButtons border-0" id="arrayngeClassButton" onClick={this.onRouterClick}>
-                                <Link to={'/arraynge'} style={threeButtons}>
+                                {/* <Link to={'/arraynge'} style={threeButtons}> */}
+                                <Link to={"/arraynge"} style={threeButtons}>
                                     ARRAYNGE
                                 </Link>
                             </Button>

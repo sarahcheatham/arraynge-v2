@@ -63,7 +63,6 @@ const classdata = (state = storeState, action) => {
     }
 }
 
-
 const studentdata = (state = storeState, action) => {
     switch(action.type){
         case FETCH_STUDENT_DATA_BEGIN:

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadUserId, loadLastClass, loadClassData, updateClassData, createStudentData } from '../../store/actions';
+import { loadUserId, loadClassData, createStudentData } from '../../store/actions';
 import Image1 from './content-save.png';
 import './StudentForm.css';
 
@@ -49,19 +49,6 @@ class StudentForm extends Component{
     }
 
     render(){
-        let showStyle = "";
-        const noShow = {
-            display: "none"
-        }
-        const show = {
-            color: "8FAD57"
-        }
-        if(this.state.check === true){
-            showStyle = show;
-        } else {
-            showStyle = noShow;
-        }
-
         return(
             <Form onSubmit={this.handleSubmit} className="studentdatapage">
                 <Row className="single-form-container">

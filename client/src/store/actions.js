@@ -95,6 +95,7 @@ export const FETCH_CLASSDATA_BEGIN = "FETCH_CLASSDATA_BEGIN";
 export const FETCH_CLASSDATA_SUCCESS = "FETCH_CLASSDATA_SUCCESS";
 export const FETCH_CLASSDATA_FAILURE = "FETCH_CLASSDATA_FAILURE";
 
+
 export const fetchClassDataBegin = () =>({
     type: FETCH_CLASSDATA_BEGIN
 });
@@ -106,7 +107,7 @@ export const fetchClassDataSuccess = classes =>({
 
 export const fetchClassDataFailure = error =>({
     type: FETCH_CLASSDATA_FAILURE,
-    payload: { error }
+    payload: error 
 });
 
 export const loadClassData = () => {
@@ -119,7 +120,9 @@ export const loadClassData = () => {
                     dispatch(fetchClassDataSuccess(classes));
                     return classes;
             })
-            .catch(error => dispatch(fetchClassDataFailure(error)))
+            .catch(error => {
+                dispatch(fetchClassDataFailure(error)) 
+            })
     };
 }
 

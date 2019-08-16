@@ -6,7 +6,6 @@ import { Container } from 'reactstrap';
 import ArrayngementDropMenu from "../DropMenus/ArrayngementDropMenu";
 import { connect } from 'react-redux';
 import { loadStudentData, setCurrentClass } from '../../store/actions';
-// import SubjectDropMenu from "./DropMenus/SubjectDropMenu";
 // import NumberOfGroupsDropMenu from './DropMenus/NumberOfGroupsDropMenu';
 // import TwoGroups from "./Groups/TwoGroups";
 // import ThreeGroups from "./Groups/ThreeGroups";
@@ -17,21 +16,14 @@ import { loadStudentData, setCurrentClass } from '../../store/actions';
 class Arraynge extends Component{
     constructor(){
         super();
-        this.state={
-            // students: [],
-            // list: [],
-            // sortBy: "",
-            // userId: "",
+        this.state = {
+            classId: "",
             subject: "",
             gradelevel: "", 
             numberOfGroups: ""    
         };
-        // this.handleSortBy = this.handleSortBy.bind(this);
-        // this.handleSubjectChange = this.handleSubjectChange.bind(this);
-        // this.handleGroupsChange = this.handleGroupsChange.bind(this);
         this.allowDrop = this.allowDrop.bind(this);
         this.drop = this.drop.bind(this);
-        // this.sortStudentScore = this.sortStudentScore.bind(this);
     }
 
     isEmpty = obj => {
@@ -46,11 +38,14 @@ class Arraynge extends Component{
     componentDidMount(){
         const getClass  = localStorage.getItem("currentClass");
         const currentClass = JSON.parse(getClass);
-        const currentClassId = currentClass._id;
-        this.setState({classId: currentClassId})
+        const classId = currentClass._id;
+        const gradelevel = currentClass.gradelevel;
+        const subject = currentClass.subject;
+        this.setState({classId, gradelevel, subject});
+
         if(this.isEmpty(this.props.currentClass)){
             console.log("EMPTY")
-            this.props.loadStudentData(currentClassId)
+            this.props.loadStudentData(classId)
             this.props.setCurrentClass(currentClass)
         }
         console.log("NOT EMPTY")
@@ -61,21 +56,6 @@ class Arraynge extends Component{
         if (prevProps.currentClass !== this.props.currentClass) {
             this.props.loadStudentData(this.props.currentClass._id)
         }
-    }
-    
-
-    // handleSortBy = event =>{
-    //     console.log("handleSortBy:", event)
-    //     this.setState({
-    //         sortBy: event.sortBy
-    //     });
-    // }
-
-    handleSubjectChange = event => {
-        console.log("handleSubjectChange:", event)
-        this.setState({
-            subject: event.subject
-        });
     }
 
     handleGroupsChange = event => {
@@ -142,7 +122,7 @@ class Arraynge extends Component{
                         </div>
                     </li>
         })
-        console.log("studentCards:", studentCards)
+
         return studentCards
     }
     //assign a color square to each student based on their scores compared to the benchmarks
@@ -167,49 +147,31 @@ class Arraynge extends Component{
             color = "orangeSquare"
         } else if(student.score[index][propertyName] >= benchmark -100){
             color = "redSquare"
-        } else if(student.score[index][propertyName] === null){
-            color = "blankSquare"
         }
         return color
     }
 
     getBenchmarkForScore(sortBy){
-        const benchmark = [];
         let boyBenchmark = null;
         let moyBenchmark = null;
         let eoyBenchmark = null;
-    
-        const findBm = benchmarks.find((bm, index)=>{
-            const gradelevel = this.state.gradelevel.toUpperCase();
-            const subject = this.state.subject;
-            if(bm.gradelevel === gradelevel && bm.subject === subject){
-               benchmark.push(bm) 
-            }
-        })
 
-        if(benchmark[0] !== undefined){
-            //rounds the benchmark down to nearest integer based on decimal
-            boyBenchmark = Math.floor(benchmark[0].score[0].BOYscore);
-            moyBenchmark = Math.floor(benchmark[0].score[1].MOYscore);
-            eoyBenchmark = Math.floor(benchmark[0].score[2].EOYscore);
+        const benchmark = benchmarks.find(bm => bm.gradelevel === this.state.gradelevel.toUpperCase() && bm.subject === this.state.subject);
+    
+        if(benchmark){
+            boyBenchmark = Math.floor(benchmark.score[0].BOYscore);
+            moyBenchmark = Math.floor(benchmark.score[1].MOYscore);
+            eoyBenchmark = Math.floor(benchmark.score[2].EOYscore);
         }
-        
+
         const bench = {
             "BOY score": boyBenchmark,
             "MOY score": moyBenchmark,
             "EOY score": eoyBenchmark,
             "EOY goal": eoyBenchmark
         }
-        console.log("bench:", bench[sortBy])
-        return bench[sortBy]
 
-        // if(sortBy === "BOY score"){
-        //     return boyBenchmark
-        // } else if(sortBy === "MOY score"){
-        //     return moyBenchmark
-        // } else if(sortBy === "EOY score" || sortBy === "EOY goal"){
-        //     return eoyBenchmark
-        // }
+        return bench[sortBy]
     }
 
     // getNumberOfGroups(numberOfGroups){
@@ -237,26 +199,18 @@ class Arraynge extends Component{
     // }
 
     render(){
-        console.log("currentClass:", this.props.currentClass)
-        console.log("props", this.props)
         const benchmarkScore = this.getBenchmarkForScore(this.props.sortBy);
         let studentCards = null;
         const students = this.props.studentdata.students;
-        console.log("students:", students)
         // let numberOfGroupsToShow = this.getNumberOfGroups(this.state.numberOfGroups);
-        
-        // const filteredStudents = this.filterBySubject(this.state.students)
-        //filter students by subject
-        // console.log("filteredStudents:", filteredStudents)
         
         //sort students by time of year for tests
         if(this.props.sortBy !== ""){
             studentCards = this.sortStudentScore(students, this.props.sortBy)  
         }
+
         //assign a square to each student based on their scores compared to the benchmarks
-        // studentCards.map((student, index)=>{
         studentCards = students.map((student, index)=>{
-            // console.log("student:", student.name, student.score[3].EOYscore)
             let color = "";
             if(this.props.sortBy === ""){
                 color = "blankSquare"
@@ -303,15 +257,13 @@ class Arraynge extends Component{
                     </li>
             }
         })
-
         
         return(
             <div className="arrayngementpage">
                 <span className="inputbar">
                     <p className="studentlabel">STUDENTS:</p>
                     <ArrayngementDropMenu className="arrayngementdropmenu"/>
-                    {/* <NumberOfGroupsDropMenu className="arrayngementgroups" onGroupsClick={this.handleGroupsChange}/>
-                    <SubjectDropMenu className="arrayngementsubject" subject={this.state.subject} onSubjectClick={this.handleSubjectChange}/> */}
+                     {/* <NumberOfGroupsDropMenu className="arrayngementgroups" onGroupsClick={this.handleGroupsChange}/> */}
                 </span>
                 <Container className="mt-3 pl-0 pr-0">
                     <ul className="studentlist">
@@ -339,4 +291,3 @@ const mapDispatchToProps = dispatch => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Arraynge);
-// export default Arraynge;

@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import PropTypes from 'prop-types';
 import { Container, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setSortBy } from '../../store/actions';
@@ -25,7 +24,6 @@ class ArrayngementDropMenu extends Component{
     }
 
     render(){
-        console.log("DROPMENU PROPS:", this.props)
         let whatToShow = "";
         this.props.sortBy === "" ? whatToShow = "Scores" : whatToShow = this.props.sortBy;
         return(
@@ -60,9 +58,5 @@ const mapDispatchToProps = dispatch => {
         setSortBy: sortBy => dispatch(setSortBy(sortBy))
     }
 }
-
-ArrayngementDropMenu.propTypes ={
-    onSortBy: PropTypes.func.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArrayngementDropMenu);

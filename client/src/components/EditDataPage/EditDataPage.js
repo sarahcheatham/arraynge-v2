@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UpdateForm from "./UpdateForm";
 import UpdateTable from "./UpdateTable";
-import { Container, Row, Col, Form, Button, Table, thead, tr } from 'reactstrap';
+import { Container, Col, Button, Table, thead, tr } from 'reactstrap';
 import './EditDataPage.css';
 import { connect } from 'react-redux';
 import { loadStudentData, setCurrentClass, updateStudentData } from "../../store/actions";

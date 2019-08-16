@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import { Table } from 'reactstrap';
 
 class UpdateTable extends Component{
     constructor(){

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import DeleteButton from './DeleteButton';
 // import Checkbox from '@material-ui/core/Checkbox';
 // import DeleteIcon from '@material-ui/icons/Delete';
-import { Button } from 'reactstrap';
+
 
 
 class ListItem extends Component {
@@ -22,7 +22,7 @@ class ListItem extends Component {
     checked = event => {
         this.setState({ checkboxState: !this.state.checkboxState })
         // console.log("LIST ITEM:", event.currentTarget)
-        const li = this.props;
+        // const li = this.props;
         const classID = this.props.classID;
         const gradelevel = this.props.gradelevel;
         const subject = this.props.subject;
@@ -49,11 +49,11 @@ class ListItem extends Component {
             padding: 0,
             marginTop: '1%'
         }
-        const buttonStyle = {
-            float: 'right',
-            padding: 0,
-            margin: 0,
-        }
+        // const buttonStyle = {
+        //     float: 'right',
+        //     padding: 0,
+        //     margin: 0,
+        // }
         return (
             <li onChange={this.checked} classID={this.props.classID} className="classListProps">
                 <div><span className={this.props.className}>YEAR:</span>{" "}<span style={textStyle}>{this.props.year}</span><input type="checkbox" style={checkbox} onChange={this.props.onCheck}/></div>
