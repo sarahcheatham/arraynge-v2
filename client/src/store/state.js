@@ -18,7 +18,7 @@ const storeState =  {
         error: null,
         students: []
     },
-    
+    sortBy: ""
 }
 
 export default storeState

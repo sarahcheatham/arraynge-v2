@@ -4,11 +4,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import Header from './components/Header/Header';
 import SideNav from './components/SideNav/SideNav';
-import Username from './components/Username/Username';
+// import Username from './components/Username/Username';
 import SignUpSignInPage from './components/SignUpSignInPage/SignUpSignInPage';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import ClassDataPage from './components/ClassDataPage/ClassDataPage';
 import StudentDataPage from './components/StudentDataPage/StudentDataPage';
+import Arraynge from './components/ArrayngementPage/Arraynge';
 import { connect } from 'react-redux';
 import { loadUserId, setCurrentUserId, setUsername, setSignUpSignInError, loadClassData } from './store/actions';
 // import { withRouter } from 'react-router-dom';
@@ -115,6 +116,7 @@ class App extends Component {
         <Route path="/classdata" component={ClassDataPage}/>
         <Route path="/studentdata" component={StudentDataPage}/>
         <Route path="/scores" component={EditDataPage}/>
+        <Route path="/arraynge" component={Arraynge}/>
         {/* <Route exact path="/classdata" render={(props)=> <ClassDataPageContainer gradelevel={props.gradelevel} subject={props.subject} userId={props.userId} classdata={props.classdata}/>}/> */}
         {/* <Route path="/arrayngement" component={ArrayngementPageContainer}/>
         <Route exact path="/scores" component={ScoresPageContainer}/>
@@ -152,7 +154,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    signUpSignInError: state.signUpSignInError
+    signUpSignInError: state.signUpSignInError,
+    errors: state.errors
   }
 }
 

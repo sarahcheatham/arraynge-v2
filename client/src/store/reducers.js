@@ -63,7 +63,6 @@ const classdata = (state = storeState, action) => {
     }
 }
 
-
 const studentdata = (state = storeState, action) => {
     switch(action.type){
         case FETCH_STUDENT_DATA_BEGIN:
@@ -125,8 +124,15 @@ const currentCount = (state = storeState, action) => {
     return state;
 }
 
+const sortBy = (state = storeState, action) => {
+    if(action.type === "SET_SORT_BY"){
+        return action.value
+    }
+    return state;
+}
+
 const rootReducer = combineReducers({
-    currentUserId, signUpSignInError, username, currentClass, classdata, studentdata, currentGradeLevel, currentSubject, currentYear, numberOfStudents, currentCount
+    currentUserId, signUpSignInError, username, currentClass, classdata, studentdata, currentGradeLevel, currentSubject, currentYear, numberOfStudents, currentCount, sortBy
 });
 
 export default rootReducer;

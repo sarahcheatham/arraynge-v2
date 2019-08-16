@@ -7,6 +7,7 @@ module.exports.listStudents = (req, res) => {
     })
 }
 
+
 module.exports.showStudent = (req, res)=>{
     StudentModel.findById(req.params.id).exec().then(student =>{
         return res.json(student)

@@ -4,9 +4,6 @@ import { loadUsername, setUsername } from '../../store/actions';
 import "./Username.css";
 
 class Username extends Component{
-    constructor(props){
-        super(props);
-    }
     
     componentDidMount(){
         if(this.props.username !== ""){
