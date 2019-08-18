@@ -4,6 +4,8 @@ import './Charts.css';
 import { Container, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { loadStudentData, setCurrentClass } from '../../store/actions';
+// import '../node_modules/react-vis/dist/style.css';
+import {XYPlot, VerticalBarSeries} from 'react-vis';
 
 
 class Charts extends Component{
@@ -48,11 +50,55 @@ class Charts extends Component{
         }
     }
 
+    getBenchmarkForScore(sortBy){
+        let boyBenchmark = null;
+        let moyBenchmark = null;
+        let eoyBenchmark = null;
+
+        const benchmark = benchmarks.find(bm => bm.gradelevel === this.state.gradelevel.toUpperCase() && bm.subject === this.state.subject);
+    
+        if(benchmark){
+            boyBenchmark = Math.floor(benchmark.score[0].BOYscore);
+            moyBenchmark = Math.floor(benchmark.score[1].MOYscore);
+            eoyBenchmark = Math.floor(benchmark.score[2].EOYscore);
+        }
+
+        const bench = {
+            "BOY score": boyBenchmark,
+            "MOY score": moyBenchmark,
+            "EOY score": eoyBenchmark,
+            "EOY goal": eoyBenchmark
+        }
+
+        return bench[sortBy]
+    }
+
+    compareScore(benchmark, sortBy){
+        console.log("inside func compareScore:", this.props.studentdata.students)
+    }
+
    
     render(){
+        const data = [
+            {x: 0, y: 8},
+            {x: 1, y: 5},
+            {x: 2, y: 4},
+            {x: 3, y: 9},
+            {x: 4, y: 1},
+            {x: 5, y: 7},
+            {x: 6, y: 6},
+            {x: 7, y: 3},
+            {x: 8, y: 2},
+            {x: 9, y: 0}
+        ];
+        const benchmarkScore = this.getBenchmarkForScore(this.props.sortBy);
+        console.log("benchmarkScore:", benchmarkScore)
+        console.log("compareScore:", this.compareScore())
         return(
             <Container>
-                <Row>Charts</Row>
+                <XYPlot height={200} width={200}>
+                    <VerticalBarSeries color={"var(--flamingo)"} data={data} />
+                </XYPlot>
             </Container>
             
         );
