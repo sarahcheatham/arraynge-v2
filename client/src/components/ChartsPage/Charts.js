@@ -50,13 +50,32 @@ class Charts extends Component{
         }
     }
 
+    scoreInfo = {
+        "BOY score": {
+            propertyName: "BOYscore",
+            index: 0
+        },
+        "MOY score": {
+            propertyName: "MOYscore",
+            index: 2
+        },
+        "EOY score": {
+            propertyName: "EOYscore",
+            index: 3
+        },
+        "EOY goal": {
+            propertyName: "EOYgoal",
+            index: 1
+        }
+    }
+
     getBenchmarkForScore(sortBy){
         let boyBenchmark = null;
         let moyBenchmark = null;
         let eoyBenchmark = null;
 
         const benchmark = benchmarks.find(bm => bm.gradelevel === this.state.gradelevel.toUpperCase() && bm.subject === this.state.subject);
-    
+
         if(benchmark){
             boyBenchmark = Math.floor(benchmark.score[0].BOYscore);
             moyBenchmark = Math.floor(benchmark.score[1].MOYscore);
@@ -73,31 +92,40 @@ class Charts extends Component{
         return bench[sortBy]
     }
 
-    compareScore(benchmark, sortBy){
-        console.log("inside func compareScore:", this.props.studentdata.students)
+    compareScore(students, sortBy){
+        const data = [
+            {x: 0, y: 0, color: "#8FAD57"},
+            {x: 1, y: 0, color: "#DF4C36"},
+            {x: 2, y: 0, color: "#D7E1DF"}
+        ]
+        const benchmarkScore = this.getBenchmarkForScore(this.props.sortBy);
+        if(sortBy){
+            const propertyName = this.scoreInfo[sortBy].propertyName;
+            const index = this.scoreInfo[sortBy].index;
+            students.forEach((student, i)=>{
+                const score = student.score[index][propertyName];
+                if(score === null){
+                   data[2]['y'] += 1;
+                } else if(score >= benchmarkScore){
+                    data[0]['y'] += 1;
+                } else {
+                    data[1]['y'] +=1;
+                }
+            })
+            return data
+        }
+        
     }
 
    
     render(){
-        const data = [
-            {x: 0, y: 8},
-            {x: 1, y: 5},
-            {x: 2, y: 4},
-            {x: 3, y: 9},
-            {x: 4, y: 1},
-            {x: 5, y: 7},
-            {x: 6, y: 6},
-            {x: 7, y: 3},
-            {x: 8, y: 2},
-            {x: 9, y: 0}
-        ];
-        const benchmarkScore = this.getBenchmarkForScore(this.props.sortBy);
-        console.log("benchmarkScore:", benchmarkScore)
-        console.log("compareScore:", this.compareScore())
+        const students = this.props.studentdata.students;
+        const data = this.compareScore(students, this.props.sortBy)
+        console.log("data:", data)
         return(
             <Container>
                 <XYPlot height={200} width={200}>
-                    <VerticalBarSeries color={"var(--flamingo)"} data={data} />
+                    <VerticalBarSeries colorType={"literal"} data={data} />
                 </XYPlot>
             </Container>
             
@@ -109,6 +137,7 @@ const mapStateToProps = state => {
     return{
         currentClass: state.currentClass,
         studentdata: state.studentdata,
+        sortBy: state.sortBy
     }
 }
 
