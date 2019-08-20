@@ -1,0 +1,23 @@
+.inputbar-charts{
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    display: grid;
+    grid-template-columns: 20% 25% 25% 25%;
+    grid-template-rows: 75px;
+    /* background-color: #D7E1DF; */
+    background-color: var(--light-gray);
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.chartslabel{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: flex;
+    margin-top: 25px;
+    margin-left: 25px;
+    font-family: nobel, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 24px;
+}
