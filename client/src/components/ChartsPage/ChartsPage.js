@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Charts.css';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Charts from './Charts';
 import ArrayngementDropMenu from '../DropMenus/ArrayngementDropMenu';
 
@@ -16,7 +16,11 @@ class ChartsPage extends Component {
                     <ArrayngementDropMenu className="arrayngementdropmenu"/>
                      {/* <NumberOfGroupsDropMenu className="arrayngementgroups" onGroupsClick={this.handleGroupsChange}/> */}
                 </span>
-                <Charts/>
+                <Container fluid>
+                <Col xs={6}>
+                    <Charts/>
+                </Col>
+                </Container>
             </div>
         )
     }

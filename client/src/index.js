@@ -5,6 +5,7 @@ import "./index.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import store from "./store/store";
 import { Provider } from 'react-redux';
+import '../node_modules/react-vis/dist/style.css';
 
 
 const oldFetch = window.fetch;

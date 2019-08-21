@@ -4,8 +4,7 @@ import './Charts.css';
 import { Container, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { loadStudentData, setCurrentClass } from '../../store/actions';
-// import '../node_modules/react-vis/dist/style.css';
-import {XYPlot, VerticalBarSeries} from 'react-vis';
+import {XYPlot, makeWidthFlexible, makeHeightFlexible, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, VerticalBarSeries} from 'react-vis';
 
 
 class Charts extends Component{
@@ -94,14 +93,16 @@ class Charts extends Component{
 
     compareScore(students, sortBy){
         const data = [
-            {x: 0, y: 0, color: "#8FAD57"},
-            {x: 1, y: 0, color: "#DF4C36"},
-            {x: 2, y: 0, color: "#D7E1DF"}
+            {x: 'At or Above Grade Level', y: 0, color: "#8FAD57"},
+            {x: 'Below Grade Level', y: 0, color: "#DF4C36"},
+            {x: 'Not Tested', y: 0, color: "#D7E1DF"},
+            {x: 'Total Students', y: 0, color: "var(--flamingo)"}
         ]
         const benchmarkScore = this.getBenchmarkForScore(this.props.sortBy);
         if(sortBy){
             const propertyName = this.scoreInfo[sortBy].propertyName;
             const index = this.scoreInfo[sortBy].index;
+            data[3]['y'] = students.length;
             students.forEach((student, i)=>{
                 const score = student.score[index][propertyName];
                 if(score === null){
@@ -117,17 +118,34 @@ class Charts extends Component{
         
     }
 
+
    
     render(){
+        const FlexibleWidthXYPlot = makeWidthFlexible(XYPlot);
+        const FlexibleHeightXYPlot = makeHeightFlexible(XYPlot);
         const students = this.props.studentdata.students;
         const data = this.compareScore(students, this.props.sortBy)
         console.log("data:", data)
         return(
-            <Container>
-                <XYPlot height={200} width={200}>
-                    <VerticalBarSeries colorType={"literal"} data={data} />
-                </XYPlot>
-            </Container>
+          
+            <Row>
+                <FlexibleWidthXYPlot
+                    xType="ordinal"
+                    height={400}
+                >
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
+                    <XAxis 
+                        className="xAxis"
+                     />
+                    <YAxis />
+                    <VerticalBarSeries 
+                        colorType={"literal"} 
+                        data={data} 
+                    />
+                </FlexibleWidthXYPlot>
+            </Row>
+     
             
         );
     }
